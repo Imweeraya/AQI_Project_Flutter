@@ -19,7 +19,7 @@ class _ForeCastState extends State<ForeCast> {
         Container(
           width: double.infinity,
           height: 50,
-          color: Color.fromARGB(255, 218, 218, 218),
+          color: Color.fromARGB(255, 232, 232, 232),
           child: const Center(
               child: Text(
             "พยากรณ์อากาศ 7 วัน",

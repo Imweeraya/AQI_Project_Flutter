@@ -1,16 +1,6 @@
 
 import 'package:flutter/material.dart';
 
-class Air{
-  List<Weather> foreCast;
-  Weather currentWeather;
-
-  Air({
-    required this.foreCast,
-    required this.currentWeather
-  });
-}
-
 class Weather {
   int weatherType;
   String weatherText;
