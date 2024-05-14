@@ -5,22 +5,18 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Simple Button App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
+    return const MaterialApp(
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +29,7 @@ class MyHomePage extends StatelessWidget {
               isScrollControlled: true,
               builder: (BuildContext context) {
                 return FractionallySizedBox(
-                  heightFactor: 0.8, // Set height to 80% of the screen height
+                  heightFactor: 0.8, 
                   child: Container(
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -47,7 +43,6 @@ class MyHomePage extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: List<Widget>.generate(8, (int index) {
-                            // ตัวอย่างข้อมูลเมือง, AQI และ emoji ตามสภาพอากาศ
                             final List<String> cities = [
                               'Bangkok', 'Chiang Mai', 'Phuket', 'Pattaya',
                               'Khon Kaen', 'Udon Thani', 'Nakhon Ratchasima', 'Hua Hin'
@@ -61,7 +56,7 @@ class MyHomePage extends StatelessWidget {
                               height: 80,
                               margin: const EdgeInsets.only(bottom: 30.0),
                               decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 223, 223, 223),
+                                color: const Color.fromARGB(255, 223, 223, 223),
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
                               child: Padding(
@@ -73,9 +68,18 @@ class MyHomePage extends StatelessWidget {
                                       cities[index],
                                       style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
                                     ),
-                                    Text(
-                                      'AQI: ${aqiValues[index]}',
-                                      style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 26),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,                                      
+                                      children: [
+                                        const Text(
+                                          'AQI',
+                                          style: TextStyle(color: Color.fromARGB(255, 114, 114, 114), fontSize: 16),
+                                        ),
+                                        Text(
+                                          '${aqiValues[index]}',
+                                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 35),
+                                        ),
+                                      ],
                                     ),
                                     Text(
                                       weatherEmojis[index],
