@@ -1,6 +1,6 @@
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText.dart';
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText_small.dart';
-import 'package:air_buddy/weather_feature/presentation/widget/forecast_card.dart';
+import 'package:air_buddy/weather_feature/presentation/widget/card/forecast_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

@@ -76,6 +76,8 @@ flutter:
     - assets/icon_svg/uvi_icon.svg
     - assets/icon_svg/wind_icon.svg
     - assets/icon_svg/sun_weather.svg
+    - assets/animation/sunny_weather.json
+    - assets/animation/sunny_cloud_weather.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
