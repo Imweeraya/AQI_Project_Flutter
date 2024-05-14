@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class IconText extends StatelessWidget {
-  const IconText(
+class IconTextSmall extends StatelessWidget {
+  const IconTextSmall(
       {super.key,
       this.icon,
       this.texticon,
@@ -19,18 +19,19 @@ class IconText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         icon != null
             ? Icon(
                 icon,
                 color: Color.fromARGB(255, 132, 132, 132),
-                size: 30,
+                size: 20,
               )
             : texticon != null
                 ? Text(
                     texticon!,
                     style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 12,
                         color: Color.fromARGB(255, 84, 84, 84),
                         fontWeight: FontWeight.bold),
                   )
@@ -38,7 +39,7 @@ class IconText extends StatelessWidget {
                     svgicon!,
                     colorFilter: const ColorFilter.mode(
                         Color.fromARGB(255, 132, 132, 132), BlendMode.srcIn),
-                    width: 30,
+                    width: 20,
                   ),
         SizedBox(
           width: 8,
@@ -50,14 +51,14 @@ class IconText extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: 10,
                 color: Color.fromARGB(255, 84, 84, 84),
               ),
             ),
             Text(
               info,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 color: Color.fromARGB(255, 84, 84, 84),
               ),
             )
