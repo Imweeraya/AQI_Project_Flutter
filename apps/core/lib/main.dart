@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -43,20 +45,11 @@ class MyHomePage extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: List<Widget>.generate(8, (int index) {
-                            final List<String> cities = [
-                              'Bangkok', 'Chiang Mai', 'Phuket', 'Pattaya',
-                              'Khon Kaen', 'Udon Thani', 'Nakhon Ratchasima', 'Hua Hin'
-                            ];
-                            final List<int> aqiValues = [75, 50, 100, 150, 120, 80, 60, 30];
-                            final List<String> weatherEmojis = [
-                              '☀️', '🌤️', '🌧️', '⛈️', '🌩️', '🌪️', '🌫️', '❄️'
-                            ];
-                            
                             return Container(
                               height: 80,
                               margin: const EdgeInsets.only(bottom: 30.0),
                               decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 223, 223, 223),
+                                color: Color.fromARGB(255, 113, 214, 90),
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
                               child: Padding(
@@ -65,31 +58,31 @@ class MyHomePage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      cities[index],
-                                      style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+                                      'Chiang Mai',
+                                      style: const TextStyle(color: Color.fromARGB(184, 20, 20, 20), fontSize: 16),
                                     ),
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,                                      
                                       children: [
                                         const Text(
                                           'AQI',
-                                          style: TextStyle(color: Color.fromARGB(255, 114, 114, 114), fontSize: 16),
+                                          style: TextStyle(color: Color.fromARGB(184, 20, 20, 20), fontSize: 16),
                                         ),
                                         Text(
-                                          '${aqiValues[index]}',
-                                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 35),
+                                          '54',
+                                          style: const TextStyle(color: Color.fromARGB(184, 20, 20, 20), fontSize: 35),
                                         ),
                                       ],
                                     ),
                                     Text(
-                                      weatherEmojis[index],
-                                      style: const TextStyle(fontSize: 24),
+                                      'sss',
+                                      style: TextStyle(color:Color.fromARGB(184, 20, 20, 20), fontSize: 36),
                                     ),
                                   ],
                                 ),
                               ),
                             );
-                          }).toList(),
+                          }),
                         ),
                       ),
                     ),
