@@ -1,5 +1,6 @@
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/forecast.dart';
+import 'package:air_buddy/weather_feature/presentation/widget/list/forecast_list.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
@@ -58,7 +59,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             SizedBox(
               height: 20,
             ),
-            ForeCast()
+            ForeCast(),
           ],
         ),
       ),

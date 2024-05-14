@@ -1,19 +1,20 @@
+import 'package:air_buddy/weather_feature/domain/entities/weather_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText.dart';
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText_small.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/card/forecast_card.dart';
+import 'package:air_buddy/weather_feature/presentation/widget/list/forecast_list.dart';
+import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ForeCast extends StatefulWidget {
+class ForeCast extends ConsumerWidget {
   const ForeCast({super.key});
 
   @override
-  State<ForeCast> createState() => _ForeCastState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final weatherVM = ref.watch(weatherViewModelProvider);
 
-class _ForeCastState extends State<ForeCast> {
-  @override
-  Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -32,24 +33,8 @@ class _ForeCastState extends State<ForeCast> {
         SizedBox(
           height: 10,
         ),
-        Container(
-          width:180,
-          height: 380,
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 255, 255, 255),
-            borderRadius: BorderRadius.all(
-              Radius.circular(10.0),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: Offset(0, 3), // changes position of shadow
-              ),
-            ],
-          ),
-          child: ForeCastCard()
+        ForeCastList(
+          forecast: weatherVM.weathers,
         ),
         const SizedBox(
           height: 20,
