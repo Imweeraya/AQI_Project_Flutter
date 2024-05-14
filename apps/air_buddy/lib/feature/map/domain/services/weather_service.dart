@@ -9,9 +9,9 @@ class WeatherService extends IWeatherService{
   Future<List<WeatherToDisplay>> getByLatLng(double lat, double lng) async {
     final rawWeather = await repository.getByLatLng(lat,lng);
     return rawWeather.map((res) => WeatherToDisplay(
-        aqi: res.data!.aqi!,
-        name: res.data!.city!.name!,
-        pm25: res.data!.iaqi!.pm25!.avg!,
+        aqi: res.data.aqi,
+        name: res.data.city.name,
+        pm25: res.data.iaqi.pm25.v,
     ))
         .toList();
   }
