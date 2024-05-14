@@ -20,8 +20,6 @@ class _MapScreenState extends State<MapScreen> {
   void _handleMapChanged(MapPosition mapPosition, bool hasGesture) {
     setState(() {
       _currentBounds = mapPosition.bounds!;
-      // Call a function here to fetch or update markers based on the new bounds
-      // fetchMarkers();
     });
   }
 
@@ -68,26 +66,5 @@ class _MapScreenState extends State<MapScreen> {
         ],
       ),
     );
-  }
-
-  // Function to build markers
-  List<Marker> _buildMarkers() {
-    // This function should return a list of Marker widgets based on your data
-    // You can use _currentBounds to determine which markers to display based on the visible area of the map
-    // You may fetch data from an API here and create Marker widgets based on the fetched data
-    // Example:
-    List<Marker> markers = [];
-    // Add markers based on fetched data
-    // markers.add(
-    //   Marker(
-    //     width: 30.0,
-    //     height: 30.0,
-    //     point: LatLng(latitude, longitude),
-    //     builder: (ctx) => Container(
-    //       child: YourMarkerWidget(),
-    //     ),
-    //   ),
-    // );
-    return markers;
   }
 }
