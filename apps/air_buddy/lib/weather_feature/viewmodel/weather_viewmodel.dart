@@ -31,10 +31,6 @@ class WeatherViewModel extends _$WeatherViewModel {
     );
   }
 
-  String formatDate(DateTime dateTime) {
-    final formatter = DateFormat('dd MMMM yyyy');
-    return formatter.format(dateTime);
-  }
 
   AqiData getAqiData(int aqi) {
     if (aqi > 0 && aqi <= 50) {
