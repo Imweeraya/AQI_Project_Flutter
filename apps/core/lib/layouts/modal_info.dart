@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ModalInfo extends StatelessWidget {
   const ModalInfo({super.key});
@@ -22,12 +22,12 @@ class ModalInfo extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildCustomContainer('Good', '0-50', '/Users/chitchanok/Documents/GitHub/AQI_Project_Flutter/apps/core/assets/1.PNG',Color.fromARGB(255, 41, 151, 27)),
-            _buildCustomContainer('Moderate', '51-100', '/Users/chitchanok/Documents/GitHub/AQI_Project_Flutter/apps/core/assets/2.PNG',Color.fromARGB(255, 233, 235, 87)),
-            _buildCustomContainer('Unhealthy for Sensitive Groups', '101-150', '/Users/chitchanok/Documents/GitHub/AQI_Project_Flutter/apps/core/assets/3.PNG',Color.fromARGB(255, 245, 118, 34)),
-            _buildCustomContainer('Unhealthy', '151-200', '/Users/chitchanok/Documents/GitHub/AQI_Project_Flutter/apps/core/assets/4.PNG',Color.fromARGB(255, 218, 46, 46)),
-            _buildCustomContainer('Very Unhealthy', '201-300', '/Users/chitchanok/Documents/GitHub/AQI_Project_Flutter/apps/core/assets/5.PNG',Color.fromARGB(255, 96, 7, 125)),
-            _buildCustomContainer('Hazardous', '301+', '/Users/chitchanok/Documents/GitHub/AQI_Project_Flutter/apps/core/assets/6.PNG',Color.fromARGB(255, 101, 12, 12)),
+            _buildCustomContainer('Good', '0-50', 'assets/aqi_icon/good_aqi.svg', Color.fromARGB(255, 41, 151, 27)),
+            _buildCustomContainer('Moderate', '51-100', 'assets/aqi_icon/moderate_aqi.svg', Color.fromARGB(255, 232, 235, 55)),
+            _buildCustomContainer('Unhealthy for Sensitive Groups', '101-150', 'assets/aqi_icon/sensitive_aqi.svg', Color.fromARGB(255, 245, 118, 34)),
+            _buildCustomContainer('Unhealthy', '151-200', 'assets/aqi_icon/unhealthy_aqi.svg', Color.fromARGB(255, 218, 46, 46)),
+            _buildCustomContainer('Very Unhealthy', '201-300', 'assets/aqi_icon/ver_unhealthy_aqi.svg', Color.fromARGB(255, 96, 7, 125)),
+            _buildCustomContainer('Hazardous', '301+', 'assets/aqi_icon/hazardous_aqi.svg', Color.fromARGB(255, 101, 12, 12)),
           ],
         ),
       ),
@@ -42,7 +42,7 @@ class ModalInfo extends StatelessWidget {
     );
   }
 
-  Widget _buildCustomContainer(String text1, String text2, String imagePath,Color color) {
+  Widget _buildCustomContainer(String text1, String text2, String svgPath, Color color) {
     return Container(
       width: 350,
       height: 70,
@@ -62,10 +62,11 @@ class ModalInfo extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset(
-            imagePath,
+          SvgPicture.asset(
+            svgPath,
             width: 55,
             height: 55,
+            color: color, // Apply the color here
           ),
           Container(
             width: 230,
