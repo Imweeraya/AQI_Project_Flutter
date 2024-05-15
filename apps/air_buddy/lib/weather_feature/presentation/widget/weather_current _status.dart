@@ -1,5 +1,6 @@
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
+import 'package:core/constants/aqi_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,11 +14,13 @@ class WeatherCurrentStatus extends ConsumerWidget {
     final weatherVM = ref.watch(weatherViewModelProvider);
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
 
+    final AqiData aqiData = weatherVMNotifier.getAqiData(weatherVM.air[0].polution.aqi ?? 0);
+
     return Column(
       children: [
         Container(
           height: 500,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -48,16 +51,10 @@ class WeatherCurrentStatus extends ConsumerWidget {
                 "${weatherVM.air[0].polution.city}",
                 style: TextStyle(fontSize: 24, color: Colors.white),
               ),
-              
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
-                    "assets/icon_svg/wind_icon.svg",
-                    colorFilter:
-                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-                    width: 30,
-                  ),
+                  Lottie.asset("assets/animation/wind.json"),
                   SizedBox(
                     width: 10,
                   ),
@@ -107,7 +104,7 @@ class WeatherCurrentStatus extends ConsumerWidget {
         Container(
           height: 150,
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 191, 247, 94),
+            color: aqiData.backgroundColor,
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20.0),
               bottomRight: Radius.circular(20.0),
@@ -124,32 +121,38 @@ class WeatherCurrentStatus extends ConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Icon(
-                Icons.emoji_emotions_outlined,
-                size: 100,
-                color: Color.fromARGB(255, 141, 201, 37),
-              ),
+              SvgPicture.asset(aqiData.pathIcon,
+                  width: 100,
+                  colorFilter: ColorFilter.mode(
+                      aqiData.textColor, BlendMode.srcIn)),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     "AQI",
                     style: TextStyle(
-                        fontSize: 18, color: Color.fromARGB(255, 108, 154, 28)),
+                        fontSize: 18, color: aqiData.textColor),
                   ),
                   Text("${weatherVM.air[0].polution.aqi}",
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 36,
-                          color: Color.fromARGB(255, 108, 154, 28)))
+                          color: aqiData.textColor))
                 ],
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Good",
-                    style: TextStyle(
-                        fontSize: 18, color: Color.fromARGB(255, 108, 154, 28)),
+                  SizedBox(
+                    height: 48,
+                    child: Center(
+                      child: Text(
+                        aqiData.aqiText,
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: aqiData.textColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 8,
@@ -165,9 +168,9 @@ class WeatherCurrentStatus extends ConsumerWidget {
                       padding: const EdgeInsets.fromLTRB(20, 6, 20, 6),
                       child: Text(
                           "PM2.5 ${weatherVM.air[0].polution.avgPm25} µg/m³",
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontSize: 18,
-                              color: Color.fromARGB(255, 108, 154, 28))),
+                              color: aqiData.textColor)),
                     ),
                   ),
                 ],

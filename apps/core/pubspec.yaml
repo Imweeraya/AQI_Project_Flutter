@@ -87,6 +87,20 @@ flutter:
     - assets/icon_svg/sun_weather.svg
     - assets/animation/sunny_weather.json
     - assets/animation/sunny_cloud_weather.json
+    - assets/animation/wind.json
+    - assets/animation/rain_weather.json
+    - assets/animation/snow_weather.json
+    - assets/animation/sun.json
+    - assets/icon_svg/air_filter_info.svg
+    - assets/icon_svg/bike_info.svg
+    - assets/icon_svg/window_info.svg
+    - assets/icon_svg/mask_info.svg
+    - assets/icon_svg/good_aqi.svg
+    - assets/icon_svg/moderate_aqi.svg
+    - assets/icon_svg/sensitive_aqi.svg
+    - assets/icon_svg/unhealthy_aqi.svg
+    - assets/icon_svg/ver_unhealthy_aqi.svg
+    - assets/icon_svg/hazardous_aqi.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
