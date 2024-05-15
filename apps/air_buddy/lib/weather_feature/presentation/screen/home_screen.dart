@@ -24,6 +24,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final weatherVM = ref.watch(weatherViewModelProvider);
    
     return Scaffold(
       appBar: AppBar(
@@ -49,12 +50,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: Container(
         color: const Color.fromARGB(255, 246, 246, 246),
         child: ListView(
-          children: const [
-            WeatherCurrentStatus(),
-            SizedBox(
+          children: [
+            WeatherCurrentStatus(curentWeather: weatherVM.air[0],),
+            const SizedBox(
               height: 20,
             ),
-            ForeCast(),
+            ForeCast(forecastList: weatherVM.air,),
           ],
         ),
       ),

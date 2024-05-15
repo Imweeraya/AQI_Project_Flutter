@@ -1,3 +1,4 @@
+import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/card/aqi_card.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/card/polution_card.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/card/weather_card.dart';
@@ -8,21 +9,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 class WeatherCurrentStatus extends ConsumerWidget {
-  const WeatherCurrentStatus({super.key});
+  const WeatherCurrentStatus({super.key , required this.curentWeather});
+  final Air curentWeather;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weatherVM = ref.watch(weatherViewModelProvider);
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
+    final AqiData aqiData = weatherVMNotifier.getAqiData(curentWeather.polution.aqi ?? 0);
 
-    final AqiData aqiData = weatherVMNotifier.getAqiData(weatherVM.air[0].polution.aqi ?? 0);
-
-    return Column(
-      children: [
-        WeatherCard(currentAir: weatherVM.air[0],),
-        PolutionCard(currentPolution: weatherVM.air[0],),
-        AqiCard(aqiData: aqiData, currentAqi: weatherVM.air[0],)
-      ],
+    return InkWell(
+      onTap: (){},
+      child: Column(
+        children: [
+          WeatherCard(currentAir: curentWeather,),
+          PolutionCard(currentPolution: curentWeather,),
+          AqiCard(aqiData: aqiData, currentAqi: curentWeather,)
+        ],
+      ),
     );
   }
 }
