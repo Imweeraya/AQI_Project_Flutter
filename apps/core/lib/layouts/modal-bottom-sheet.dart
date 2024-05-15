@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -10,9 +12,9 @@ class BottomSheetWidget extends StatelessWidget {
       heightFactor: 0.8,
       child: Container(
         decoration: const BoxDecoration(
-          color: Colors.white,
+          color: Color.fromARGB(255, 255, 255, 255),
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(40.0),
+            top: Radius.circular(20.0),
           ),
         ),
         child: Padding(
@@ -25,8 +27,8 @@ class BottomSheetWidget extends StatelessWidget {
                   height: 80,
                   margin: const EdgeInsets.only(top: 20.0, bottom: 20),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(185, 49, 225, 52),
-                    borderRadius: BorderRadius.circular(60.0),
+                    color: Color.fromARGB(174, 83, 226, 85),
+                    borderRadius: BorderRadius.circular(15.0),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.2),
