@@ -1,3 +1,4 @@
+import 'package:air_buddy/infa.dart/router/router.dart';
 import 'package:air_buddy/weather_feature/presentation/screen/home_screen.dart';
 import 'package:core/layouts/buttom_navigation.dart';
 import 'package:go_router/go_router.dart';
@@ -26,5 +27,5 @@ final router = GoRouter(routes: [
         // ),
       ]
       ),
-      // ...weatherRoutesForRoot
+      ...weatherRoutesForRoot
 ]);

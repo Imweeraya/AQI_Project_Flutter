@@ -1,8 +1,11 @@
+import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/domain/port/service.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_state.dart';
 import 'package:core/constants/aqi/aqi_data.dart';
 import 'package:core/constants/aqi/aqi_type.dart';
 import 'package:core_libs/depedency_injection/get_it.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'weather_viewmodel.g.dart';
@@ -47,8 +50,8 @@ class WeatherViewModel extends _$WeatherViewModel {
     }
   }
 
-  // ignore: avoid_build_context_in_providers
-  // void onSelectProduct(BuildContext context, ProductDisplay product) {
-  //   context.push('/detail' , extra: product);
-  // }
+  //ignore: avoid_build_context_in_providers
+  void goInfoScreen(BuildContext context, List<Air> listWeather) {
+    context.push('/info' , extra: listWeather);
+  }
 }

@@ -1,32 +1,31 @@
+import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/forecast.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
-import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+class WeatherInfoScreen extends StatefulWidget {
+  const WeatherInfoScreen({super.key , required this.weather});
+  final List<Air> weather;
 
   @override
-  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+  State<WeatherInfoScreen> createState() => _WeatherInfoScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future(() {
-      ref.read(weatherViewModelProvider.notifier).getWeathers();
-    });
-  }
-
+class _WeatherInfoScreenState extends State<WeatherInfoScreen> {
   @override
   Widget build(BuildContext context) {
-    final weatherVM = ref.watch(weatherViewModelProvider);
-    final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
-
+    final List<Air> listWeather = widget.weather;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Color.fromARGB(255, 132, 132, 132),
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {},
@@ -51,17 +50,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: ListView(
           children: [
             InkWell(
-              onTap: (){
-                weatherVMNotifier.goInfoScreen(context, weatherVM.air);
-              },
+                onTap: () {},
                 child: WeatherCurrentStatus(
-              curentWeather: weatherVM.air[0],
-            )),
+                  curentWeather: listWeather[0],
+                )),
             const SizedBox(
               height: 20,
             ),
             ForeCast(
-              forecastList: weatherVM.air,
+              forecastList: listWeather,
             ),
           ],
         ),

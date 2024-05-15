@@ -17,15 +17,12 @@ class WeatherCurrentStatus extends ConsumerWidget {
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
     final AqiData aqiData = weatherVMNotifier.getAqiData(curentWeather.polution.aqi ?? 0);
 
-    return InkWell(
-      onTap: (){},
-      child: Column(
+    return Column(
         children: [
           WeatherCard(currentAir: curentWeather,),
           PolutionCard(currentPolution: curentWeather,),
           AqiCard(aqiData: aqiData, currentAqi: curentWeather,)
         ],
-      ),
-    );
+      );
   }
 }
