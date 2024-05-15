@@ -6,6 +6,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,12 +15,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: InternetStatusPage(),
+      home: const InternetStatusPage(),
     );
   }
 }
 
 class InternetStatusPage extends StatefulWidget {
+  const InternetStatusPage({super.key});
+
   @override
   _InternetStatusPageState createState() => _InternetStatusPageState();
 }
@@ -44,27 +48,37 @@ class _InternetStatusPageState extends State<InternetStatusPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Internet Status'),
+        title: const Text('Internet Status'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'สถานะการเชื่อมต่ออินเทอร์เน็ต:',
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               _getStatusText(connectivityStatus),
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                _refreshConnectivity();
-              },
-              child: Text('ลองอีกครั้ง'),
-            ),
+  onPressed: () {
+    _refreshConnectivity();
+   },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color.fromARGB(75, 75, 75, 1), 
+  ),
+  child: const Text(
+    'TRY AGAIN',
+    style: TextStyle(
+      color: Colors.white, 
+      fontSize: 14, 
+    ),
+  ),
+),
+
           ],
         ),
       ),
@@ -74,7 +88,7 @@ class _InternetStatusPageState extends State<InternetStatusPage> {
   String _getStatusText(var status) {
     switch (status) {
       case ConnectivityResult.none:
-        return 'ไม่มีการเชื่อมต่อ';
+        return 'No Internet Connection';
       case ConnectivityResult.mobile:
         return 'มือถือ';
       case ConnectivityResult.wifi:
