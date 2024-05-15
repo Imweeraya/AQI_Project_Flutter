@@ -32,6 +32,8 @@ dependencies:
     sdk: flutter
   core_libs:
     path: '../../packages/core_libs'
+  core_ui:
+    path: '../../packages/core_ui'
 
 
 

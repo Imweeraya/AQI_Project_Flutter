@@ -9,14 +9,16 @@ class NormalText extends StatelessWidget {
   final String? family;
   final bool? overFlow;
   final TextSize textSize;
+  final int? maxLine;
 
   const NormalText(
       {super.key,
-        required this.title,
-        this.color,
-        this.family,
-        this.overFlow,
-        required this.textSize});
+      required this.title,
+      this.color,
+      this.family,
+      this.overFlow,
+      required this.textSize,
+      this.maxLine});
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +36,11 @@ class NormalText extends StatelessWidget {
     }
 
     return Text(
-      overflow: overFlow ?? false ? TextOverflow.ellipsis : null,
       title,
+      overflow: overFlow ?? false ? TextOverflow.ellipsis : null,
+      maxLines: maxLine,
       style: TextStyle(
         color: color ?? Colors.white,
-        fontWeight: FontWeight.w800,
         fontSize: size,
         fontFamily: family,
       ),

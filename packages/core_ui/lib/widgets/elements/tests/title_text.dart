@@ -1,44 +1,45 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum TextSize { EXTRA, NORMAL, SMALL }
+enum TitleTextSize { EXTRA, NORMAL, SMALL }
 
-class BigTitleText extends StatelessWidget {
+class TitleText extends StatelessWidget {
   final String title;
   final Color? color;
   final String? family;
   final bool? overFlow;
-  final TextSize textSize;
+  final TitleTextSize textSize;
+  final int maxLine;
 
-  const BigTitleText(
+  const TitleText(
       {super.key,
       required this.title,
       this.color,
       this.family,
       this.overFlow,
-      required this.textSize});
+      required this.textSize,
+      required this.maxLine});
 
   @override
   Widget build(BuildContext context) {
     late double size;
     switch (textSize) {
-      case TextSize.EXTRA:
+      case TitleTextSize.EXTRA:
         size = 54;
         break;
-      case TextSize.NORMAL:
+      case TitleTextSize.NORMAL:
         size = 40;
         break;
-      case TextSize.SMALL:
+      case TitleTextSize.SMALL:
         size = 24;
         break;
     }
 
     return Text(
-      overflow: overFlow ?? false ? TextOverflow.ellipsis : null,
       title,
+      overflow: overFlow ?? false ? TextOverflow.ellipsis : null,
       style: TextStyle(
         color: color ?? Colors.white,
-        fontWeight: FontWeight.w800,
         fontSize: size,
         fontFamily: family,
       ),
