@@ -4,7 +4,7 @@ import 'package:core_libs/dependency_injection/get_it.dart';
 import 'package:core_libs/network/http/http_service.dart';
 
 class WeatherRepository implements IWeatherRepository {
-  final HttpService httpService = getIt.get<HttpService>();
+  final HttpService httpService = getIt.get<HttpService>(instanceName: 'waqi');
 
   @override
   Future<WeatherModel> getByLatLng(double lat, double lng) async {

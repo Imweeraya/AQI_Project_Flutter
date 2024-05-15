@@ -7,6 +7,7 @@ void main() {
   registerCoreServices();
   registerWeatherServices();
   registerStationService();
+  registerHereStationService();
   runApp(const MyApp());
 }
 

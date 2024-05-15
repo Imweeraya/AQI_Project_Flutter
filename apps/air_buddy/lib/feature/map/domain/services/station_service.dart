@@ -9,10 +9,7 @@ class StationService extends IStationService {
 
   @override
   Future<StationToDisplay> getStation() async {
-    // Fetch raw station data from repository
     final rawStation = await repository.getStation();
-
-    // Process raw data to create StationToDisplay object
     final List<StationData> stationDataList = [];
     if (rawStation.data != null) {
       for (final rawStationData in rawStation.data!) {

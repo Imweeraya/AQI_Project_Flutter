@@ -1,4 +1,5 @@
-import '../../data/models/StationModel.dart';
+import '../../data/models/hearStationModel.dart';
+import '../../data/models/stationModel.dart';
 import '../../data/models/weatherModel.dart';
 import '../entitys/station.dart';
 
@@ -8,4 +9,8 @@ abstract class IWeatherRepository {
 
 abstract class IStationRepository {
   Future <StationModel> getStation();
+}
+
+abstract class IHereStationRepository {
+  Future <HereStationModel> getHereStation();
 }

@@ -6,5 +6,14 @@ import '../network/http/http_service.dart';
 final getIt = GetIt.instance;
 
 void registerCoreServices() {
-  getIt.registerSingleton<HttpService>(DioService('https://api.waqi.info'));
+  getIt.registerSingleton<HttpService>(
+    DioService('https://api.waqi.info'),
+    instanceName: 'waqi',
+  );
+
+  getIt.registerSingleton<HttpService>(
+    DioService('http://api.airvisual.com'),
+    instanceName: 'airvisual',
+  );
 }
+
