@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 
-class NoInternetScreen extends StatelessWidget {
-  const NoInternetScreen({super.key});
-
+class NoInternetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("No Internet Connection"),
+        title: Text('No Internet'),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.signal_wifi_off, size: 80, color: Colors.grey),
-            SizedBox(height: 20),
-            Text(
-              "No Internet Connection",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          children: <Widget>[
+            const Text(
+              'No internet connection',
+              style: TextStyle(fontSize: 20.0),
             ),
-            SizedBox(height: 10),
-            Text(
-              "Please check your internet settings and try again.",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
+            SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                // Do whatever you want when the user presses the "Retry" button
+              },
+              child: Text('Retry'),
             ),
           ],
         ),

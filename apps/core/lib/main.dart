@@ -1,27 +1,50 @@
-import 'package:flutter/material.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:core/no_internet_page.dart';
+import 'package:flutter/material.dart';
 
-class NoInternetPage extends StatelessWidget {
-  const NoInternetPage({super.key});
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      home: Scaffold(
+        body: HomePage(),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late ConnectivityResult _connectivityResult;
+
+  @override
+  void initState() {
+    super.initState();
+    Connectivity().onConnectivityChanged.listen((result) {
+      setState(() {
+        _connectivityResult = result;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('No Internet'),
-      ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(Icons.signal_wifi_off, size: 100, color: Colors.red),
-            Text(
-              'No Internet Connection',
-              style: TextStyle(fontSize: 20),
-            ),
-          ],
+    if (_connectivityResult == ConnectivityResult.none) {
+      return NoInternetPage();
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Connected'),
         ),
-      ),
-    );
+        body: const Center(
+          child: Text('You are connected to the internet.'),
+        ),
+      );
+    }
   }
 }
