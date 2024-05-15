@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -35,15 +34,15 @@ class HomePage extends StatelessWidget {
               ),
             );
           },
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white, backgroundColor: Colors.red, // สีข้อความของปุ่ม
+          ),
           child: Text('Show Error Page'),
         ),
       ),
     );
   }
 }
-
-
-
 
 class ErrorPage extends StatelessWidget {
   final String errorMessage;
@@ -54,7 +53,7 @@ class ErrorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Error'),
+        title: const Text('Error'),
       ),
       body: Center(
         child: Padding(
@@ -63,29 +62,32 @@ class ErrorPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.error_outline,
                 color: Colors.red,
                 size: 80,
               ),
-              SizedBox(height: 16),
-              Text(
-                'Oops! Something went wrong.',
+              const SizedBox(height: 16),
+              const Text(
+                'Sorry, something went wrong.',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Text(
                 errorMessage,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Go Back'),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white, backgroundColor: Color.fromARGB(75, 75, 75, 1), // สีข้อความของปุ่ม
+                ),
+                child: const Text('Go Back'),
               ),
             ],
           ),
