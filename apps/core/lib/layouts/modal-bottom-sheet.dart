@@ -14,7 +14,7 @@ class BottomSheetWidget extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 255, 255, 255),
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20.0),
+            top: Radius.circular(25.0),
           ),
         ),
         child: Padding(
