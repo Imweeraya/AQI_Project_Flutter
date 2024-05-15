@@ -63,6 +63,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ForeCast(
               forecastList: weatherVM.air,
             ),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),

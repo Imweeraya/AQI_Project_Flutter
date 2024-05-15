@@ -18,7 +18,7 @@ List<Air> mockAirData = [
       avgO3: 56.0,
       avgPm10: 34.0,
       avgPm25: 17.0,
-      aqi: 160,
+      aqi: 30,
       date: DateTime.now(),
       city: "ChiangMai",
     ),
