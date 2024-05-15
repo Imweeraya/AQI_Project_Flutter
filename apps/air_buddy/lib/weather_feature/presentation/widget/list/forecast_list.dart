@@ -8,8 +8,8 @@ class ForeCastList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 380,
+    return SizedBox(
+      height: 410,
       width: MediaQuery.of(context).size.width,
       child: ListView.separated(
         separatorBuilder: (context, index) {

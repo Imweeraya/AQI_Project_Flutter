@@ -2,17 +2,6 @@ import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/domain/entities/polution_entity.dart';
 import 'package:air_buddy/weather_feature/domain/entities/weather_entity.dart';
 
-Map<int, String> weatherTypes = {
-  1: "Sunny",
-  2: "Partly Cloudy",
-  3: "Cloudy",
-  4: "Heavy Rain",
-  5: "Thunderstorms",
-  6: "Snow",
-  7: "Foggy",
-  8: "Windy",
-};
-
 
 List<Air> mockAirData = [
   Air(

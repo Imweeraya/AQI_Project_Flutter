@@ -85,12 +85,6 @@ flutter:
     - assets/icon_svg/uvi_icon.svg
     - assets/icon_svg/wind_icon.svg
     - assets/icon_svg/sun_weather.svg
-    - assets/animation/sunny_weather.json
-    - assets/animation/sunny_cloud_weather.json
-    - assets/animation/wind.json
-    - assets/animation/rain_weather.json
-    - assets/animation/snow_weather.json
-    - assets/animation/sun.json
     - assets/icon_svg/air_filter_info.svg
     - assets/icon_svg/bike_info.svg
     - assets/icon_svg/window_info.svg
@@ -101,6 +95,28 @@ flutter:
     - assets/icon_svg/unhealthy_aqi.svg
     - assets/icon_svg/ver_unhealthy_aqi.svg
     - assets/icon_svg/hazardous_aqi.svg
+
+    
+    - assets/animation/sun.json
+    - assets/animation/cloudy.json
+    - assets/animation/foggy.json
+    - assets/animation/heavy_rain.json
+    - assets/animation/partly_cloudy.json
+    - assets/animation/rainy.json
+    - assets/animation/snow.json
+    - assets/animation/windy.json
+    - assets/animation/thunderstorm.json
+    - assets/animation/wind.json
+    
+    - assets/animation/rain_weather.json
+    - assets/animation/snow_weather.json
+    - assets/animation/sunny_cloud_weather.json
+    - assets/animation/sunny_weather.json
+    - assets/animation/cloudy_weather.json
+    - assets/animation/foggy_weather.json
+    - assets/animation/heavy_rain_weather.json
+    - assets/animation/thunder_weather.json
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

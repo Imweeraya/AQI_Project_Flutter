@@ -1,4 +1,5 @@
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
+import 'package:core/constants/weather/weather_data.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -36,7 +37,7 @@ class WeatherCard extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: Center(
                   child: Lottie.asset(
-                      "assets/animation/sunny_cloud_weather.json",
+                      weatherAnimateAssets[currentAir.weather.weatherType]!,
                       width: 200),
                 ),
               ),

@@ -24,7 +24,7 @@ class IconTextSmall extends StatelessWidget {
         icon != null
             ? Icon(
                 icon,
-                color: Color.fromARGB(255, 132, 132, 132),
+                color: const Color.fromARGB(255, 132, 132, 132),
                 size: 20,
               )
             : texticon != null
@@ -41,7 +41,7 @@ class IconTextSmall extends StatelessWidget {
                         Color.fromARGB(255, 132, 132, 132), BlendMode.srcIn),
                     width: 20,
                   ),
-        SizedBox(
+        const SizedBox(
           width: 8,
         ),
         Column(

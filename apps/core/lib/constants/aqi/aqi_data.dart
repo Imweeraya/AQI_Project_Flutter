@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:core/constants/aqi_type.dart';
+import 'package:core/constants/aqi/aqi_type.dart';
 
 class AqiData {
   Color backgroundColor;

@@ -1,14 +1,9 @@
-import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/forecast.dart';
-import 'package:air_buddy/weather_feature/presentation/widget/list/forecast_list.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
+
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -52,7 +47,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ],
       ),
       body: Container(
-        color: Color.fromARGB(255, 246, 246, 246),
+        color: const Color.fromARGB(255, 246, 246, 246),
         child: ListView(
           children: const [
             WeatherCurrentStatus(),

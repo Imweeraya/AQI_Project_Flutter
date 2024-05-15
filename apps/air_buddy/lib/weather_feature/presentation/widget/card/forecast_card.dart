@@ -1,9 +1,10 @@
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
-import 'package:air_buddy/weather_feature/domain/entities/weather_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText_small.dart';
+import 'package:core/constants/weather/weather_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
 class ForeCastCard extends StatelessWidget {
   const ForeCastCard({super.key, required this.forecast});
@@ -19,10 +20,10 @@ class ForeCastCard extends StatelessWidget {
 
     return Container(
       width: 180,
-      height: 380,
+      height: 410,
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 255, 255, 255),
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(10.0),
         ),
         boxShadow: [
@@ -30,7 +31,7 @@ class ForeCastCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
@@ -48,25 +49,20 @@ class ForeCastCard extends StatelessWidget {
             child: Center(
               child: Text(
                 formatDate(forecast.polution.date),
-                style: TextStyle(
+                style: const TextStyle(
                     color: Color.fromARGB(255, 84, 84, 84),
                     fontSize: 18,
                     fontWeight: FontWeight.w500),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SvgPicture.asset(
-                "assets/icon_svg/sun_weather.svg",
-                colorFilter: const ColorFilter.mode(
-                    Color.fromARGB(255, 234, 214, 33), BlendMode.srcIn),
-                width: 50,
-              ),
+              Lottie.asset(weatherIconAssets[forecast.weather.weatherType]! , width: 80),
               Column(
                 children: [
                   Row(
@@ -74,7 +70,7 @@ class ForeCastCard extends StatelessWidget {
                       Text(
                         "${forecast.weather.maxTemp}°",
                         style:
-                            TextStyle(color: Color.fromARGB(255, 255, 76, 63)),
+                            const TextStyle(color: Color.fromARGB(255, 255, 76, 63)),
                       ),
                       const Icon(
                         Icons.arrow_drop_up_rounded,
@@ -93,7 +89,7 @@ class ForeCastCard extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
@@ -106,7 +102,7 @@ class ForeCastCard extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
            Padding(
@@ -124,19 +120,19 @@ class ForeCastCard extends StatelessWidget {
                     svgicon: "assets/icon_svg/o3_icon.svg",
                     title: "O3",
                     info: "${forecast.polution.avgO3} D.U"),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
                     svgicon: "assets/icon_svg/wind_icon.svg",
                     title: "windSpeed",
                     info: "${forecast.weather.windSpeed} km./hr"),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
                     texticon: "PM 2.5", title: "PM 2.5", info: "${forecast.polution.avgPm25} µg/m³"),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(texticon: "PM10", title: "PM10", info: "${forecast.polution.avgPm10} µg/m³")

@@ -1,5 +1,5 @@
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
-import 'package:core/constants/aqi_data.dart';
+import 'package:core/constants/aqi/aqi_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

@@ -23,7 +23,7 @@ class IconText extends StatelessWidget {
         icon != null
             ? Icon(
                 icon,
-                color: Color.fromARGB(255, 132, 132, 132),
+                color: const Color.fromARGB(255, 132, 132, 132),
                 size: 30,
               )
             : texticon != null
@@ -40,7 +40,7 @@ class IconText extends StatelessWidget {
                         Color.fromARGB(255, 132, 132, 132), BlendMode.srcIn),
                     width: 30,
                   ),
-        SizedBox(
+        const SizedBox(
           width: 8,
         ),
         Column(
