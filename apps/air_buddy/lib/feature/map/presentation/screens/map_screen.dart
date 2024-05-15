@@ -12,14 +12,14 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   // Variables to store current map bounds
-  late LatLngBounds _currentBounds;
+  late LatLngBounds? _currentBounds;
   late double lat = 18.793857473522774;
   late double lng = 98.97889434756851;
 
   // Function to handle map movement (zoom, rotate, etc.)
   void _handleMapChanged(MapPosition mapPosition, bool hasGesture) {
     setState(() {
-      _currentBounds = mapPosition.bounds!;
+      _currentBounds = mapPosition.bounds;
     });
   }
 
