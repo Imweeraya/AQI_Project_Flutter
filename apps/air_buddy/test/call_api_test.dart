@@ -5,6 +5,8 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'dart:io';
+
 import 'package:air_buddy/feature/map/data/repository/weather_repository.dart';
 import 'package:air_buddy/feature/map/domain/port_weather/repository.dart';
 import 'package:air_buddy/feature/map/domain/port_weather/service.dart';
@@ -111,6 +113,6 @@ void main() {
     final weather = await weatherService.getByLatLng(18.8282025442452,98.97580122436332);
 
     expect(weather, isNotEmpty);
-    expect(weather[0].aqi, 72);
+    expect(weather.aqi, 72);
   });
 }

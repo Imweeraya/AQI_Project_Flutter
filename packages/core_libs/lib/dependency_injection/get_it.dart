@@ -6,5 +6,5 @@ import '../network/http/http_service.dart';
 final getIt = GetIt.instance;
 
 void registerCoreServices() {
-  getIt.registerSingleton<HttpService>(DioService('https://api.waqi.info/feed'));
+  getIt.registerSingleton<HttpService>(DioService('https://api.waqi.info'));
 }

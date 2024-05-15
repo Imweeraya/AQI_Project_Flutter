@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class MarkerLocation extends StatelessWidget {
-  final double lat;
-  final double lng;
   final String name;
 
   const MarkerLocation(
-      {super.key, required this.lat, required this.lng, required this.name});
+      {super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class MarkerLocation extends StatelessWidget {
                   SizedBox(width: 10),
                   Flexible(
                     child: NormalText(
-                      title: name, textSize: TextSize.NORMAL, color: Colors.black,overFlow: true),
+                      title: name, textSize: TextSize.NORMAL, color: Colors.black,overFlow: true,maxLine: 2,),
                   )
                 ],
               ),

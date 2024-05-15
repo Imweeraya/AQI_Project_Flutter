@@ -1,6 +1,9 @@
+
+import 'package:air_buddy/feature/map/data/models/weatherModel.dart';
+
 class WeatherToDisplay {
-  final int aqi;
-  final String name;
-  final double pm25;
-  WeatherToDisplay({required this.aqi,required this.name,required this.pm25});
+  final num? aqi;
+  final String? name;
+  final Dew? pm25;
+  WeatherToDisplay({this.aqi,this.name,this.pm25});
 }

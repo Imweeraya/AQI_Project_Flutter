@@ -9,7 +9,7 @@ class TitleText extends StatelessWidget {
   final String? family;
   final bool? overFlow;
   final TitleTextSize textSize;
-  final int maxLine;
+  final int? maxLine;
 
   const TitleText(
       {super.key,
@@ -18,7 +18,7 @@ class TitleText extends StatelessWidget {
       this.family,
       this.overFlow,
       required this.textSize,
-      required this.maxLine});
+      this.maxLine});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +38,7 @@ class TitleText extends StatelessWidget {
     return Text(
       title,
       overflow: overFlow ?? false ? TextOverflow.ellipsis : null,
+      maxLines: maxLine,
       style: TextStyle(
         color: color ?? Colors.white,
         fontSize: size,
