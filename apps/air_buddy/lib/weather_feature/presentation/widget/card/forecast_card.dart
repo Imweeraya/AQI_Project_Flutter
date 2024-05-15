@@ -1,3 +1,4 @@
+import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/domain/entities/weather_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText_small.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
 class ForeCastCard extends StatelessWidget {
-  const ForeCastCard({super.key, required this.weather});
-  final Weather weather;
+  const ForeCastCard({super.key, required this.forecast});
+  final Air forecast;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class ForeCastCard extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                formatDate(weather.date),
+                formatDate(forecast.polution.date),
                 style: TextStyle(
                     color: Color.fromARGB(255, 84, 84, 84),
                     fontSize: 18,
@@ -71,7 +72,7 @@ class ForeCastCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "${weather.maxTemp}°",
+                        "${forecast.weather.maxTemp}°",
                         style:
                             TextStyle(color: Color.fromARGB(255, 255, 76, 63)),
                       ),
@@ -83,7 +84,7 @@ class ForeCastCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Text("${weather.minTemp}°"),
+                      Text("${forecast.weather.minTemp}°"),
                       const Icon(Icons.arrow_drop_down_rounded,
                           color: Color.fromARGB(255, 63, 105, 255))
                     ],
@@ -115,30 +116,30 @@ class ForeCastCard extends StatelessWidget {
                 IconTextSmall(
                     svgicon: "assets/icon_svg/uvi_icon.svg",
                     title: "UVI",
-                    info: "${weather.avgUvi}"),
+                    info: "${forecast.polution.avgUvi}"),
                 const SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
                     svgicon: "assets/icon_svg/o3_icon.svg",
                     title: "O3",
-                    info: "${weather.avgO3} D.U"),
+                    info: "${forecast.polution.avgO3} D.U"),
                 SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
                     svgicon: "assets/icon_svg/wind_icon.svg",
                     title: "windSpeed",
-                    info: "${weather.windSpeed} km./hr"),
+                    info: "${forecast.weather.windSpeed} km./hr"),
                 SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
-                    texticon: "PM 2.5", title: "PM 2.5", info: "${weather.avgPm25} µg/m³"),
+                    texticon: "PM 2.5", title: "PM 2.5", info: "${forecast.polution.avgPm25} µg/m³"),
                 SizedBox(
                   height: 15,
                 ),
-                IconTextSmall(texticon: "PM10", title: "PM10", info: "${weather.avgPm10} µg/m³")
+                IconTextSmall(texticon: "PM10", title: "PM10", info: "${forecast.polution.avgPm10} µg/m³")
               ],
             ),
           ),

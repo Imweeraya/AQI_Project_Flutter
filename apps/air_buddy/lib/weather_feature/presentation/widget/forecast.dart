@@ -34,7 +34,7 @@ class ForeCast extends ConsumerWidget {
           height: 10,
         ),
         ForeCastList(
-          forecast: weatherVM.weathers,
+          forecast: weatherVM.air,
         ),
         const SizedBox(
           height: 20,

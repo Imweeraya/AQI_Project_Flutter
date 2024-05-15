@@ -13,7 +13,7 @@ class WeatherViewModel extends _$WeatherViewModel {
   @override
   WeatherState build() => WeatherState(
         loading: false,
-        weathers: [],
+        air: [],
       );
 
   void getWeathers() async {
@@ -25,7 +25,7 @@ class WeatherViewModel extends _$WeatherViewModel {
 
     state = state.copyWith(
       loading: false,
-      weathers: weatherslist,
+      air: weatherslist,
     );
   }
 

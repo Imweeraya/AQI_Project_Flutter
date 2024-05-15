@@ -41,11 +41,11 @@ class WeatherCurrentStatus extends ConsumerWidget {
                 ),
               ),
               Text(
-                "${weatherVM.weathers[0].maxTemp.toInt()}°",
+                "${weatherVM.air[0].weather.maxTemp.toInt()}°",
                 style: TextStyle(fontSize: 60, color: Colors.white),
               ),
               Text(
-                "${weatherVM.weathers[0].city}",
+                "${weatherVM.air[0].polution.city}",
                 style: TextStyle(fontSize: 24, color: Colors.white),
               ),
               
@@ -62,7 +62,7 @@ class WeatherCurrentStatus extends ConsumerWidget {
                     width: 10,
                   ),
                   Text(
-                    "${weatherVM.weathers[0].windSpeed} km./hr",
+                    "${weatherVM.air[0].weather.windSpeed} km./hr",
                     style: const TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -74,7 +74,7 @@ class WeatherCurrentStatus extends ConsumerWidget {
                 height: 70,
               ),
               Text(
-                weatherVMNotifier.formatDate(weatherVM.weathers[0].date),
+                weatherVMNotifier.formatDate(weatherVM.air[0].polution.date),
                 style: const TextStyle(
                   fontSize: 24,
                   color: Colors.white,
@@ -92,15 +92,15 @@ class WeatherCurrentStatus extends ConsumerWidget {
               IconText(
                   svgicon: "assets/icon_svg/uvi_icon.svg",
                   title: "UVI",
-                  info: "${weatherVM.weathers[0].avgUvi}"),
+                  info: "${weatherVM.air[0].polution.avgUvi}"),
               IconText(
                   svgicon: "assets/icon_svg/o3_icon.svg",
                   title: "O3",
-                  info: "${weatherVM.weathers[0].avgO3} D.U"),
+                  info: "${weatherVM.air[0].polution.avgO3} D.U"),
               IconText(
                   texticon: "PM10",
                   title: "PM10",
-                  info: "${weatherVM.weathers[0].avgPm10} µg/m³")
+                  info: "${weatherVM.air[0].polution.avgPm10} µg/m³")
             ],
           ),
         ),
@@ -137,7 +137,7 @@ class WeatherCurrentStatus extends ConsumerWidget {
                     style: TextStyle(
                         fontSize: 18, color: Color.fromARGB(255, 108, 154, 28)),
                   ),
-                  Text("${weatherVM.weathers[0].aqi}",
+                  Text("${weatherVM.air[0].polution.aqi}",
                       style: const TextStyle(
                           fontSize: 36,
                           color: Color.fromARGB(255, 108, 154, 28)))
@@ -164,7 +164,7 @@ class WeatherCurrentStatus extends ConsumerWidget {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(20, 6, 20, 6),
                       child: Text(
-                          "PM2.5 ${weatherVM.weathers[0].avgPm25} µg/m³",
+                          "PM2.5 ${weatherVM.air[0].polution.avgPm25} µg/m³",
                           style: const TextStyle(
                               fontSize: 18,
                               color: Color.fromARGB(255, 108, 154, 28))),

@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$WeatherState {
   bool get loading => throw _privateConstructorUsedError;
-  List<Weather> get weathers => throw _privateConstructorUsedError;
+  List<Air> get air => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherStateCopyWith<WeatherState> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $WeatherStateCopyWith<$Res> {
           WeatherState value, $Res Function(WeatherState) then) =
       _$WeatherStateCopyWithImpl<$Res, WeatherState>;
   @useResult
-  $Res call({bool loading, List<Weather> weathers});
+  $Res call({bool loading, List<Air> air});
 }
 
 /// @nodoc
@@ -47,17 +47,17 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
   @override
   $Res call({
     Object? loading = null,
-    Object? weathers = null,
+    Object? air = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      weathers: null == weathers
-          ? _value.weathers
-          : weathers // ignore: cast_nullable_to_non_nullable
-              as List<Weather>,
+      air: null == air
+          ? _value.air
+          : air // ignore: cast_nullable_to_non_nullable
+              as List<Air>,
     ) as $Val);
   }
 }
@@ -70,7 +70,7 @@ abstract class _$$WeatherStateImplCopyWith<$Res>
       __$$WeatherStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, List<Weather> weathers});
+  $Res call({bool loading, List<Air> air});
 }
 
 /// @nodoc
@@ -85,17 +85,17 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
-    Object? weathers = null,
+    Object? air = null,
   }) {
     return _then(_$WeatherStateImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      weathers: null == weathers
-          ? _value._weathers
-          : weathers // ignore: cast_nullable_to_non_nullable
-              as List<Weather>,
+      air: null == air
+          ? _value._air
+          : air // ignore: cast_nullable_to_non_nullable
+              as List<Air>,
     ));
   }
 }
@@ -103,23 +103,22 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$WeatherStateImpl implements _WeatherState {
-  _$WeatherStateImpl(
-      {required this.loading, required final List<Weather> weathers})
-      : _weathers = weathers;
+  _$WeatherStateImpl({required this.loading, required final List<Air> air})
+      : _air = air;
 
   @override
   final bool loading;
-  final List<Weather> _weathers;
+  final List<Air> _air;
   @override
-  List<Weather> get weathers {
-    if (_weathers is EqualUnmodifiableListView) return _weathers;
+  List<Air> get air {
+    if (_air is EqualUnmodifiableListView) return _air;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_weathers);
+    return EqualUnmodifiableListView(_air);
   }
 
   @override
   String toString() {
-    return 'WeatherState(loading: $loading, weathers: $weathers)';
+    return 'WeatherState(loading: $loading, air: $air)';
   }
 
   @override
@@ -128,12 +127,12 @@ class _$WeatherStateImpl implements _WeatherState {
         (other.runtimeType == runtimeType &&
             other is _$WeatherStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            const DeepCollectionEquality().equals(other._weathers, _weathers));
+            const DeepCollectionEquality().equals(other._air, _air));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, loading, const DeepCollectionEquality().hash(_weathers));
+      runtimeType, loading, const DeepCollectionEquality().hash(_air));
 
   @JsonKey(ignore: true)
   @override
@@ -145,12 +144,12 @@ class _$WeatherStateImpl implements _WeatherState {
 abstract class _WeatherState implements WeatherState {
   factory _WeatherState(
       {required final bool loading,
-      required final List<Weather> weathers}) = _$WeatherStateImpl;
+      required final List<Air> air}) = _$WeatherStateImpl;
 
   @override
   bool get loading;
   @override
-  List<Weather> get weathers;
+  List<Air> get air;
   @override
   @JsonKey(ignore: true)
   _$$WeatherStateImplCopyWith<_$WeatherStateImpl> get copyWith =>
