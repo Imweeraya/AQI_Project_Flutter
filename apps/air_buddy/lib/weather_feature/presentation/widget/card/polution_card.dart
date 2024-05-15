@@ -11,7 +11,7 @@ class PolutionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
           height: 70,
-          color: Color.fromARGB(255, 232, 232, 232),
+          color: const Color.fromARGB(255, 232, 232, 232),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

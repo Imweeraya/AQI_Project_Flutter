@@ -1,8 +1,6 @@
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/list/forecast_list.dart';
-import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ForeCast extends StatelessWidget {
   const ForeCast({super.key , required this.forecastList});
@@ -31,9 +29,6 @@ class ForeCast extends StatelessWidget {
         ),
         ForeCastList(
           forecast: forecastList,
-        ),
-        const SizedBox(
-          height: 20,
         ),
       ],
     );

@@ -1,20 +1,31 @@
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/forecast.dart';
+import 'package:air_buddy/weather_feature/presentation/widget/health_info.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
+import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
+import 'package:core/constants/aqi/aqi_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WeatherInfoScreen extends StatefulWidget {
-  const WeatherInfoScreen({super.key , required this.weather});
+class WeatherInfoScreen extends ConsumerStatefulWidget {
+  const WeatherInfoScreen({super.key, required this.weather});
   final List<Air> weather;
 
   @override
-  State<WeatherInfoScreen> createState() => _WeatherInfoScreenState();
+  ConsumerState<WeatherInfoScreen> createState() => _WeatherInfoScreenState();
 }
 
-class _WeatherInfoScreenState extends State<WeatherInfoScreen> {
+class _WeatherInfoScreenState extends ConsumerState<WeatherInfoScreen> {
   @override
   Widget build(BuildContext context) {
+    final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
+    
+
     final List<Air> listWeather = widget.weather;
+    
+    final AqiData aqiData =
+        weatherVMNotifier.getAqiData(listWeather[0].polution.aqi ?? 0);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -60,6 +71,9 @@ class _WeatherInfoScreenState extends State<WeatherInfoScreen> {
             ForeCast(
               forecastList: listWeather,
             ),
+            HealthInfo(
+              aqiData: aqiData,
+            )
           ],
         ),
       ),

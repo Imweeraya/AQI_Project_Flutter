@@ -2,7 +2,6 @@ import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText_small.dart';
 import 'package:core/constants/weather/weather_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
