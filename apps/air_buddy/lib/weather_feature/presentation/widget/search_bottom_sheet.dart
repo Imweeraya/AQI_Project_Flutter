@@ -24,7 +24,6 @@ class _SearchBottomSheetWidgetState
   @override
   Widget build(BuildContext context) {
     final weatherVM = ref.watch(weatherViewModelProvider);
-    final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
 
     return Stack(
       children: [
@@ -39,26 +38,26 @@ class _SearchBottomSheetWidgetState
             ),
             child: Padding(
               padding: const EdgeInsets.only(
-                  top: 60.0, left: 15, right: 15, bottom: 15),
+                  top: 70.0, left: 15, right: 15, bottom: 15),
               child: SingleChildScrollView(
-                child: SearchCities(cities: weatherVM.city, checkAqi: weatherVMNotifier.getAqiData,)
+                child: SearchCities(cities: weatherVM.city)
               ),
             ),
           ),
         ),
         Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
+          top: 10,
+          left: 10,
+          right: 10,
           child: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: const Color.fromARGB(0, 255, 255, 255),
             elevation: 0,
             centerTitle: true,
             title: const TextField(
               decoration: InputDecoration(
                 hintText: 'Search',
                 border: InputBorder.none,
-                hintStyle: TextStyle(color: Colors.grey),
+                hintStyle: TextStyle(color: Colors.grey , fontSize: 18),
               ),
             ),
           ),
