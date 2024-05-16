@@ -45,10 +45,9 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     zoom: 14,
                     maxZoom: 16,
                     minZoom: 13,
-                    onPositionChanged: (mapPosition,hasGesture) => mapFuntionVM.handleMapChanged(mapPosition, hasGesture),
+                    onPositionChanged: (mapPosition, hasGesture) =>
+                        mapFuntionVM.handleMapChanged(mapPosition, hasGesture),
                     onTap: (tapPosition, point) async {
-                      await mapFuntionVM.getWeather(
-                          point.latitude, point.longitude);
                       mapFuntionVM.setLatLng(point.latitude, point.longitude);
                     },
                   ),
@@ -63,7 +62,10 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                           .map((e) => Marker(
                               point:
                                   LatLng(e.lat!.toDouble(), e.lng!.toDouble()),
-                              child: MakerLocationCustom(name: e.stationName, aqi: e.aqi,)))
+                              child: MakerLocationCustom(
+                                name: e.stationName,
+                                aqi: e.aqi,
+                              )))
                           .toList(),
                     ),
                     MarkerLayer(
@@ -79,15 +81,16 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     ),
                   ],
                 ),
-                Positioned(
-                  bottom: 100,
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                    child: MarkerLocationBox(
-                        name: mapVM.stationName),
-                  ),
-                ),
+                mapVM.popup
+                    ? Positioned(
+                        bottom: 50,
+                        left: 0,
+                        right: 0,
+                        child: Center(
+                          child: MarkerLocationBox(name: mapVM.stationName),
+                        ),
+                      )
+                    : SizedBox(),
               ],
             ),
     );

@@ -25,6 +25,7 @@ mixin _$MapState {
   double get lng => throw _privateConstructorUsedError;
   String get stationName => throw _privateConstructorUsedError;
   String get aqi => throw _privateConstructorUsedError;
+  bool get popup => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MapStateCopyWith<MapState> get copyWith =>
@@ -44,7 +45,8 @@ abstract class $MapStateCopyWith<$Res> {
       double lat,
       double lng,
       String stationName,
-      String aqi});
+      String aqi,
+      bool popup});
 }
 
 /// @nodoc
@@ -68,6 +70,7 @@ class _$MapStateCopyWithImpl<$Res, $Val extends MapState>
     Object? lng = null,
     Object? stationName = null,
     Object? aqi = null,
+    Object? popup = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -102,6 +105,10 @@ class _$MapStateCopyWithImpl<$Res, $Val extends MapState>
           ? _value.aqi
           : aqi // ignore: cast_nullable_to_non_nullable
               as String,
+      popup: null == popup
+          ? _value.popup
+          : popup // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -122,7 +129,8 @@ abstract class _$$MapstateImplCopyWith<$Res>
       double lat,
       double lng,
       String stationName,
-      String aqi});
+      String aqi,
+      bool popup});
 }
 
 /// @nodoc
@@ -144,6 +152,7 @@ class __$$MapstateImplCopyWithImpl<$Res>
     Object? lng = null,
     Object? stationName = null,
     Object? aqi = null,
+    Object? popup = null,
   }) {
     return _then(_$MapstateImpl(
       loading: null == loading
@@ -178,6 +187,10 @@ class __$$MapstateImplCopyWithImpl<$Res>
           ? _value.aqi
           : aqi // ignore: cast_nullable_to_non_nullable
               as String,
+      popup: null == popup
+          ? _value.popup
+          : popup // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -193,7 +206,8 @@ class _$MapstateImpl implements _Mapstate {
       required this.lat,
       required this.lng,
       required this.stationName,
-      required this.aqi});
+      required this.aqi,
+      required this.popup});
 
   @override
   final bool loading;
@@ -211,10 +225,12 @@ class _$MapstateImpl implements _Mapstate {
   final String stationName;
   @override
   final String aqi;
+  @override
+  final bool popup;
 
   @override
   String toString() {
-    return 'MapState(loading: $loading, weather: $weather, hereStationToDisplay: $hereStationToDisplay, station: $station, lat: $lat, lng: $lng, stationName: $stationName, aqi: $aqi)';
+    return 'MapState(loading: $loading, weather: $weather, hereStationToDisplay: $hereStationToDisplay, station: $station, lat: $lat, lng: $lng, stationName: $stationName, aqi: $aqi, popup: $popup)';
   }
 
   @override
@@ -231,12 +247,13 @@ class _$MapstateImpl implements _Mapstate {
             (identical(other.lng, lng) || other.lng == lng) &&
             (identical(other.stationName, stationName) ||
                 other.stationName == stationName) &&
-            (identical(other.aqi, aqi) || other.aqi == aqi));
+            (identical(other.aqi, aqi) || other.aqi == aqi) &&
+            (identical(other.popup, popup) || other.popup == popup));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, loading, weather,
-      hereStationToDisplay, station, lat, lng, stationName, aqi);
+      hereStationToDisplay, station, lat, lng, stationName, aqi, popup);
 
   @JsonKey(ignore: true)
   @override
@@ -254,7 +271,8 @@ abstract class _Mapstate implements MapState {
       required final double lat,
       required final double lng,
       required final String stationName,
-      required final String aqi}) = _$MapstateImpl;
+      required final String aqi,
+      required final bool popup}) = _$MapstateImpl;
 
   @override
   bool get loading;
@@ -272,6 +290,8 @@ abstract class _Mapstate implements MapState {
   String get stationName;
   @override
   String get aqi;
+  @override
+  bool get popup;
   @override
   @JsonKey(ignore: true)
   _$$MapstateImplCopyWith<_$MapstateImpl> get copyWith =>

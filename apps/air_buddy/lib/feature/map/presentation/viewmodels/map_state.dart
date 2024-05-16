@@ -16,5 +16,6 @@ class MapState with _$MapState {
     required double lng,
     required String stationName,
     required String aqi,
+    required bool popup,
 }) = _Mapstate;
 }
