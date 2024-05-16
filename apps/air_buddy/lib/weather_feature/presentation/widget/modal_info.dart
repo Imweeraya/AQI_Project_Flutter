@@ -10,7 +10,12 @@ class ModalInfo extends StatelessWidget {
   ModalInfo({super.key});
 
   final AqiData aqiGood = aqiDataList[AqiType.good]!;
-
+  final AqiData aqiModerate = aqiDataList[AqiType.moderate]!;
+  final AqiData aqiunhealthyForSensitive= aqiDataList[AqiType.unhealthyForSensitive]!;
+  final AqiData aqiunhealthy = aqiDataList[AqiType.unhealthy]!;
+  final AqiData aqiveryUnhealthy = aqiDataList[AqiType.veryUnhealthy]!;
+  final AqiData aqihazadous = aqiDataList[AqiType.hazadous]!;
+  
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -27,12 +32,12 @@ class ModalInfo extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildCustomContainer(aqiGood.aqiText, aqiGood.aqiRange, aqiGood.pathIcon, aqiGood.backgroundColor),
-            _buildCustomContainer('Moderate', '51-100', 'assets/svg_icon/moderate_aqi.svg', Color.fromARGB(255, 232, 235, 55)),
-            _buildCustomContainer('Unhealthy for Sensitive Groups', '101-150', 'assets/svg_icon/sensitive_aqi.svg', Color.fromARGB(255, 245, 118, 34)),
-            _buildCustomContainer('Unhealthy', '151-200', 'assets/svg_icon/unhealthy_aqi.svg', Color.fromARGB(255, 218, 46, 46)),
-            _buildCustomContainer('Very Unhealthy', '201-300', 'assets/svg_icon/ver_unhealthy_aqi.svg', Color.fromARGB(255, 96, 7, 125)),
-            _buildCustomContainer('Hazardous', '301+', 'assets/svg_icon/hazardous_aqi.svg', Color.fromARGB(255, 101, 12, 12)),
+            _buildCustomContainer(aqiGood.aqiText, aqiGood.aqiRange, aqiGood.pathIcon, aqiGood.backgroundColor,aqiGood.textColor),
+            _buildCustomContainer(aqiModerate.aqiText, aqiModerate.aqiRange, aqiModerate.pathIcon, aqiModerate.backgroundColor,aqiModerate.textColor),
+            _buildCustomContainer(aqiunhealthyForSensitive.aqiText, aqiunhealthyForSensitive.aqiRange, aqiunhealthyForSensitive.pathIcon, aqiunhealthyForSensitive.backgroundColor,aqiunhealthyForSensitive.textColor),
+          _buildCustomContainer(aqiunhealthy.aqiText, aqiunhealthy.aqiRange, aqiunhealthy.pathIcon, aqiunhealthy.backgroundColor,aqiunhealthy.textColor),
+            _buildCustomContainer(aqiveryUnhealthy.aqiText, aqiveryUnhealthy.aqiRange, aqiveryUnhealthy.pathIcon, aqiveryUnhealthy.backgroundColor,aqiveryUnhealthy.textColor),
+            _buildCustomContainer(aqihazadous.aqiText, aqihazadous.aqiRange, aqihazadous.pathIcon, aqihazadous.backgroundColor,aqihazadous.textColor),
           ],
         ),
       ),
@@ -47,7 +52,7 @@ class ModalInfo extends StatelessWidget {
     );
   }
 
-  Widget _buildCustomContainer(String text1, String text2, String svgPath, Color color) {
+  Widget _buildCustomContainer(String text1, String text2, String svgPath, Color color,Color textColor) {
     return Container(
       width: 350,
       height: 70,
@@ -71,7 +76,7 @@ class ModalInfo extends StatelessWidget {
             svgPath,
             width: 55,
             height: 55,
-            color: color, // Apply the color here
+            color: textColor, // Apply the color here
           ),
           Container(
             width: 230,
@@ -86,10 +91,10 @@ class ModalInfo extends StatelessWidget {
                 Flexible(
                   child: Text(
                     text1.length > 17
-                        ? '${text1.substring(0, 14)}\n${text1.substring(14)}'
+                        ? '${text1.substring(0, 15)}\n${text1.substring(15)}'
                         : text1,
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
+                    style:  TextStyle(
+                      color: textColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 13,
                     ),
@@ -98,8 +103,8 @@ class ModalInfo extends StatelessWidget {
                 ),
                 Text(
                   text2,
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
+                  style:  TextStyle(
+                    color: textColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
