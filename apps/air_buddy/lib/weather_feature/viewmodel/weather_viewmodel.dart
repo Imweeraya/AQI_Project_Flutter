@@ -36,18 +36,26 @@ class WeatherViewModel extends _$WeatherViewModel {
     );
   }
 
-  void getCities() async {
-    state = state.copyWith(loadingCity: true);
+  void getCities({String? filter}) async {
+  state = state.copyWith(loadingCity: true);
 
-    final citieFetchers = service.getListCityWeather();
-    // final citie = await Future.wait(citieFetchers);
-    final citylist = await Future.value(citieFetchers);
+  final citieFetchers = service.getListCityWeather();
+  final citylist = await Future.value(citieFetchers);
 
+  if (filter != null && filter.isNotEmpty) {
+    final filteredCities = citylist.where((city) =>
+        city.city.toLowerCase().contains(filter.toLowerCase())).toList();
+    state = state.copyWith(
+      loadingCity: false,
+      city: filteredCities,
+    );
+  } else {
     state = state.copyWith(
       loadingCity: false,
       city: citylist,
     );
   }
+}
 
   AqiData getAqiData(int aqi) {
     if (aqi > 0 && aqi <= 50) {

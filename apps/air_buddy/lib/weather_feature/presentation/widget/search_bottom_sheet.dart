@@ -15,6 +15,8 @@ class SearchBottomSheetWidget extends ConsumerStatefulWidget {
 
 class _SearchBottomSheetWidgetState
     extends ConsumerState<SearchBottomSheetWidget> {
+  String _searchQuery = '';
+
   @override
   void initState() {
     super.initState();
@@ -26,6 +28,7 @@ class _SearchBottomSheetWidgetState
   @override
   Widget build(BuildContext context) {
     final weatherVM = ref.watch(weatherViewModelProvider);
+    final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
 
     return Stack(
       children: [
@@ -43,8 +46,7 @@ class _SearchBottomSheetWidgetState
                     padding: EdgeInsets.only(
                         top: 200.0, left: 15, right: 15, bottom: 15),
                     child: SingleChildScrollView(
-                        child: SizedBox(
-                          child: LoadingCity())),
+                        child: SizedBox(child: LoadingCity())),
                   ),
                 ),
               )
@@ -73,8 +75,14 @@ class _SearchBottomSheetWidgetState
             backgroundColor: const Color.fromARGB(0, 255, 255, 255),
             elevation: 0,
             centerTitle: true,
-            title: const TextField(
-              decoration: InputDecoration(
+            title: TextField(
+              onChanged: (value) {
+                setState(() {
+                  _searchQuery = value;
+                });
+                weatherVMNotifier.getCities(filter: value);
+              },
+              decoration: const InputDecoration(
                 hintText: 'Search',
                 border: InputBorder.none,
                 hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
