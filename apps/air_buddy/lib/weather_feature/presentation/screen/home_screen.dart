@@ -64,7 +64,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               },
                 child: WeatherCurrentStatus(
               curentWeather: weatherVM.air[0],
-            )),
+              //     curentWeather: weatherVM.air.isNotEmpty ? weatherVM.air[0] : null,
+                )),
             const SizedBox(
               height: 20,
             ),

@@ -1,20 +1,20 @@
-class Polution{
-  double avgUvi;
-  double avgO3;
-  double avgPm10;
-  double avgPm25;
-  int? aqi;
-  DateTime date;
-  String city;
+class AirPollution{
+  num? avgUvi;
+  num? avgO3;
+  num? avgPm10;
+  num? avgPm25;
+  num? aqi;
+  DateTime? date;
+  String? city;
 
 
-  Polution({
-    required this.avgUvi,
-    required this.avgO3,
-    required this.avgPm10,
-    required this.avgPm25,
+  AirPollution({
+    this.avgUvi,
+    this.avgO3,
+    this.avgPm10,
+    this.avgPm25,
     this.aqi,
-    required this.date,
-    required this.city,
+    this.date,
+    this.city,
   });
 }

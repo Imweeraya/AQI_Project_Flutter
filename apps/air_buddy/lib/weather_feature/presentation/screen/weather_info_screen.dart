@@ -25,7 +25,7 @@ class _WeatherInfoScreenState extends ConsumerState<WeatherInfoScreen> {
     final List<Air> listWeather = widget.weather;
     
     final AqiData aqiData =
-        weatherVMNotifier.getAqiData(listWeather[0].polution.aqi ?? 0);
+        weatherVMNotifier.getAqiData(listWeather[0].pollution.aqi!.toInt() ?? 0);
 
     return Scaffold(
       appBar: AppBar(

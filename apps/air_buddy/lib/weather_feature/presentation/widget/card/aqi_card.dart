@@ -42,7 +42,7 @@ class AqiCard extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 18, color: aqiData.textColor),
                   ),
-                  Text("${currentAqi.polution.aqi}",
+                  Text("${currentAqi.pollution.aqi}",
                       style: TextStyle(
                           fontSize: 36,
                           color: aqiData.textColor))
@@ -76,7 +76,7 @@ class AqiCard extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(20, 6, 20, 6),
                       child: Text(
-                          "PM2.5 ${currentAqi.polution.avgPm25} µg/m³",
+                          "PM2.5 ${currentAqi.pollution.avgPm25} µg/m³",
                           style: TextStyle(
                               fontSize: 18,
                               color: aqiData.textColor)),

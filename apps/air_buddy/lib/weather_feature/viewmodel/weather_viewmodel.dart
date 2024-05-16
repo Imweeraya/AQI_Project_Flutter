@@ -24,7 +24,8 @@ class WeatherViewModel extends _$WeatherViewModel {
   void getWeathers() async {
     state = state.copyWith(loading: true);
 
-    final weathersFetchers = service.getWeatherForecast();
+    final weathersFetchers = service.getWeatherForecast('Chiang Mai');
+    print(weathersFetchers);
     // final weathers = await Future.wait(weathersFetchers);
     final weatherslist = await Future.value(weathersFetchers);
 

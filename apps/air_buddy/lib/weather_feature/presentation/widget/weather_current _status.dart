@@ -15,7 +15,7 @@ class WeatherCurrentStatus extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
-    final AqiData aqiData = weatherVMNotifier.getAqiData(curentWeather.polution.aqi ?? 0);
+    final AqiData aqiData = weatherVMNotifier.getAqiData(curentWeather.pollution.aqi!.toInt() ?? 0);
 
     return Column(
         children: [
