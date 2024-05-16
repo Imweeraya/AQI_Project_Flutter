@@ -8,7 +8,7 @@ abstract class IWeatherRepository {
 }
 
 abstract class IStationRepository {
-  Future <StationModel> getStation();
+  Future <StationModel> getStation(double lat,double lng);
 }
 
 abstract class IHereStationRepository {

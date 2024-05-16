@@ -21,20 +21,15 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   void initState() {
     super.initState();
     Future(() {
-      ref.read(mapViewModelProvider.notifier).getStation();
+      ref.read(mapViewModelProvider.notifier).getHereStation();
     });
-  }
-
-  // Function to handle map movement (zoom, rotate, etc.)
-  void _handleMapChanged(MapPosition mapPosition, bool hasGesture) {
-    // print(mapPosition.bounds?.northEast);
   }
 
   @override
   Widget build(BuildContext context) {
     late MapController mapController = MapController();
     final mapVM = ref.watch(mapViewModelProvider);
-    final mapAPIVM = ref.read(mapViewModelProvider.notifier);
+    final mapFuntionVM = ref.read(mapViewModelProvider.notifier);
 
     return Scaffold(
       body: mapVM.loading
@@ -49,12 +44,11 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     zoom: 14,
                     maxZoom: 16,
                     minZoom: 13,
-                    onPositionChanged: _handleMapChanged,
+                    onPositionChanged: (mapPosition,hasGesture) => mapFuntionVM.handleMapChanged(mapPosition, hasGesture),
                     onTap: (tapPosition, point) async {
-                      print(point);
-                      await mapAPIVM.getWeather(
+                      await mapFuntionVM.getWeather(
                           point.latitude, point.longitude);
-                      mapAPIVM.setLatLng(point.latitude, point.longitude);
+                      mapFuntionVM.setLatLng(point.latitude, point.longitude);
                     },
                   ),
                   children: [

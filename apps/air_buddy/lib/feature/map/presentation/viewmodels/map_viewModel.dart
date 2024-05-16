@@ -1,4 +1,5 @@
 import 'package:core_libs/dependency_injection/get_it.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/entitys/here_station.dart';
@@ -28,19 +29,26 @@ class MapViewModel extends _$MapViewModel {
         aqi: '',
       );
 
-  void getStation() async {
+  void getHereStation() async {
     state = state.copyWith(
       loading: true,
     );
     final hereStation = await hereStationService.getHereStation();
-    final stations = await stationService.getStation();
+    final stations =
+        await stationService.getStation(21.781492109878354, 95.21399400612671);
     state = state.copyWith(
-      station: stations,
       hereStationToDisplay: hereStation,
+      station: stations,
       loading: false,
     );
-
     await getWeather(hereStation.coordinates![1], hereStation.coordinates![0]);
+  }
+
+  void getStation(double lat, double lng) async {
+    final stations = await stationService.getStation(lat, lng);
+    state = state.copyWith(
+      station: stations,
+    );
   }
 
   Future<void> getWeather(double lat, double lng) async {
@@ -64,5 +72,11 @@ class MapViewModel extends _$MapViewModel {
       stationName: PstationName,
       aqi: Paqi,
     );
+  }
+
+  void handleMapChanged(MapPosition mapPosition, bool hasGesture) {
+    if (hasGesture) {
+      getStation(mapPosition.bounds!.northWest.latitude, mapPosition.bounds!.northWest.longitude);
+    }
   }
 }

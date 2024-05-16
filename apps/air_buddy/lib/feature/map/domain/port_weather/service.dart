@@ -8,7 +8,7 @@ abstract class IWeatherService {
 }
 
 abstract class IStationService {
-  Future <StationToDisplay> getStation();
+  Future <StationToDisplay> getStation(double lat,double lng);
 }
 
 abstract class IHereStationService {
