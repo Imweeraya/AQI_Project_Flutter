@@ -1,7 +1,6 @@
 import 'package:air_buddy/weather_feature/presentation/widget/search_cities.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:core_ui/widgets/loading_city.dart';
-import 'package:core_ui/widgets/loading_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +14,7 @@ class SearchBottomSheetWidget extends ConsumerStatefulWidget {
 
 class _SearchBottomSheetWidgetState
     extends ConsumerState<SearchBottomSheetWidget> {
-  String _searchQuery = '';
+  String searchQuery = '';
 
   @override
   void initState() {
@@ -78,7 +77,7 @@ class _SearchBottomSheetWidgetState
             title: TextField(
               onChanged: (value) {
                 setState(() {
-                  _searchQuery = value;
+                  searchQuery = value;
                 });
                 weatherVMNotifier.getCities(filter: value);
               },
