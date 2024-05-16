@@ -14,7 +14,6 @@ void main() {
   runApp(
     const Directionality(
       textDirection: TextDirection.ltr,
-      // Or TextDirection.rtl, depending on your app's language direction
       child: ProviderScope(
         child: MapScreen(),
       ),

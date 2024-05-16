@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../domain/entitys/here_station.dart';
 import '../../domain/entitys/station.dart';
 import '../../domain/entitys/weather.dart';
-import '../../domain/port_weather/service.dart';
+import '../../../../infrastructure/port_weather/service.dart';
 import 'map_state.dart';
 
 part 'map_viewModel.g.dart';

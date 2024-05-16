@@ -1,7 +1,7 @@
-import '../../data/models/hearStationModel.dart';
-import '../../data/models/stationModel.dart';
-import '../../data/models/weatherModel.dart';
-import '../entitys/station.dart';
+import '../../feature/map/data/models/hearStationModel.dart';
+import '../../feature/map/data/models/stationModel.dart';
+import '../../feature/map/data/models/weatherModel.dart';
+import '../../feature/map/domain/entitys/station.dart';
 
 abstract class IWeatherRepository {
   Future<WeatherModel> getByLatLng(double lat,double lng);

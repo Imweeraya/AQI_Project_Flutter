@@ -1,3 +1,4 @@
+import 'package:air_buddy/feature/map/presentation/screens/map_screen.dart';
 import 'package:air_buddy/infrastructure/router/router.dart';
 import 'package:air_buddy/weather_feature/presentation/screen/home_screen.dart';
 import 'package:core/layouts/buttom_navigation.dart';
@@ -19,12 +20,12 @@ final router = GoRouter(routes: [
           path: '/',
           builder: (context, state) => const HomeScreen(),
         ),
-        // GoRoute(
-        //   path: '/map',
-        //   builder: (context, state) {
-        //     return MapScreen();
-        //   },
-        // ),
+        GoRoute(
+          path: '/map',
+          builder: (context, state) {
+            return MapScreen();
+          },
+        ),
       ]
       ),
       ...weatherRoutesForRoot

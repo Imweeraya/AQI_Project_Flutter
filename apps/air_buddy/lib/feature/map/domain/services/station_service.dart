@@ -1,8 +1,8 @@
 import 'package:core_libs/dependency_injection/get_it.dart';
 
+import '../../../../infrastructure/port_weather/repository.dart';
 import '../entitys/station.dart';
-import '../port_weather/repository.dart';
-import '../port_weather/service.dart';
+import '../../../../infrastructure/port_weather/service.dart';
 
 class StationService extends IStationService {
   final IStationRepository repository = getIt.get<IStationRepository>();

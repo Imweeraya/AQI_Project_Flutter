@@ -1,7 +1,7 @@
-import 'package:air_buddy/feature/map/domain/port_weather/repository.dart';
-import 'package:air_buddy/feature/map/domain/port_weather/service.dart';
+import 'package:air_buddy/infrastructure/port_weather/service.dart';
 import 'package:core_libs/dependency_injection/get_it.dart';
 
+import '../../../../infrastructure/port_weather/repository.dart';
 import '../entitys/weather.dart';
 
 class WeatherService extends IWeatherService {

@@ -1,8 +1,8 @@
 import 'package:air_buddy/feature/map/domain/entitys/here_station.dart';
-import 'package:air_buddy/feature/map/domain/port_weather/repository.dart';
 import 'package:core_libs/dependency_injection/get_it.dart';
 
-import '../port_weather/service.dart';
+import '../../../../infrastructure/port_weather/repository.dart';
+import '../../../../infrastructure/port_weather/service.dart';
 
 class HereStationService extends IHereStationService {
   final IHereStationRepository repository = getIt.get<IHereStationRepository>();

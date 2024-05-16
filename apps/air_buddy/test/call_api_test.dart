@@ -8,8 +8,8 @@
 import 'dart:io';
 
 import 'package:air_buddy/feature/map/data/repository/weather_repository.dart';
-import 'package:air_buddy/feature/map/domain/port_weather/repository.dart';
-import 'package:air_buddy/feature/map/domain/port_weather/service.dart';
+import 'package:air_buddy/infrastructure/port_weather/repository.dart';
+import 'package:air_buddy/infrastructure/port_weather/service.dart';
 import 'package:air_buddy/feature/map/domain/services/weather_service.dart';
 import 'package:air_buddy/mock/mock_http_service.dart';
 import 'package:core_libs/network/http/http_service.dart';
@@ -18,13 +18,13 @@ import 'package:get_it/get_it.dart';
 
 void main() {
   final getIt = GetIt.instance;
-  getIt.registerSingleton<HttpService>(MockHttpService('mock'));
+  getIt.registerSingleton<HttpService>(MockHttpService('mock'), instanceName: 'waqi');
   getIt.registerSingleton<IWeatherRepository>(WeatherRepository());
   getIt.registerSingleton<IWeatherService>(WeatherService());
 
   test('Test get weather by lat lng', () async {
-    final mockHttpService = getIt.get<HttpService>();
-    (mockHttpService as MockHttpService).returnData = [
+    final mockHttpService = getIt.get<HttpService>(instanceName: 'waqi');
+    (mockHttpService as MockHttpService).returnData =
       {
         "status": "ok",
         "data": {
@@ -106,8 +106,7 @@ void main() {
           },
           "debug": {"sync": "2024-05-14T17:17:12+09:00"}
         }
-      }
-    ];
+      };
 
     final weatherService = getIt.get<IWeatherService>();
     final weather = await weatherService.getByLatLng(18.8282025442452,98.97580122436332);
