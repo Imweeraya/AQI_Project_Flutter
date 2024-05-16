@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 enum TitleTextSize { EXTRA, NORMAL, SMALL }
 
-class BigTitleText extends StatelessWidget {
+class TitleText extends StatelessWidget {
   final String title;
   final Color? color;
   final String? family;
@@ -11,14 +11,14 @@ class BigTitleText extends StatelessWidget {
   final TitleTextSize textSize;
   final int? maxLine;
 
-
-  const BigTitleText(
+  const TitleText(
       {super.key,
       required this.title,
       this.color,
       this.family,
       this.overFlow,
-      required this.textSize, this.maxLine});
+      required this.textSize,
+      this.maxLine});
 
   @override
   Widget build(BuildContext context) {

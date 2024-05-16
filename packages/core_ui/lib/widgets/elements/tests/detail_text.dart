@@ -13,11 +13,12 @@ class DetailText extends StatelessWidget {
 
   const DetailText(
       {super.key,
-        required this.title,
-        this.color,
-        this.family,
-        this.overFlow,
-        required this.textSize, this.maxLine});
+      required this.title,
+      this.color,
+      this.family,
+      this.overFlow,
+      required this.textSize,
+      this.maxLine});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class DetailText extends StatelessWidget {
       overflow: overFlow ?? false ? TextOverflow.ellipsis : null,
       maxLines: maxLine,
       style: TextStyle(
-        color: color ?? Colors.white,
+        color: color ?? Colors.black,
         fontSize: size,
         fontFamily: family,
       ),

@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum NormalTextSize { BIG, NORMAL, SMALL }
+enum TextSize { BIG, NORMAL, SMALL }
 
 class NormalText extends StatelessWidget {
   final String title;
   final Color? color;
   final String? family;
   final bool? overFlow;
-  final NormalTextSize textSize;
+  final TextSize textSize;
   final int? maxLine;
 
   const NormalText(
@@ -24,13 +24,13 @@ class NormalText extends StatelessWidget {
   Widget build(BuildContext context) {
     late double size;
     switch (textSize) {
-      case NormalTextSize.BIG:
+      case TextSize.BIG:
         size = 20;
         break;
-      case NormalTextSize.NORMAL:
+      case TextSize.NORMAL:
         size = 16;
         break;
-      case NormalTextSize.SMALL:
+      case TextSize.SMALL:
         size = 14;
         break;
     }

@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/apps/air_buddy/shop_air_buddy.iml" filepath="$PROJECT_DIR$/apps/air_buddy/shop_air_buddy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/apps/core/shop_core.iml" filepath="$PROJECT_DIR$/apps/core/shop_core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/packages/core_libs/shop_core_libs.iml" filepath="$PROJECT_DIR$/packages/core_libs/shop_core_libs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/packages/core_ui/shop_core_ui.iml" filepath="$PROJECT_DIR$/packages/core_ui/shop_core_ui.iml" />
-      <module fileurl="file://$PROJECT_DIR$/shop_air_buddy.iml" filepath="$PROJECT_DIR$/shop_air_buddy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/air_buddy/project_air_buddy.iml" filepath="$PROJECT_DIR$/apps/air_buddy/project_air_buddy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/core/project_core.iml" filepath="$PROJECT_DIR$/apps/core/project_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/core_libs/project_core_libs.iml" filepath="$PROJECT_DIR$/packages/core_libs/project_core_libs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/core_ui/project_core_ui.iml" filepath="$PROJECT_DIR$/packages/core_ui/project_core_ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project_air_buddy.iml" filepath="$PROJECT_DIR$/project_air_buddy.iml" />
     </modules>
   </component>
 </project>
