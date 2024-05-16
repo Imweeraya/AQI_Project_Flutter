@@ -36,7 +36,6 @@ class _InternetStatusPageState extends State<InternetStatusPage> {
     initConnectivity();
   }
 
-  // เมื่อสร้าง StatefulWidget นี้ เราจะเรียกใช้ initConnectivity เพื่อตรวจสอบสถานะการเชื่อมต่อเริ่มต้น
   Future<void> initConnectivity() async {
     var connectivityResult = await Connectivity().checkConnectivity();
     setState(() {
@@ -47,58 +46,104 @@ class _InternetStatusPageState extends State<InternetStatusPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Internet Status'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'สถานะการเชื่อมต่ออินเทอร์เน็ต:',
+            const SizedBox(height: 20),
+            if (connectivityStatus == ConnectivityResult.none)
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/dino.png',
+                      width: 100,
+                      height: 100,
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: _getStatusText(connectivityStatus),
             ),
             const SizedBox(height: 20),
-            Text(
-              _getStatusText(connectivityStatus),
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  _refreshConnectivity();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(75, 75, 75, 1),
+                ),
+                child: const Text(
+                  'TRY AGAIN',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-  onPressed: () {
-    _refreshConnectivity();
-   },
-  style: ElevatedButton.styleFrom(
-    backgroundColor: const Color.fromARGB(75, 75, 75, 1), 
-  ),
-  child: const Text(
-    'TRY AGAIN',
-    style: TextStyle(
-      color: Colors.white, 
-      fontSize: 14, 
-    ),
-  ),
-),
-
           ],
         ),
       ),
     );
   }
 
-  String _getStatusText(var status) {
+  Widget _getStatusText(var status) {
     switch (status) {
+      
       case ConnectivityResult.none:
-        return 'No Internet Connection';
+        return RichText(
+          textAlign: TextAlign.center,
+          text: const TextSpan(
+            children: [
+              TextSpan(
+                text: 'No Internet Connection\n',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              TextSpan(
+                text: 'Please check your internet connection \nand try again',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: Colors.black,
+                  
+                  
+                ),
+              ),
+            ],
+          ),
+        );
       case ConnectivityResult.mobile:
-        return 'มือถือ';
+        return const Text(
+          'มือถือ',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        );
       case ConnectivityResult.wifi:
-        return 'WiFi';
+        return const Text(
+          'WiFi',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        );
       default:
-        return 'Unknown';
+        return const Text(
+          'Unknown',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        );
     }
   }
 
-  // ฟังก์ชันสำหรับการรีเฟรชการเชื่อมต่อ
   void _refreshConnectivity() async {
     var connectivityResult = await Connectivity().checkConnectivity();
     setState(() {
