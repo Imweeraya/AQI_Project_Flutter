@@ -1,6 +1,7 @@
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/elements/icon/iconText_small.dart';
 import 'package:core/constants/weather/weather_data.dart';
+import 'package:core_ui/widgets/elements/tests/normal_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -11,7 +12,6 @@ class ForeCastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     String formatDate(DateTime dateTime) {
       final formatter = DateFormat('dd MMMM');
       return formatter.format(dateTime);
@@ -46,12 +46,11 @@ class ForeCastCard extends StatelessWidget {
                   topRight: Radius.circular(10.0)),
             ),
             child: Center(
-              child: Text(
-                formatDate(forecast.polution.date),
-                style: const TextStyle(
-                    color: Color.fromARGB(255, 84, 84, 84),
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500),
+              child: NormalText(
+                title: formatDate(forecast.polution.date),
+                textSize: TextSize.SEMIBIG,
+                color: Color.fromARGB(255, 84, 84, 84),
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),
@@ -61,15 +60,16 @@ class ForeCastCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Lottie.asset(weatherIconAssets[forecast.weather.weatherType]! , width: 80),
+              Lottie.asset(weatherIconAssets[forecast.weather.weatherType]!,
+                  width: 80),
               Column(
                 children: [
                   Row(
                     children: [
-                      Text(
-                        "${forecast.weather.maxTemp}°",
-                        style:
-                            const TextStyle(color: Color.fromARGB(255, 255, 76, 63)),
+                      NormalText(
+                        title: "${forecast.weather.maxTemp}°",
+                        textSize: TextSize.SMALL,
+                        color: Color.fromARGB(255, 255, 76, 63),
                       ),
                       const Icon(
                         Icons.arrow_drop_up_rounded,
@@ -79,7 +79,11 @@ class ForeCastCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Text("${forecast.weather.minTemp}°"),
+                       NormalText(
+                        title: "${forecast.weather.minTemp}°",
+                        textSize: TextSize.SMALL,
+                        color: Color.fromARGB(255, 63, 105, 255),
+                      ),
                       const Icon(Icons.arrow_drop_down_rounded,
                           color: Color.fromARGB(255, 63, 105, 255))
                     ],
@@ -104,7 +108,7 @@ class ForeCastCard extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.only(left: 14),
             child: Column(
               children: [
@@ -130,11 +134,16 @@ class ForeCastCard extends StatelessWidget {
                   height: 15,
                 ),
                 IconTextSmall(
-                    texticon: "PM 2.5", title: "PM 2.5", info: "${forecast.polution.avgPm25} µg/m³"),
+                    texticon: "PM 2.5",
+                    title: "PM 2.5",
+                    info: "${forecast.polution.avgPm25} µg/m³"),
                 const SizedBox(
                   height: 15,
                 ),
-                IconTextSmall(texticon: "PM10", title: "PM10", info: "${forecast.polution.avgPm10} µg/m³")
+                IconTextSmall(
+                    texticon: "PM10",
+                    title: "PM10",
+                    info: "${forecast.polution.avgPm10} µg/m³")
               ],
             ),
           ),

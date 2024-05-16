@@ -61,7 +61,7 @@ class CityList extends ConsumerWidget {
                           city.aqi.toString(),
                           style: TextStyle(
                             color: aqiData.textColor,
-                            fontSize: 35,
+                            fontSize: 36,
                           ),
                         ),
                       ],

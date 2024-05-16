@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum DetailTextSize { BIG, NORMAL, SMALL }
+enum DetailTextSize { BIG, SEMIBIG , NORMAL, SMALL}
 
 class DetailText extends StatelessWidget {
   final String title;
@@ -10,6 +10,7 @@ class DetailText extends StatelessWidget {
   final bool? overFlow;
   final DetailTextSize textSize;
   final int? maxLine;
+  final FontWeight? fontWeight;
 
   const DetailText(
       {super.key,
@@ -18,7 +19,8 @@ class DetailText extends StatelessWidget {
       this.family,
       this.overFlow,
       required this.textSize,
-      this.maxLine});
+      this.maxLine,
+      this.fontWeight});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,9 @@ class DetailText extends StatelessWidget {
     switch (textSize) {
       case DetailTextSize.BIG:
         size = 12;
+        break;
+      case DetailTextSize.SEMIBIG:
+        size = 10;
         break;
       case DetailTextSize.NORMAL:
         size = 8;
@@ -43,6 +48,7 @@ class DetailText extends StatelessWidget {
         color: color ?? Colors.black,
         fontSize: size,
         fontFamily: family,
+        fontWeight: fontWeight ?? FontWeight.normal
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:air_buddy/weather_feature/presentation/widget/list/health_info_list.dart';
 import 'package:core/constants/aqi/aqi_data.dart';
+import 'package:core_ui/widgets/elements/tests/normal_text.dart';
 import 'package:flutter/material.dart';
 
 class HealthInfo extends StatelessWidget {
@@ -18,13 +19,13 @@ class HealthInfo extends StatelessWidget {
           height: 50,
           color: const Color.fromARGB(255, 232, 232, 232),
           child: const Center(
-              child: Text(
-            "คำแนะนำด้านสุขภาพ",
-            style: TextStyle(
-                color: Color.fromARGB(255, 84, 84, 84),
-                fontSize: 18,
-                fontWeight: FontWeight.w500),
-          )),
+            child: NormalText(
+              title: "คำแนะนำด้านสุขภาพ",
+              textSize: TextSize.SEMIBIG,
+              color: Color.fromARGB(255, 84, 84, 84),
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(20.0),

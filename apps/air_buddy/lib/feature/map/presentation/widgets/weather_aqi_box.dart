@@ -39,7 +39,7 @@ class WeatherAqiBox extends ConsumerWidget {
                                 const SizedBox(width: 15),
                                 TitleText(
                                   title: mapVM.aqi,
-                                  textSize: TitleTextSize.EXTRA,
+                                  textSize: TitleTextSize.HUGE,
                                   color: Color.fromARGB(255, 152, 123, 20),
                                 ),
                               ],
