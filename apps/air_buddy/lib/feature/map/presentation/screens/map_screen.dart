@@ -1,5 +1,6 @@
 import 'package:air_buddy/feature/map/presentation/viewmodels/map_viewModel.dart';
 import 'package:air_buddy/feature/map/presentation/widgets/marker_location_box.dart';
+import 'package:core_ui/widgets/loading_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -33,7 +34,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
 
     return Scaffold(
       body: mapVM.loading
-          ? const CircularProgressIndicator()
+          ? const LoadingMap()
           : Stack(
               children: [
                 FlutterMap(
