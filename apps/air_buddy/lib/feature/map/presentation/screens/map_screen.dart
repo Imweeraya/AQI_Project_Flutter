@@ -46,8 +46,6 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     minZoom: 13,
                     onPositionChanged: (mapPosition,hasGesture) => mapFuntionVM.handleMapChanged(mapPosition, hasGesture),
                     onTap: (tapPosition, point) async {
-                      await mapFuntionVM.getWeather(
-                          point.latitude, point.longitude);
                       mapFuntionVM.setLatLng(point.latitude, point.longitude);
                     },
                   ),

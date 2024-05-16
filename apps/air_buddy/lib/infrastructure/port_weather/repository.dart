@@ -3,12 +3,8 @@ import '../../feature/map/data/models/stationModel.dart';
 import '../../feature/map/data/models/weatherModel.dart';
 import '../../feature/map/domain/entitys/station.dart';
 
-abstract class IWeatherRepository {
-  Future<WeatherModel> getByLatLng(double lat,double lng);
-}
-
 abstract class IStationRepository {
-  Future <StationModel> getStation(double lat,double lng);
+  Future <StationModel> getStation(double lat1,double lng1,double lat2,double lng2);
 }
 
 abstract class IHereStationRepository {

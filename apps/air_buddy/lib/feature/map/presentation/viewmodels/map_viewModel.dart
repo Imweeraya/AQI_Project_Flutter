@@ -12,7 +12,6 @@ part 'map_viewModel.g.dart';
 
 @riverpod
 class MapViewModel extends _$MapViewModel {
-  late final IWeatherService weatherService = getIt.get<IWeatherService>();
   late final IStationService stationService = getIt.get<IStationService>();
   late final IHereStationService hereStationService =
       getIt.get<IHereStationService>();
@@ -34,29 +33,20 @@ class MapViewModel extends _$MapViewModel {
       loading: true,
     );
     final hereStation = await hereStationService.getHereStation();
-    final stations =
-        await stationService.getStation(21.781492109878354, 95.21399400612671);
+    final stations = await stationService.getStation(21.781492109878354,95.21399400612671,5.135168114067062,112.39991160362918);
     state = state.copyWith(
       hereStationToDisplay: hereStation,
       station: stations,
+      lat: hereStation.coordinates![1],
+      lng: hereStation.coordinates![0],
       loading: false,
     );
-    await getWeather(hereStation.coordinates![1], hereStation.coordinates![0]);
   }
 
-  void getStation(double lat, double lng) async {
-    final stations = await stationService.getStation(lat, lng);
+  void getStation(double lat1, double lng1, double lat2, double lng2) async {
+    final stations = await stationService.getStation(lat1, lng1, lat2, lng2);
     state = state.copyWith(
       station: stations,
-    );
-  }
-
-  Future<void> getWeather(double lat, double lng) async {
-    final weathers = await weatherService.getByLatLng(lat, lng);
-    state = state.copyWith(
-      weather: weathers,
-      stationName: weathers.name!,
-      aqi: weathers.aqi.toString(),
     );
   }
 
@@ -75,8 +65,17 @@ class MapViewModel extends _$MapViewModel {
   }
 
   void handleMapChanged(MapPosition mapPosition, bool hasGesture) {
-    if (mapPosition.hasGesture) {
-      getStation(mapPosition.bounds!.northWest.latitude, mapPosition.bounds!.northWest.longitude);
-    }
+    print(mapPosition.bounds!.northWest.latitude);
+    print(mapPosition.bounds!.northWest.longitude);
+    print(mapPosition.bounds!.southEast.latitude);
+    print(mapPosition.bounds!.southEast.longitude);
+
+    getStation(
+      mapPosition.bounds!.northWest.latitude,
+      mapPosition.bounds!.northWest.longitude,
+      mapPosition.bounds!.southEast.latitude,
+      mapPosition.bounds!.southEast.longitude,
+    );
   }
+
 }

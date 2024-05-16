@@ -8,8 +8,8 @@ class StationService extends IStationService {
   final IStationRepository repository = getIt.get<IStationRepository>();
 
   @override
-  Future<StationToDisplay> getStation(double lat,double lng) async {
-    final rawStation = await repository.getStation(lat,lng);
+  Future<StationToDisplay> getStation(double lat1,double lng1,double lat2,double lng2) async {
+    final rawStation = await repository.getStation(lat1,lng1,lat2,lng2);
     final List<StationData> stationDataList = [];
     if (rawStation.data != null) {
       for (final rawStationData in rawStation.data!) {
