@@ -17,6 +17,7 @@ class MakerLocationCustom extends ConsumerWidget {
     return GestureDetector(
       onTap: (){
         mapVM.setMarkerLocationBox(name!, aqi!);
+        mapVM.openPopup();
       },
       child: Container(
         decoration: BoxDecoration(

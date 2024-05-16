@@ -26,14 +26,17 @@ class MapViewModel extends _$MapViewModel {
         lng: 0,
         stationName: '',
         aqi: '',
+        popup: true,
       );
 
   void getHereStation() async {
     state = state.copyWith(
       loading: true,
+      popup: false,
     );
     final hereStation = await hereStationService.getHereStation();
-    final stations = await stationService.getStation(21.781492109878354,95.21399400612671,5.135168114067062,112.39991160362918);
+    final stations = await stationService.getStation(21.781492109878354,
+        95.21399400612671, 5.135168114067062, 112.39991160362918);
     state = state.copyWith(
       hereStationToDisplay: hereStation,
       station: stations,
@@ -78,4 +81,15 @@ class MapViewModel extends _$MapViewModel {
     );
   }
 
+  void switchPopup(){
+    state = state.copyWith(
+      popup: !state.popup,
+    );
+  }
+
+  void openPopup(){
+    state = state.copyWith(
+      popup: true,
+    );
+  }
 }
