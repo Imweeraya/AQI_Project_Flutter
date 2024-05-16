@@ -10,7 +10,6 @@ class HereStationService extends IHereStationService {
   @override
   Future<HereStationToDisplay> getHereStation() async {
     final rawResponse = await repository.getHereStation();
-    print(rawResponse.data!.location!.coordinates);
     return HereStationToDisplay(
         coordinates: rawResponse.data!.location!.coordinates
     );

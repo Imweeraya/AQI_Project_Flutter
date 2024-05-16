@@ -10,7 +10,6 @@ class WeatherAqiBox extends ConsumerWidget {
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     final mapVM = ref.watch(mapViewModelProvider);
-    print(mapVM.weather.pm25);
     return SizedBox(
         height: 104,
         child: Container(
@@ -41,49 +40,6 @@ class WeatherAqiBox extends ConsumerWidget {
                                 TitleText(
                                   title: mapVM.aqi,
                                   textSize: TitleTextSize.EXTRA,
-                                  color: Color.fromARGB(255, 152, 123, 20),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ))
-                ],
-              ),
-              Container(
-                width: 2,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: Colors.white70,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 5),
-                            const DetailText(
-                              title: 'PM2.5',
-                              textSize: DetailTextSize.BIG,
-                              color: Color.fromARGB(255, 152, 123, 20),
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                SizedBox(width: 15),
-                                TitleText(
-                                  title: mapVM.weather.pm25.toString(),
-                                  textSize: TitleTextSize.EXTRA,
-                                  color: Color.fromARGB(255, 152, 123, 20),
-                                ),
-                                const DetailText(
-                                  title: 'µg/m³',
-                                  textSize: DetailTextSize.BIG,
                                   color: Color.fromARGB(255, 152, 123, 20),
                                 ),
                               ],
