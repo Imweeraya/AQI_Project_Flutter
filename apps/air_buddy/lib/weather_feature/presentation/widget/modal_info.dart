@@ -54,7 +54,7 @@ class ModalInfo extends StatelessWidget {
 
   Widget _buildCustomContainer(String text1, String text2, String svgPath, Color color,Color textColor) {
     return Container(
-      width: 350,
+      width: double.infinity,
       height: 70,
       padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
