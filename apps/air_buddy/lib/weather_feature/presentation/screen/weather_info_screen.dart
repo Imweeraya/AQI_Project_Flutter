@@ -41,14 +41,6 @@ class _WeatherInfoScreenState extends ConsumerState<WeatherInfoScreen> {
           IconButton(
             onPressed: () {},
             icon: const Icon(
-              Icons.search_rounded,
-              size: 30,
-              color: Color.fromARGB(255, 132, 132, 132),
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
               Icons.info_outlined,
               size: 30,
               color: Color.fromARGB(255, 132, 132, 132),
