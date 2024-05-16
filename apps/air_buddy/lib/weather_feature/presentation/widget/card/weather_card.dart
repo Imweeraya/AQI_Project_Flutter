@@ -42,11 +42,11 @@ class WeatherCard extends StatelessWidget {
                 ),
               ),
               Text(
-                "${currentAir.weather.maxTemp.toInt()}°",
+                "${currentAir.weather.maxTemp?.toInt()}°",
                 style: TextStyle(fontSize: 60, color: Colors.white),
               ),
               Text(
-                "${currentAir.polution.city}",
+                "${currentAir.pollution.city}",
                 style: TextStyle(fontSize: 24, color: Colors.white),
               ),
               Row(
@@ -69,7 +69,7 @@ class WeatherCard extends StatelessWidget {
                 height: 70,
               ),
               Text(
-                formatDate(currentAir.polution.date),
+                formatDate(currentAir.pollution.date!),
                 style: const TextStyle(
                   fontSize: 24,
                   color: Colors.white,

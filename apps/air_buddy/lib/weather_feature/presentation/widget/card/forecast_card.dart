@@ -47,7 +47,7 @@ class ForeCastCard extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                formatDate(forecast.polution.date),
+                formatDate(forecast.pollution.date!),
                 style: const TextStyle(
                     color: Color.fromARGB(255, 84, 84, 84),
                     fontSize: 18,
@@ -111,14 +111,14 @@ class ForeCastCard extends StatelessWidget {
                 IconTextSmall(
                     svgicon: "assets/icon_svg/uvi_icon.svg",
                     title: "UVI",
-                    info: "${forecast.polution.avgUvi}"),
+                    info: "${forecast.pollution.avgUvi}"),
                 const SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
                     svgicon: "assets/icon_svg/o3_icon.svg",
                     title: "O3",
-                    info: "${forecast.polution.avgO3} D.U"),
+                    info: "${forecast.pollution.avgO3} D.U"),
                 const SizedBox(
                   height: 15,
                 ),
@@ -130,11 +130,11 @@ class ForeCastCard extends StatelessWidget {
                   height: 15,
                 ),
                 IconTextSmall(
-                    texticon: "PM 2.5", title: "PM 2.5", info: "${forecast.polution.avgPm25} µg/m³"),
+                    texticon: "PM 2.5", title: "PM 2.5", info: "${forecast.pollution.avgPm25} µg/m³"),
                 const SizedBox(
                   height: 15,
                 ),
-                IconTextSmall(texticon: "PM10", title: "PM10", info: "${forecast.polution.avgPm10} µg/m³")
+                IconTextSmall(texticon: "PM10", title: "PM10", info: "${forecast.pollution.avgPm10} µg/m³")
               ],
             ),
           ),

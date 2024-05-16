@@ -15,5 +15,9 @@ void registerCoreServices() {
     DioService('http://api.airvisual.com'),
     instanceName: 'airvisual',
   );
-}
 
+  getIt.registerSingleton<HttpService>(
+    DioService('https://www.tmd.go.th'),
+    instanceName: 'tmd',
+  );
+}

@@ -1,20 +1,20 @@
 
 
-class Weather {
-  int weatherType;
-  String weatherText;
-  double maxTemp;
-  double minTemp;
-  double windDirection;
-  double windSpeed;
+class AirWeather {
+  num? weatherType;
+  String? weatherText;
+  num? maxTemp;
+  num? minTemp;
+  num? windDirection;
+  num? windSpeed;
 
-  Weather({
-    required this.weatherType,
-    required this.weatherText,
-    required this.maxTemp,
-    required this.minTemp,
-    required this.windDirection,
-    required this.windSpeed
+  AirWeather({
+    this.weatherType,
+    this.weatherText,
+    this.maxTemp,
+    this.minTemp,
+    this.windDirection,
+    this.windSpeed
   });
 
 }
