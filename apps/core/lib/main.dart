@@ -1,10 +1,17 @@
-import 'package:core/layouts/modal-bottom-sheet.dart';
+import 'package:core/dependency_injection/inject.dart';
+import 'package:core/router/go_router.dart';
+import 'package:core_libs/dependency_injection/get_it.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 
 
 
 void main() {
-  runApp(const MyApp());
+  registerCoreServices();
+  registerServices();
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,31 +19,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (BuildContext context) {
-                return BottomSheetWidget();
-              },
-            );
-          },
-          child: const Text('Press Me'),
-        ),
+    return MaterialApp.router(
+      routerConfig: router,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        useMaterial3: true,
       ),
     );
   }
