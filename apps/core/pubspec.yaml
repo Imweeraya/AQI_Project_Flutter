@@ -37,7 +37,6 @@ dependencies:
 
 
   cupertino_icons: ^1.0.6
-
   air_buddy:
     path: ../air_buddy
   core_libs:

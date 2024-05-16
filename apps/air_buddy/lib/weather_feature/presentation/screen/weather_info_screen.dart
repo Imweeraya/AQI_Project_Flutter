@@ -1,6 +1,7 @@
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/forecast.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/health_info.dart';
+import 'package:air_buddy/weather_feature/presentation/widget/modal_info.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:core/constants/aqi/aqi_data.dart';
@@ -39,7 +40,14 @@ class _WeatherInfoScreenState extends ConsumerState<WeatherInfoScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return ModalInfo();
+              },
+            );
+            },
             icon: const Icon(
               Icons.info_outlined,
               size: 30,

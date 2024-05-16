@@ -7,12 +7,14 @@ class AqiData {
   Color textColor;
   String aqiText;
   String pathIcon;
+  String aqiRange;
   List<Suggestion> listSuggestion;
 
   AqiData({
     required this.backgroundColor,
     required this.textColor,
     required this.aqiText,
+    required this.aqiRange,
     required this.pathIcon,
     required this.listSuggestion,
   });
@@ -42,7 +44,7 @@ Map<AqiType, AqiData> aqiDataList = {
           close: false),
       Suggestion(
           pathIcon: "assets/icon_svg/bike_info.svg", info: "เพลิดเพลินกับกิจกรรมกลางแจ้ง", close: false),
-    ],
+    ], aqiRange: '0-50',
   ),
   AqiType.moderate: AqiData(
     backgroundColor: const Color.fromARGB(255, 240, 197, 45),
@@ -56,7 +58,7 @@ Map<AqiType, AqiData> aqiDataList = {
       Suggestion(pathIcon: "assets/icon_svg/bike_info.svg", info: "กลุ่มอ่อนไหวควรลดการออกกำลังกายกลางแจ้ง", close: false),
       Suggestion(pathIcon: "assets/icon_svg/mask_info.svg", info: "กลุ่มอ่อนไหวควรสวมหน้ากากกลางแจ้ง", close: false),
       Suggestion(pathIcon: "assets/icon_svg/air_filter_info.svg", info: "กลุ่มแพ้ง่ายควรเริ่มใช้เครื่องฟอกอากาศ", close: false)
-    ],
+    ], aqiRange: '51-100',
   ),
   AqiType.unhealthyForSensitive: AqiData(
     backgroundColor: const Color.fromARGB(255, 251,153,86),
@@ -70,7 +72,7 @@ Map<AqiType, AqiData> aqiDataList = {
       Suggestion(pathIcon: "assets/icon_svg/bike_info.svg", info: "ลดการออกกำลังกายกลางแจ้ง", close: false),
       Suggestion(pathIcon: "assets/icon_svg/mask_info.svg", info: "สวมหน้ากากกลางแจ้งและในบ้าน", close: false),
       Suggestion(pathIcon: "assets/icon_svg/air_filter_info.svg", info: "ใช้เครื่องฟอกอากาศ", close: false)
-    ],
+    ], aqiRange: '101-150',
   ),
   AqiType.unhealthy: AqiData(
     backgroundColor: const Color.fromARGB(255,246,104,106),
@@ -84,7 +86,7 @@ Map<AqiType, AqiData> aqiDataList = {
       Suggestion(pathIcon: "assets/icon_svg/bike_info.svg", info: "หลีกเลี่ยงการออกกำลังกายกลางแจ้ง", close: true),
       Suggestion(pathIcon: "assets/icon_svg/mask_info.svg", info: "สวมหน้ากากกลางแจ้งและในบ้าน", close: false),
       Suggestion(pathIcon: "assets/icon_svg/air_filter_info.svg", info: "ใช้เครื่องฟอกอากาศ", close: false)
-    ],
+    ], aqiRange: '151-200',
   ),
   AqiType.veryUnhealthy: AqiData(
     backgroundColor: const Color.fromARGB(255,164,125,184),
@@ -98,7 +100,7 @@ Map<AqiType, AqiData> aqiDataList = {
       Suggestion(pathIcon: "assets/icon_svg/bike_info.svg", info: "หลีกเลี่ยงการออกกำลังกายกลางแจ้ง", close: true),
       Suggestion(pathIcon: "assets/icon_svg/mask_info.svg", info: "สวมหน้ากากกลางแจ้งและในบ้าน", close: false),
       Suggestion(pathIcon: "assets/icon_svg/air_filter_info.svg", info: "ใช้เครื่องฟอกอากาศ", close: false)
-    ],
+    ], aqiRange: '201-300',
   ),
   AqiType.hazadous: AqiData(
     backgroundColor: const Color.fromARGB(255,160,119,133),
@@ -112,6 +114,6 @@ Map<AqiType, AqiData> aqiDataList = {
       Suggestion(pathIcon: "assets/icon_svg/bike_info.svg", info: "หลีกเลี่ยงการออกกำลังกายกลางแจ้ง", close: true),
       Suggestion(pathIcon: "assets/icon_svg/mask_info.svg", info: "สวมหน้ากากกลางแจ้งและในบ้าน", close: false),
       Suggestion(pathIcon: "assets/icon_svg/air_filter_info.svg", info: "ใช้เครื่องฟอกอากาศ", close: false)
-    ],
+    ], aqiRange: '301+',
   ),
 };
