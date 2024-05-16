@@ -1,10 +1,15 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:core/constants/aqi/aqi_data.dart';
+import 'package:core/constants/aqi/aqi_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ModalInfo extends StatelessWidget {
-  const ModalInfo({super.key});
+  
+  ModalInfo({super.key});
+
+  final AqiData aqiGood = aqiDataList[AqiType.good]!;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +27,12 @@ class ModalInfo extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildCustomContainer('Good', '0-50', 'assets/aqi_icon/good_aqi.svg', Color.fromARGB(255, 41, 151, 27)),
-            _buildCustomContainer('Moderate', '51-100', 'assets/aqi_icon/moderate_aqi.svg', Color.fromARGB(255, 232, 235, 55)),
-            _buildCustomContainer('Unhealthy for Sensitive Groups', '101-150', 'assets/aqi_icon/sensitive_aqi.svg', Color.fromARGB(255, 245, 118, 34)),
-            _buildCustomContainer('Unhealthy', '151-200', 'assets/aqi_icon/unhealthy_aqi.svg', Color.fromARGB(255, 218, 46, 46)),
-            _buildCustomContainer('Very Unhealthy', '201-300', 'assets/aqi_icon/ver_unhealthy_aqi.svg', Color.fromARGB(255, 96, 7, 125)),
-            _buildCustomContainer('Hazardous', '301+', 'assets/aqi_icon/hazardous_aqi.svg', Color.fromARGB(255, 101, 12, 12)),
+            _buildCustomContainer(aqiGood.aqiText, aqiGood.aqiRange, aqiGood.pathIcon, aqiGood.backgroundColor),
+            _buildCustomContainer('Moderate', '51-100', 'assets/svg_icon/moderate_aqi.svg', Color.fromARGB(255, 232, 235, 55)),
+            _buildCustomContainer('Unhealthy for Sensitive Groups', '101-150', 'assets/svg_icon/sensitive_aqi.svg', Color.fromARGB(255, 245, 118, 34)),
+            _buildCustomContainer('Unhealthy', '151-200', 'assets/svg_icon/unhealthy_aqi.svg', Color.fromARGB(255, 218, 46, 46)),
+            _buildCustomContainer('Very Unhealthy', '201-300', 'assets/svg_icon/ver_unhealthy_aqi.svg', Color.fromARGB(255, 96, 7, 125)),
+            _buildCustomContainer('Hazardous', '301+', 'assets/svg_icon/hazardous_aqi.svg', Color.fromARGB(255, 101, 12, 12)),
           ],
         ),
       ),
