@@ -6,16 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ModalInfo extends StatelessWidget {
-  
   ModalInfo({super.key});
 
   final AqiData aqiGood = aqiDataList[AqiType.good]!;
   final AqiData aqiModerate = aqiDataList[AqiType.moderate]!;
-  final AqiData aqiunhealthyForSensitive= aqiDataList[AqiType.unhealthyForSensitive]!;
+  final AqiData aqiunhealthyForSensitive = aqiDataList[AqiType.unhealthyForSensitive]!;
   final AqiData aqiunhealthy = aqiDataList[AqiType.unhealthy]!;
   final AqiData aqiveryUnhealthy = aqiDataList[AqiType.veryUnhealthy]!;
   final AqiData aqihazadous = aqiDataList[AqiType.hazadous]!;
-  
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -30,14 +29,14 @@ class ModalInfo extends StatelessWidget {
         width: 600,
         height: 500,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _buildCustomContainer(aqiGood.aqiText, aqiGood.aqiRange, aqiGood.pathIcon, aqiGood.backgroundColor,aqiGood.textColor),
-            _buildCustomContainer(aqiModerate.aqiText, aqiModerate.aqiRange, aqiModerate.pathIcon, aqiModerate.backgroundColor,aqiModerate.textColor),
-            _buildCustomContainer(aqiunhealthyForSensitive.aqiText, aqiunhealthyForSensitive.aqiRange, aqiunhealthyForSensitive.pathIcon, aqiunhealthyForSensitive.backgroundColor,aqiunhealthyForSensitive.textColor),
-          _buildCustomContainer(aqiunhealthy.aqiText, aqiunhealthy.aqiRange, aqiunhealthy.pathIcon, aqiunhealthy.backgroundColor,aqiunhealthy.textColor),
-            _buildCustomContainer(aqiveryUnhealthy.aqiText, aqiveryUnhealthy.aqiRange, aqiveryUnhealthy.pathIcon, aqiveryUnhealthy.backgroundColor,aqiveryUnhealthy.textColor),
-            _buildCustomContainer(aqihazadous.aqiText, aqihazadous.aqiRange, aqihazadous.pathIcon, aqihazadous.backgroundColor,aqihazadous.textColor),
+            _buildCustomContainer(aqiGood.aqiText, aqiGood.aqiRange, aqiGood.pathIcon, aqiGood.backgroundColor, aqiGood.textColor),
+            _buildCustomContainer(aqiModerate.aqiText, aqiModerate.aqiRange, aqiModerate.pathIcon, aqiModerate.backgroundColor, aqiModerate.textColor),
+            _buildCustomContainer(aqiunhealthyForSensitive.aqiText, aqiunhealthyForSensitive.aqiRange, aqiunhealthyForSensitive.pathIcon, aqiunhealthyForSensitive.backgroundColor, aqiunhealthyForSensitive.textColor),
+            _buildCustomContainer(aqiunhealthy.aqiText, aqiunhealthy.aqiRange, aqiunhealthy.pathIcon, aqiunhealthy.backgroundColor, aqiunhealthy.textColor),
+            _buildCustomContainer(aqiveryUnhealthy.aqiText, aqiveryUnhealthy.aqiRange, aqiveryUnhealthy.pathIcon, aqiveryUnhealthy.backgroundColor, aqiveryUnhealthy.textColor),
+            _buildCustomContainer(aqihazadous.aqiText, aqihazadous.aqiRange, aqihazadous.pathIcon, aqihazadous.backgroundColor, aqihazadous.textColor),
           ],
         ),
       ),
@@ -52,10 +51,10 @@ class ModalInfo extends StatelessWidget {
     );
   }
 
-  Widget _buildCustomContainer(String text1, String text2, String svgPath, Color color,Color textColor) {
+  Widget _buildCustomContainer(String text1, String text2, String svgPath, Color color, Color textColor) {
     return Container(
       width: double.infinity,
-      height: 70,
+      height: 65,
       padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
@@ -70,46 +69,51 @@ class ModalInfo extends StatelessWidget {
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(
             svgPath,
-            width: 55,
-            height: 55,
-            color: textColor, // Apply the color here
+            width: 50,
+            height: 50,
+            color: textColor,
           ),
-          Container(
-            width: 230,
-            height: 60,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: color,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Flexible(
-                  child: Text(
-                    text1.length > 17
-                        ? '${text1.substring(0, 15)}\n${text1.substring(15)}'
-                        : text1,
-                    style:  TextStyle(
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13,
+          SizedBox(width: 5),
+          Expanded(
+            child: Container(
+              height: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: color,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Flexible(
+                    child: Text(
+                      text1.length > 17
+                          ? '${text1.substring(0, 15)}\n${text1.substring(15)}'
+                          : text1,
+                      style: TextStyle(
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                ),
-                Text(
-                  text2,
-                  style:  TextStyle(
-                    color: textColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                  Flexible(
+                    child: Text(
+                      text2,
+                      style: TextStyle(
+                        color: textColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
