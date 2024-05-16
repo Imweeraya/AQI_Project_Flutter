@@ -15,7 +15,7 @@ class ForeCastList extends StatelessWidget {
         separatorBuilder: (context, index) {
           return const SizedBox(width: 16,);
         },
-        padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         scrollDirection: Axis.horizontal,
         itemCount: forecast.length,
         itemBuilder: (context , index){

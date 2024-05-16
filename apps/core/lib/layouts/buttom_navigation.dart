@@ -40,7 +40,7 @@ class _ButtonNavigationState extends State<ButtonNavigation> {
         
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(Icons.pin_drop_rounded),
+            icon: const Icon(Icons.cloud_outlined),
             label: 'My Air',
             backgroundColor: const Color.fromARGB(255, 223, 223, 223),
           ),
