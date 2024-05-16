@@ -1,59 +1,28 @@
-import 'package:air_buddy/feature/map/domain/entitys/here_station.dart';
-import 'package:air_buddy/feature/map/domain/entitys/station.dart';
-import 'package:air_buddy/feature/map/domain/entitys/weather.dart';
-import 'package:air_buddy/feature/map/domain/port_weather/service.dart';
-import 'package:air_buddy/feature/map/presentation/widgets/marker_location.dart';
-import 'package:core_libs/dependency_injection/get_it.dart';
-import 'package:core_ui/widgets/elements/tests/title_text.dart';
+import 'package:air_buddy/feature/map/presentation/viewmodels/map_viewModel.dart';
+import 'package:air_buddy/feature/map/presentation/widgets/marker_location_box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:air_buddy/feature/map/presentation/widgets/marker_location_custom.dart';
 
-class MapScreen extends StatefulWidget {
+import '../widgets/marker_location_custom.dart';
+
+class MapScreen extends ConsumerStatefulWidget {
   const MapScreen({super.key});
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  ConsumerState<MapScreen> createState() => _MapScreenState();
 }
 
-class _MapScreenState extends State<MapScreen> {
-  late final IWeatherService weatherService = getIt.get<IWeatherService>();
-  late final IStationService stationService = getIt.get<IStationService>();
-  late final IHereStationService hereStationService = getIt.get<IHereStationService>();
-
-  late StationToDisplay station;
-
-  late String name = 'CENDiM CMU';
-  late WeatherToDisplay weather = WeatherToDisplay(); // Initialize with some default value
-  late HereStationToDisplay hereStationToDisplay;
-  late double lat = hereStationToDisplay.coordinates![1];
-  late double lng = hereStationToDisplay.coordinates![0];
-  bool isLoading = true;
-
+class _MapScreenState extends ConsumerState<MapScreen> {
   @override
   void initState() {
     super.initState();
-    getStation();
-  }
-
-  Future<void> getWeather(double lat, double lng) async {
-    final weathers = await weatherService.getByLatLng(lat, lng);
-    setState(() {
-      weather = weathers;
+    Future(() {
+      ref.read(mapViewModelProvider.notifier).getStation();
     });
-  }
-
-  void getStation() async {
-    final hereStation = await hereStationService.getHereStation();
-    final stations = await stationService.getStation();
-    setState(() {
-      station = stations;
-      hereStationToDisplay = hereStation;
-      isLoading = false;
-    });
-    await getWeather(hereStationToDisplay.coordinates![1], hereStationToDisplay.coordinates![0]);
   }
 
   // Function to handle map movement (zoom, rotate, etc.)
@@ -64,65 +33,68 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     late MapController mapController = MapController();
+    final mapVM = ref.watch(mapViewModelProvider);
+    final mapAPIVM = ref.read(mapViewModelProvider.notifier);
 
     return Scaffold(
-      body: isLoading ? const SizedBox(): Stack(
-        children: [
-          FlutterMap(
-            mapController: mapController,
-            options: MapOptions(
-              center: LatLng(hereStationToDisplay.coordinates![1], hereStationToDisplay.coordinates![0]),
-              zoom: 14,
-              maxZoom: 16,
-              minZoom: 13,
-              onPositionChanged: _handleMapChanged,
-              onTap: (tapPosition, point) async {
-                print(point);
-                await getWeather(point.latitude, point.longitude);
-                // print(station.data.firstOrNull.lat = point.latitude);
-                print(weather.aqi);
-                setState(() {
-                  lat = point.latitude;
-                  lng = point.longitude;
-                });
-              },
-            ),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                subdomains: ['a', 'b', 'c'],
-              ),
-              TileLayer(
-                urlTemplate:
-                    'https://tiles.waqi.info/tiles/usepa-aqi/{z}/{x}/{y}.png?token=c446149c4593b2dd221b9d37f1b7612a658f4ccc',
-                subdomains: ['a', 'b', 'c'],
-              ),
-              MarkerLayer(
-                markers: station.data.map((e) => Marker(
-                  point: LatLng(e.lat!.toDouble(), e.lng!.toDouble()),
-                    child: TitleText(title: e.aqi!, textSize: TitleTextSize.SMALL,color: Colors.red,)
-                )).toList(),
-              ),
-              MarkerLayer(
-                markers: [
-                  Marker(
-                    point: LatLng(lat, lng),
-                    child: const Icon(Icons.pin_drop_outlined,weight: 100,),
+      body: mapVM.loading
+          ? const CircularProgressIndicator()
+          : Stack(
+              children: [
+                FlutterMap(
+                  mapController: mapController,
+                  options: MapOptions(
+                    center: LatLng(mapVM.hereStationToDisplay.coordinates![1],
+                        mapVM.hereStationToDisplay.coordinates![0]),
+                    zoom: 14,
+                    maxZoom: 16,
+                    minZoom: 13,
+                    onPositionChanged: _handleMapChanged,
+                    onTap: (tapPosition, point) async {
+                      print(point);
+                      await mapAPIVM.getWeather(
+                          point.latitude, point.longitude);
+                      mapAPIVM.setLatLng(point.latitude, point.longitude);
+                    },
                   ),
-                ],
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: 100,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: MarkerLocation(name: weather.name ?? 'Default Name'),
+                  children: [
+                    TileLayer(
+                      urlTemplate:
+                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      subdomains: ['a', 'b', 'c'],
+                    ),
+                    MarkerLayer(
+                      markers: mapVM.station.data
+                          .map((e) => Marker(
+                              point:
+                                  LatLng(e.lat!.toDouble(), e.lng!.toDouble()),
+                              child: MakerLocationCustom(name: e.stationName, aqi: e.aqi,)))
+                          .toList(),
+                    ),
+                    MarkerLayer(
+                      markers: [
+                        Marker(
+                          point: LatLng(mapVM.lat, mapVM.lng),
+                          child: const Icon(
+                            Icons.pin_drop_outlined,
+                            weight: 100,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Positioned(
+                  bottom: 100,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: MarkerLocationBox(
+                        name: mapVM.stationName),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -13,7 +13,7 @@ class WeatherService extends IWeatherService {
     return WeatherToDisplay(
       aqi: rawWeather.data?.aqi,
       name: rawWeather.data?.city?.name,
-      pm25: rawWeather.data?.iaqi?.pm25,
+      pm25: rawWeather.data?.iaqi?.pm25?.v,
     );
   }
 }

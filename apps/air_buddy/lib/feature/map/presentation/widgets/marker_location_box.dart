@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class MarkerLocation extends StatelessWidget {
+class MarkerLocationBox extends StatelessWidget {
   final String name;
 
-  const MarkerLocation(
+  const MarkerLocationBox(
       {super.key, required this.name});
 
   @override
