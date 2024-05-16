@@ -40,11 +40,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           IconButton(
             onPressed: () {
               showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return ModalInfo();
-              },
-            );
+                context: context,
+                builder: (BuildContext context) {
+                  return ModalInfo();
+                },
+              );
             },
             icon: const Icon(
               Icons.info_outlined,
@@ -59,12 +59,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: ListView(
           children: [
             InkWell(
-              onTap: (){
-                weatherVMNotifier.goInfoScreen(context, weatherVM.air);
-              },
+                onTap: () {
+                  weatherVMNotifier.goInfoScreen(context, weatherVM.air);
+                },
                 child: WeatherCurrentStatus(
-              curentWeather: weatherVM.air[0],
-              //     curentWeather: weatherVM.air.isNotEmpty ? weatherVM.air[0] : null,
+                  curentWeather: weatherVM.air[0],
                 )),
             const SizedBox(
               height: 20,
