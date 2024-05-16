@@ -49,8 +49,17 @@ flutter:
     - assets/icon_svg/
     - assets/animation/
 
-  # Fonts:
-  # - family: YourFontFamily
-  #   fonts:
-  #     - asset: fonts/YourFont-Regular.ttf
-  #     - asset: fonts/YourFont-Bold.ttf
+  fonts:
+    - family: Kanit
+      fonts:
+        - asset: assets/fonts/Kanit-Thin.ttf
+          weight: 200
+        - asset: assets/fonts/Kanit-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Kanit-Regular.ttf
+        - asset: assets/fonts/Kanit-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Kanit-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Kanit-Bold.ttf
+          weight: 800
