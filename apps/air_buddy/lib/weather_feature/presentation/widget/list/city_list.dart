@@ -19,7 +19,7 @@ class CityList extends ConsumerWidget {
 
     return InkWell(
       onTap: (){
-        // weatherVMNotifier.goInfoScreen(context, city)
+        weatherVMNotifier.goInfoScreenByCityName(context, city.stationName!);
       },
       child: Container(
               height: 90,

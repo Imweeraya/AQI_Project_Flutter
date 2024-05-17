@@ -82,6 +82,12 @@ class WeatherViewModel extends _$WeatherViewModel {
     context.push('/info', extra: listWeather);
   }
 
+  void goInfoScreenByCityName(BuildContext context, String stationName) async {
+    final weathersFetchers = service.getWeatherForecast(stationName);
+    final weatherlist = await Future.value(weathersFetchers);
+    context.push('/info', extra: weatherlist);
+  }
+
   Future<List<WeatherCity>> findAllAqiCity() async {
     List<WeatherCity> weatherCities = [];
 
@@ -89,7 +95,7 @@ class WeatherViewModel extends _$WeatherViewModel {
       try {
         final station = await service.getWeatherByCity(cityName);
         weatherCities.add(WeatherCity(
-          stationName: station.stationName,
+          stationName: cityName,
           aqi: station.aqi,
         ));
       } catch (e) {
