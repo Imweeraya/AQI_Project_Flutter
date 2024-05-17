@@ -9,7 +9,7 @@ class NoInternetWidget extends StatefulWidget {
 
 class _NoInternetWidgetState extends State<NoInternetWidget> {
   late StreamSubscription<ConnectivityResult> _subscription;
-  ConnectivityResult? _connectivityResult;
+  ConnectivityResult _connectivityResult = ConnectivityResult.none;
 
   @override
   void initState() {
@@ -29,28 +29,7 @@ class _NoInternetWidgetState extends State<NoInternetWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return _connectivityResult != null
-        ? _buildContent()
-        : Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/dino.png', width: 70, height: 70), // Add image
-                SizedBox(height: 10), // Add spacing between CircularProgressIndicator and "Checking..." text
-                const Text(
-                  'No Internet Connection',
-                  style: TextStyle(fontSize: 24),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 5), // Add spacing between texts
-                const Text(
-                  'Please check your internet connection \nand try again',
-                  style: TextStyle(fontSize: 16),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          );
+    return _buildContent();
   }
 
   Widget _buildContent() {
@@ -59,23 +38,18 @@ class _NoInternetWidgetState extends State<NoInternetWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset('assets/images/dino.png', width: 70, height: 70), // Add image
+            SizedBox(height: 10), // Add spacing between CircularProgressIndicator and "Checking..." text
             const Text(
               'No Internet Connection',
-              style: TextStyle(fontSize: 24, color: Colors.red),
+              style: TextStyle(fontSize: 24),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 10), // Add spacing between texts
+            const SizedBox(height: 5), // Add spacing between texts
             const Text(
-              'Please check your network \nsettings and try again.',
-              style: TextStyle(fontSize: 16, color: Colors.black),
+              'Please check your internet connection \nand try again',
+              style: TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20), // Add spacing between text and button
-            ElevatedButton(
-              onPressed: () {
-                // Add code here to open settings page to connect to Wi-Fi or enable mobile data
-              },
-              child: Text('Open Settings'),
             ),
           ],
         ),
