@@ -40,7 +40,7 @@ Map<AqiType, AqiData> aqiDataList = {
     listSuggestion: [
       Suggestion(
           pathIcon: "assets/icon_svg/window_info.svg",
-          info: "เปิดหน้าต่างของคุณเพื่อนำอากาศที่สะอาดและสะอาดในบ้าน",
+          info: " เปิดหน้าต่างของคุณเพื่อนำอากาศบริสุทธิ์และสดชื่นเข้ามาภายในบ้าน",
           close: false),
       Suggestion(
           pathIcon: "assets/icon_svg/bike_info.svg", info: "เพลิดเพลินกับกิจกรรมกลางแจ้ง", close: false),
