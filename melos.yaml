@@ -2,7 +2,7 @@ name: air_buddy
 
 ide:
   intellij:
-    moduleNamePrefix: 'shop_'
+    moduleNamePrefix: 'project_'
 
 packages:
   - apps/**
