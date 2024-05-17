@@ -4,7 +4,8 @@ import 'package:core/constants/aqi/aqi_data.dart';
 import 'package:core/constants/aqi/aqi_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:core_ui/widgets/elements/tests/normal_text.dart';
+import 'package:core_ui/widgets/elements/tests/title_text.dart';
 class ModalInfo extends StatelessWidget {
   ModalInfo({super.key});
 
@@ -19,11 +20,13 @@ class ModalInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Colors.white,
-      title: const Center(
-        child: Text(
-          'AQi',
-          style: TextStyle(fontSize: 40 , color: const Color.fromARGB(255, 132, 132, 132)),
-        ),
+       title: const Center(
+       child: TitleText(
+              title: "AQI",
+              textSize: TitleTextSize.EXTRA,
+              color: Color.fromARGB(255, 84, 84, 84),
+              fontWeight: FontWeight.w500,
+            ),
       ),
       content: SizedBox(
         width: 600,
@@ -88,29 +91,22 @@ class ModalInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Flexible(
-                    child: Text(
-                      text1.length > 17
+                     child:  NormalText(
+                       title: text1.length > 17
                           ? '${text1.substring(0, 15)}\n${text1.substring(15)}'
                           : text1,
-                      style: TextStyle(
-                        color: textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
+                      textSize: TextSize.SMALL,
+                      color: textColor,
                       textAlign: TextAlign.center,
-                    ),
+                     ),
                   ),
                   Flexible(
-                    child: Text(
-                      text2,
-                      style: TextStyle(
-                        color: textColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    child:  NormalText(
+                title: text2,
+                textSize: TextSize.BIG,
+                color: textColor,
+                textAlign: TextAlign.center,
+              ),
                   ),
                 ],
               ),

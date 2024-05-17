@@ -3,6 +3,8 @@ import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:core_ui/widgets/loading/loading_city.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:core_ui/widgets/elements/tests/normal_text.dart';
+import 'package:core_ui/widgets/elements/tests/title_text.dart';
 
 class SearchBottomSheetWidget extends ConsumerStatefulWidget {
   const SearchBottomSheetWidget({super.key});
