@@ -15,7 +15,7 @@ void main() {
   getIt.registerSingleton<IStationRepository>(StationRepository());
   getIt.registerSingleton<IStationService>(StationService());
 
-  test('Test get weather by lat lng', () async {
+  test('Test get station', () async {
     final mockHttpService = getIt.get<HttpService>(instanceName: 'waqi');
     (mockHttpService as MockHttpService).returnData ={
       "status": "ok",
