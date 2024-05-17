@@ -11,6 +11,7 @@ class TitleText extends StatelessWidget {
   final TitleTextSize textSize;
   final int? maxLine;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   const TitleText(
       {super.key,
@@ -20,7 +21,8 @@ class TitleText extends StatelessWidget {
       this.overFlow,
       required this.textSize,
       this.maxLine,
-      this.fontWeight});
+      this.fontWeight,
+      this.textAlign});
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class TitleText extends StatelessWidget {
       title,
       overflow: overFlow ?? false ? TextOverflow.ellipsis : null,
       maxLines: maxLine,
+      textAlign: textAlign ?? TextAlign.start,
       style: TextStyle(
         color: color ?? Colors.white,
         fontSize: size,

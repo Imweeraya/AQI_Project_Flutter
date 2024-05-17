@@ -49,8 +49,10 @@ class WeatherCard extends StatelessWidget {
               color: Colors.white),
           TitleText(
               title: "${currentAir.pollution.city}",
+              textAlign: TextAlign.center,
               textSize: TitleTextSize.SMALL,
-              color: Colors.white),
+              maxLine: 1,
+              color: Colors.white,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
