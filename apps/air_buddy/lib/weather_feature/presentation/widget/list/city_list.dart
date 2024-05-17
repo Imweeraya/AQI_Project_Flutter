@@ -5,6 +5,8 @@ import 'package:core/constants/aqi/aqi_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:core_ui/widgets/elements/tests/normal_text.dart';
+import 'package:core_ui/widgets/elements/tests/title_text.dart';
 
 import '../../../domain/entities/weather_city.dart';
 
@@ -52,20 +54,18 @@ class CityList extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'AQI',
-                          style: TextStyle(
-                            color: aqiData.textColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Text(
-                          city.aqi.toString(),
-                          style: TextStyle(
-                            color: aqiData.textColor,
-                            fontSize: 36,
-                          ),
-                        ),
+                         NormalText(
+                      title: "AQI",
+                      textSize: TextSize.NORMAL,
+                      color:  aqiData.textColor,
+                      textAlign: TextAlign.center,
+                     ),
+                      TitleText(
+                      title: city.aqi.toString(),
+                      textSize: TitleTextSize.REGULAR,
+                      color: aqiData.textColor,
+                      fontWeight: FontWeight.w500,
+                      ),
                       ],
                     ),
                     SvgPicture.asset(

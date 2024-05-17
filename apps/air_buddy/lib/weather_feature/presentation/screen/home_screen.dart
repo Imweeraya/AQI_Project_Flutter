@@ -3,7 +3,7 @@ import 'package:air_buddy/weather_feature/presentation/widget/modal_info.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/search_bottom_sheet.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
-import 'package:core_ui/widgets/loading_weather.dart';
+import 'package:core_ui/widgets/loading/loading_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
