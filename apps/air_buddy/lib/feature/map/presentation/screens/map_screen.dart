@@ -1,5 +1,6 @@
 import 'package:air_buddy/feature/map/presentation/viewmodels/map_viewModel.dart';
 import 'package:air_buddy/feature/map/presentation/widgets/marker_location_box.dart';
+import 'package:core_ui/widgets/error/error_page.dart';
 import 'package:core_ui/widgets/loading/loading_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,12 +31,13 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   Widget build(BuildContext context) {
     late MapController mapController = MapController();
     final mapVM = ref.watch(mapViewModelProvider);
-    final mapFuntionVM = ref.read(mapViewModelProvider.notifier);
+    final mapFunctionVM = ref.read(mapViewModelProvider.notifier);
 
     return Scaffold(
       body: mapVM.loading
           ? const LoadingMap()
-          : Stack(
+          :mapVM.station.data.isEmpty || mapVM.hereStationToDisplay.coordinates!.isEmpty ? ErrorPage(reCallApi: mapFunctionVM.getHereStation)
+        :Stack(
               children: [
                 FlutterMap(
                   mapController: mapController,
@@ -46,9 +48,9 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     maxZoom: 16,
                     minZoom: 13,
                     onPositionChanged: (mapPosition, hasGesture) =>
-                        mapFuntionVM.handleMapChanged(mapPosition, hasGesture),
+                        mapFunctionVM.handleMapChanged(mapPosition, hasGesture),
                     onTap: (tapPosition, point) async {
-                      mapFuntionVM.setLatLng(point.latitude, point.longitude);
+                      mapFunctionVM.setLatLng(point.latitude, point.longitude);
                     },
                   ),
                   children: [
