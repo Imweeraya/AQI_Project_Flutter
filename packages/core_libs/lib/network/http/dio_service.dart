@@ -20,7 +20,7 @@ class DioService extends HttpService {
     } on DioError catch (e) {
       if (e.response != null) {
         if (e.response!.statusCode == 429) {
-          await Future.delayed(Duration(milliseconds: 500));
+          await Future.delayed(Duration(milliseconds: 1000));
           return null;
         } else {
           throw e;
