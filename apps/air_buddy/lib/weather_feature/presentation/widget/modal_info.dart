@@ -22,7 +22,7 @@ class ModalInfo extends StatelessWidget {
       title: const Center(
         child: Text(
           'AQi',
-          style: TextStyle(fontSize: 40),
+          style: TextStyle(fontSize: 40 , color: const Color.fromARGB(255, 132, 132, 132)),
         ),
       ),
       content: SizedBox(
