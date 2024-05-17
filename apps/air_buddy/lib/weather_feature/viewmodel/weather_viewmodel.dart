@@ -23,23 +23,27 @@ class WeatherViewModel extends _$WeatherViewModel {
         loadingCity: false,
         loadingInfo: false,
         currentAir: [],
-        currentCityAir: [], 
+        currentCityAir: [],
         city: [],
-        cityfilter: [], 
+        cityfilter: [],
       );
 
   void getWeathers() async {
     state = state.copyWith(loading: true);
 
-    // final weathersFetchers = service.getListWeatherForecast();
-    final weathersFetchers = service.getWeatherForecast('Chiang Mai');
-    // final weathers = await Future.wait(weathersFetchers);
-    final weatherlist = await Future.value(weathersFetchers);
+      // final weathersFetchers = service.getListWeatherForecast();
+      final weathersFetchers = service.getWeatherForecast('Chiang Mai');
+      // final weathers = await Future.wait(weathersFetchers);
+      final weatherlist = await Future.value(weathersFetchers);
+      state = state.copyWith(
+        loading: false,
+        currentAir: weatherlist,
+      );
 
-    state = state.copyWith(
-      loading: false,
-      currentAir: weatherlist,
-    );
+      state = state.copyWith(
+        loading: false,
+      );
+    
   }
 
   void getCities({String? filter}) async {
@@ -95,14 +99,21 @@ class WeatherViewModel extends _$WeatherViewModel {
     context.push('/info', extra: state.currentCityAir);
     final weathersFetchers = service.getWeatherForecast(stationName);
     final weatherlist = await Future.value(weathersFetchers);
-     state = state.copyWith(
+    state = state.copyWith(
       currentCityAir: weatherlist,
     );
-    
+
     context.replace('/info', extra: state.currentCityAir);
 
     state = state.copyWith(
       loadingInfo: false,
+    );
+  }
+
+  void setCurrentCity() {
+    final tempWeather = state.currentCityAir;
+    state = state.copyWith(
+      currentAir: tempWeather,
     );
   }
 
