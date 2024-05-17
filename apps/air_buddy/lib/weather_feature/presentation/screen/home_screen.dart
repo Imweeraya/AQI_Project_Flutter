@@ -3,6 +3,7 @@ import 'package:air_buddy/weather_feature/presentation/widget/modal_info.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/search_bottom_sheet.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
+import 'package:core_ui/widgets/alert/alert_weeather_dialog.dart';
 import 'package:core_ui/widgets/loading/loading_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,12 +29,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final weatherVM = ref.watch(weatherViewModelProvider);
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
-    
+
     return weatherVM.loading
         ? const LoadingWeather()
         : Scaffold(
             appBar: AppBar(
               actions: [
+                IconButton(
+                  onPressed: () {
+                    // Show the dialog
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        // Return an alert dialog
+                        return AlertDialogWeather(
+                          content: 'Get weather at location ?',
+                          action: weatherVMNotifier.getWeathers,
+                        );
+                      },
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.location_searching_rounded,
+                    size: 30,
+                    color: Color.fromARGB(255, 132, 132, 132),
+                  ),
+                ),
                 IconButton(
                   onPressed: () {
                     showModalBottomSheet(
@@ -73,7 +94,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 children: [
                   InkWell(
                       onTap: () {
-                        weatherVMNotifier.goInfoScreen(context, weatherVM.currentAir);
+                        weatherVMNotifier.goInfoScreen(
+                            context, weatherVM.currentAir);
                       },
                       child: WeatherCurrentStatus(
                         curentWeather: weatherVM.currentAir[0],

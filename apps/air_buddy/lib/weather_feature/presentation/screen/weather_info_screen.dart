@@ -5,12 +5,16 @@ import 'package:air_buddy/weather_feature/presentation/widget/modal_info.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:core/constants/aqi/aqi_data.dart';
+import 'package:core_ui/widgets/alert/alert_weeather_dialog.dart';
 import 'package:core_ui/widgets/loading/loading_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeatherInfoScreen extends ConsumerStatefulWidget {
-  const WeatherInfoScreen({super.key, required this.weather , });
+  const WeatherInfoScreen({
+    super.key,
+    required this.weather,
+  });
   final List<Air> weather;
 
   @override
@@ -40,6 +44,29 @@ class _WeatherInfoScreenState extends ConsumerState<WeatherInfoScreen> {
           },
         ),
         actions: [
+          IconButton(
+            onPressed: () {
+              // Show the dialog
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  // Return an alert dialog
+                  return AlertDialogWeather(
+                    content: 'Set this to my current city ?',
+                    action: () {
+                      weatherVMNotifier.setCurrentCity();
+                      Navigator.of(context).pop();
+                    },
+                  );
+                },
+              );
+            },
+            icon: const Icon(
+              Icons.pin_drop_rounded,
+              size: 30,
+              color: Color.fromARGB(255, 132, 132, 132),
+            ),
+          ),
           IconButton(
             onPressed: () {
               showDialog(
