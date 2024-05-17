@@ -1,22 +1,29 @@
-import 'package:core/screens/internet_status_page.dart';
+import 'package:core/widgets/internet_status_text.dart';
 import 'package:flutter/material.dart';
 
 
-void main() {
-  runApp(MyApp());
-}
-
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Internet Status',
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const InternetStatusPage(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter Demo'),
+        ),
+        body: NoInternetWidget(
+          child: Center(
+            child: Text('ยินดีต้อนรับสู่แอปพลิเคชัน'),
+          ),
+        ),
+      ),
     );
   }
+}
+
+void main() {
+  runApp(MyApp());
 }
