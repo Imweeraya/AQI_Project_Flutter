@@ -49,7 +49,7 @@ class ForeCastCard extends StatelessWidget {
               child: NormalText(
                 title: formatDate(forecast.pollution.date!),
                 textSize: TextSize.SEMIBIG,
-                color: Color.fromARGB(255, 84, 84, 84),
+                color: const Color.fromARGB(255, 84, 84, 84),
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -67,9 +67,9 @@ class ForeCastCard extends StatelessWidget {
                   Row(
                     children: [
                       NormalText(
-                        title: "${forecast.weather.maxTemp}°",
+                        title: "${forecast.weather.maxTemp ?? "-"}°",
                         textSize: TextSize.SMALL,
-                        color: Color.fromARGB(255, 255, 76, 63),
+                        color: const Color.fromARGB(255, 255, 76, 63),
                       ),
                       const Icon(
                         Icons.arrow_drop_up_rounded,
@@ -80,7 +80,7 @@ class ForeCastCard extends StatelessWidget {
                   Row(
                     children: [
                        NormalText(
-                        title: "${forecast.weather.minTemp}°",
+                        title: "${forecast.weather.minTemp ?? "-"}°",
                         textSize: TextSize.SMALL,
                         color: Color.fromARGB(255, 63, 105, 255),
                       ),
@@ -115,35 +115,35 @@ class ForeCastCard extends StatelessWidget {
                 IconTextSmall(
                     svgicon: "assets/icon_svg/uvi_icon.svg",
                     title: "UVI",
-                    info: "${forecast.pollution.avgUvi}"),
+                    info: "${forecast.pollution.avgUvi ?? "-"}"),
                 const SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
                     svgicon: "assets/icon_svg/o3_icon.svg",
                     title: "O3",
-                    info: "${forecast.pollution.avgO3} D.U"),
+                    info: "${forecast.pollution.avgO3 ?? "-"} D.U"),
                 const SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
                     svgicon: "assets/icon_svg/wind_icon.svg",
                     title: "windSpeed",
-                    info: "${forecast.weather.windSpeed} km./hr"),
+                    info: "${forecast.weather.windSpeed ?? "-"} km./hr"),
                 const SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
                     texticon: "PM 2.5",
                     title: "PM 2.5",
-                    info: "${forecast.pollution.avgPm25} µg/m³"),
+                    info: "${forecast.pollution.avgPm25 ?? "-"} µg/m³"),
                 const SizedBox(
                   height: 15,
                 ),
                 IconTextSmall(
                     texticon: "PM10",
                     title: "PM10",
-                    info: "${forecast.pollution.avgPm10} µg/m³")
+                    info: "${forecast.pollution.avgPm10 ?? "-"} µg/m³")
               ],
             ),
           ),

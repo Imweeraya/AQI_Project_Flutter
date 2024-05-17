@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeatherInfoScreen extends ConsumerStatefulWidget {
-  const WeatherInfoScreen({super.key, required this.weather});
+  const WeatherInfoScreen({super.key, required this.weather , });
   final List<Air> weather;
 
   @override
