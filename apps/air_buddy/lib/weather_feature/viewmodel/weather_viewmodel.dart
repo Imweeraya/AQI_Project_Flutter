@@ -1,4 +1,6 @@
+import 'package:air_buddy/mock/mock_province.dart';
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
+import 'package:air_buddy/weather_feature/domain/entities/weather_city.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_state.dart';
 import 'package:core/constants/aqi/aqi_data.dart';
 import 'package:core/constants/aqi/aqi_type.dart';
@@ -28,7 +30,6 @@ class WeatherViewModel extends _$WeatherViewModel {
 
     // final weathersFetchers = service.getListWeatherForecast();
     final weathersFetchers = service.getWeatherForecast('Chiang Mai');
-    print(weathersFetchers);
     // final weathers = await Future.wait(weathersFetchers);
     final weatherlist = await Future.value(weathersFetchers);
 
@@ -39,25 +40,26 @@ class WeatherViewModel extends _$WeatherViewModel {
   }
 
   void getCities({String? filter}) async {
-  state = state.copyWith(loadingCity: true);
+    state = state.copyWith(loadingCity: true);
 
-  final citieFetchers = service.getListCityWeather();
-  final citylist = await Future.value(citieFetchers);
+    final citylist = await findAllAqiCity();
 
-  if (filter != null && filter.isNotEmpty) {
-    final filteredCities = citylist.where((city) =>
-        city.city!.toLowerCase().contains(filter.toLowerCase())).toList();
-    state = state.copyWith(
-      loadingCity: false,
-      city: filteredCities,
-    );
-  } else {
-    state = state.copyWith(
-      loadingCity: false,
-      city: citylist,
-    );
+    if (filter != null && filter.isNotEmpty) {
+      final filteredCities = citylist
+          .where(
+              (city) => city.stationName!.toLowerCase().contains(filter.toLowerCase()))
+          .toList();
+      state = state.copyWith(
+        loadingCity: false,
+        city: filteredCities,
+      );
+    } else {
+      state = state.copyWith(
+        loadingCity: false,
+        city: citylist,
+      );
+    }
   }
-}
 
   AqiData getAqiData(int aqi) {
     if (aqi > 0 && aqi <= 50) {
@@ -78,5 +80,22 @@ class WeatherViewModel extends _$WeatherViewModel {
   //ignore: avoid_build_context_in_providers
   void goInfoScreen(BuildContext context, List<Air> listWeather) {
     context.push('/info', extra: listWeather);
+  }
+
+  Future<List<WeatherCity>> findAllAqiCity() async {
+    List<WeatherCity> weatherCities = [];
+
+    for (String cityName in cities) {
+      try {
+        final station = await service.getWeatherByCity(cityName);
+        weatherCities.add(WeatherCity(
+          stationName: station.stationName,
+          aqi: station.aqi,
+        ));
+      } catch (e) {
+        // print('Error retrieving data for city $cityName: $e');
+      }
+    }
+    return weatherCities;
   }
 }

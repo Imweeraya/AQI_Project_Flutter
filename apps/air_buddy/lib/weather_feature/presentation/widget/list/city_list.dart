@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../domain/entities/weather_city.dart';
+
 class CityList extends ConsumerWidget {
   const CityList({super.key , required this.city });
-  final AirPollution city;
+  final WeatherCity city;
 
   @override
   Widget build(BuildContext context , WidgetRef ref) {
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
-    final AqiData aqiData = weatherVMNotifier.getAqiData(city.aqi!=null ? city.aqi!.toInt() : 0);
+    final AqiData aqiData = weatherVMNotifier.getAqiData(city.aqi!=null ?int.parse(city.aqi!): 0);
 
     return InkWell(
       onTap: (){
@@ -40,7 +42,7 @@ class CityList extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      city.city ?? "",
+                      city.stationName ?? "",
                       style: TextStyle(
                         color: aqiData.textColor,
                         fontSize: 16,

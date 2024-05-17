@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:air_buddy/feature/map/data/models/hearStationModel.dart';
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/domain/entities/polution_entity.dart';
+import 'package:air_buddy/weather_feature/domain/entities/weather_city.dart';
 import 'package:air_buddy/weather_feature/mock/mock_search_city.dart';
 import 'package:air_buddy/weather_feature/mock/weather.dart';
 import 'package:core_libs/dependency_injection/get_it.dart';
@@ -67,5 +68,14 @@ class StatusWeatherService extends IStatusWeatherService {
     ).values.toList();
 
     return weatherForecast;
+  }
+
+  @override
+  Future<WeatherCity> getWeatherByCity(String city) async {
+    final weatherCity = await repository.getWeatherByCity(city);
+    return WeatherCity(
+      stationName: weatherCity.data!.city!.name,
+      aqi: weatherCity.data!.aqi.toString(),
+    );
   }
 }
