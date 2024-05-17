@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 class ErrorPage extends StatelessWidget {
-  final String errorMessage;
+  final VoidCallback? reCallApi;
 
-  const ErrorPage({Key? key, required this.errorMessage}) : super(key: key);
+  const ErrorPage({Key? key,this.reCallApi});
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +27,20 @@ class ErrorPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            Text(
-              errorMessage,
-              style: const TextStyle(fontSize: 16),
+            const Text(
+              "We're working on getting this fixed as soon as we can.",
+              style: TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              onPressed: reCallApi ?? () => Navigator.of(context).pop(),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor:
                     Color.fromARGB(75, 75, 75, 1),
               ),
-              child: const Text('Go Back'),
+              child: const Text('TRY AGAIN'),
             ),
           ],
         ),
