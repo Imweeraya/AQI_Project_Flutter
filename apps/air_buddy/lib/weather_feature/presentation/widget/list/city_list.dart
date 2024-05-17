@@ -8,18 +8,20 @@ import 'package:flutter_svg/svg.dart';
 import 'package:core_ui/widgets/elements/tests/normal_text.dart';
 import 'package:core_ui/widgets/elements/tests/title_text.dart';
 
+import '../../../domain/entities/weather_city.dart';
+
 class CityList extends ConsumerWidget {
   const CityList({super.key , required this.city });
-  final AirPollution city;
+  final WeatherCity city;
 
   @override
   Widget build(BuildContext context , WidgetRef ref) {
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
-    final AqiData aqiData = weatherVMNotifier.getAqiData(city.aqi!=null ? city.aqi!.toInt() : 0);
+    final AqiData aqiData = weatherVMNotifier.getAqiData(city.aqi!=null ?int.parse(city.aqi!): 0);
 
     return InkWell(
       onTap: (){
-        // weatherVMNotifier.goInfoScreen(context, city)
+        weatherVMNotifier.goInfoScreenByCityName(context, city.stationName!);
       },
       child: Container(
               height: 90,
@@ -41,13 +43,13 @@ class CityList extends ConsumerWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                      NormalText(
-                      title: city.city ?? "",
-                      textSize: TextSize.SMALL,
-                      color:  aqiData.textColor,
-                      textAlign: TextAlign.center,
-                     ),
-                    
+                    Text(
+                      city.stationName ?? "",
+                      style: TextStyle(
+                        color: aqiData.textColor,
+                        fontSize: 16,
+                      ),
+                    ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,

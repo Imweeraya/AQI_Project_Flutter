@@ -27,7 +27,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final weatherVM = ref.watch(weatherViewModelProvider);
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
-
+  weatherVMNotifier.findAllAqiCity();
     return weatherVM.loading
         ? const LoadingWeather()
         : Scaffold(
