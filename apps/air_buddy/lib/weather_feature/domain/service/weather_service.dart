@@ -65,9 +65,6 @@ class StatusWeatherService extends IStatusWeatherService {
         ),
       ),
     ).values.toList();
-    print(weatherForecast.map((e) => e.weather.maxTemp));
-    print(weatherForecast.map((e) => e.pollution.aqi));
-    print(weatherForecast.map((e) => e.pollution.avgUvi));
 
     return weatherForecast;
   }
