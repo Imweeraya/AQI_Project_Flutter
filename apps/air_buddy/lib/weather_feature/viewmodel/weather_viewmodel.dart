@@ -23,6 +23,7 @@ class WeatherViewModel extends _$WeatherViewModel {
         currentAir: [],
         loadingCity: false,
         city: [],
+        cityfilter: [],
       );
 
   void getWeathers() async {
@@ -40,23 +41,23 @@ class WeatherViewModel extends _$WeatherViewModel {
   }
 
   void getCities({String? filter}) async {
-    state = state.copyWith(loadingCity: true);
+    // state = state.copyWith(loadingCity: true);
 
-    final citylist = await findAllAqiCity();
+    final citylist = state.city;
 
     if (filter != null && filter.isNotEmpty) {
       final filteredCities = citylist
-          .where(
-              (city) => city.stationName!.toLowerCase().contains(filter.toLowerCase()))
+          .where((city) =>
+              city.stationName!.toLowerCase().contains(filter.toLowerCase()))
           .toList();
       state = state.copyWith(
-        loadingCity: false,
-        city: filteredCities,
+        // loadingCity: false,
+        cityfilter: filteredCities,
       );
     } else {
       state = state.copyWith(
-        loadingCity: false,
-        city: citylist,
+        // loadingCity: false,
+        cityfilter: citylist,
       );
     }
   }
@@ -88,7 +89,10 @@ class WeatherViewModel extends _$WeatherViewModel {
     context.push('/info', extra: weatherlist);
   }
 
-  Future<List<WeatherCity>> findAllAqiCity() async {
+  Future<void> findAllAqiCity() async {
+    state = state.copyWith(
+      loadingCity: true,
+    );
     List<WeatherCity> weatherCities = [];
 
     for (String cityName in cities) {
@@ -102,6 +106,10 @@ class WeatherViewModel extends _$WeatherViewModel {
         // print('Error retrieving data for city $cityName: $e');
       }
     }
-    return weatherCities;
+    state = state.copyWith(
+      city: weatherCities,
+      cityfilter: weatherCities,
+      loadingCity: false,
+    );
   }
 }

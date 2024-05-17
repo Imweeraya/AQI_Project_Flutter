@@ -66,7 +66,7 @@ class _SearchBottomSheetWidgetState
                     padding: const EdgeInsets.only(
                         top: 70.0, left: 15, right: 15, bottom: 15),
                     child: SingleChildScrollView(
-                        child: SearchCities(cities: weatherVM.city)),
+                        child: SearchCities(cities: weatherVM.cityfilter)),
                   ),
                 ),
               ),
