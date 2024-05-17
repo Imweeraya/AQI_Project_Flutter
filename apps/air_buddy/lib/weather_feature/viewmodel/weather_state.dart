@@ -12,7 +12,9 @@ class WeatherState with _$WeatherState {
   factory WeatherState({
     required bool loading , 
     required bool loadingCity , 
+    required bool loadingInfo , 
     required List<Air> currentAir,
+    required List<Air> currentCityAir,
     required List<WeatherCity> city,
     required List<WeatherCity> cityfilter,
     }) = _WeatherState;

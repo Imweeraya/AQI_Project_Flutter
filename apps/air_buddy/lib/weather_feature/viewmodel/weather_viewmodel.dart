@@ -20,10 +20,12 @@ class WeatherViewModel extends _$WeatherViewModel {
   @override
   WeatherState build() => WeatherState(
         loading: false,
-        currentAir: [],
         loadingCity: false,
+        loadingInfo: false,
+        currentAir: [],
+        currentCityAir: [], 
         city: [],
-        cityfilter: [],
+        cityfilter: [], 
       );
 
   void getWeathers() async {
@@ -84,9 +86,18 @@ class WeatherViewModel extends _$WeatherViewModel {
   }
 
   void goInfoScreenByCityName(BuildContext context, String stationName) async {
+    state = state.copyWith(
+      loadingInfo: true,
+    );
+
+    context.push('/info', extra: state.currentCityAir);
     final weathersFetchers = service.getWeatherForecast(stationName);
     final weatherlist = await Future.value(weathersFetchers);
-    context.push('/info', extra: weatherlist);
+
+    state = state.copyWith(
+      currentCityAir: weatherlist,
+      loadingInfo: false,
+    );
   }
 
   Future<void> findAllAqiCity() async {

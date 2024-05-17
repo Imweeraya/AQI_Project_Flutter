@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$WeatherState {
   bool get loading => throw _privateConstructorUsedError;
   bool get loadingCity => throw _privateConstructorUsedError;
+  bool get loadingInfo => throw _privateConstructorUsedError;
   List<Air> get currentAir => throw _privateConstructorUsedError;
+  List<Air> get currentCityAir => throw _privateConstructorUsedError;
   List<WeatherCity> get city => throw _privateConstructorUsedError;
   List<WeatherCity> get cityfilter => throw _privateConstructorUsedError;
 
@@ -36,7 +38,9 @@ abstract class $WeatherStateCopyWith<$Res> {
   $Res call(
       {bool loading,
       bool loadingCity,
+      bool loadingInfo,
       List<Air> currentAir,
+      List<Air> currentCityAir,
       List<WeatherCity> city,
       List<WeatherCity> cityfilter});
 }
@@ -56,7 +60,9 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
   $Res call({
     Object? loading = null,
     Object? loadingCity = null,
+    Object? loadingInfo = null,
     Object? currentAir = null,
+    Object? currentCityAir = null,
     Object? city = null,
     Object? cityfilter = null,
   }) {
@@ -69,9 +75,17 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
           ? _value.loadingCity
           : loadingCity // ignore: cast_nullable_to_non_nullable
               as bool,
+      loadingInfo: null == loadingInfo
+          ? _value.loadingInfo
+          : loadingInfo // ignore: cast_nullable_to_non_nullable
+              as bool,
       currentAir: null == currentAir
           ? _value.currentAir
           : currentAir // ignore: cast_nullable_to_non_nullable
+              as List<Air>,
+      currentCityAir: null == currentCityAir
+          ? _value.currentCityAir
+          : currentCityAir // ignore: cast_nullable_to_non_nullable
               as List<Air>,
       city: null == city
           ? _value.city
@@ -96,7 +110,9 @@ abstract class _$$WeatherStateImplCopyWith<$Res>
   $Res call(
       {bool loading,
       bool loadingCity,
+      bool loadingInfo,
       List<Air> currentAir,
+      List<Air> currentCityAir,
       List<WeatherCity> city,
       List<WeatherCity> cityfilter});
 }
@@ -114,7 +130,9 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
   $Res call({
     Object? loading = null,
     Object? loadingCity = null,
+    Object? loadingInfo = null,
     Object? currentAir = null,
+    Object? currentCityAir = null,
     Object? city = null,
     Object? cityfilter = null,
   }) {
@@ -127,9 +145,17 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
           ? _value.loadingCity
           : loadingCity // ignore: cast_nullable_to_non_nullable
               as bool,
+      loadingInfo: null == loadingInfo
+          ? _value.loadingInfo
+          : loadingInfo // ignore: cast_nullable_to_non_nullable
+              as bool,
       currentAir: null == currentAir
           ? _value._currentAir
           : currentAir // ignore: cast_nullable_to_non_nullable
+              as List<Air>,
+      currentCityAir: null == currentCityAir
+          ? _value._currentCityAir
+          : currentCityAir // ignore: cast_nullable_to_non_nullable
               as List<Air>,
       city: null == city
           ? _value._city
@@ -149,10 +175,13 @@ class _$WeatherStateImpl implements _WeatherState {
   _$WeatherStateImpl(
       {required this.loading,
       required this.loadingCity,
+      required this.loadingInfo,
       required final List<Air> currentAir,
+      required final List<Air> currentCityAir,
       required final List<WeatherCity> city,
       required final List<WeatherCity> cityfilter})
       : _currentAir = currentAir,
+        _currentCityAir = currentCityAir,
         _city = city,
         _cityfilter = cityfilter;
 
@@ -160,12 +189,22 @@ class _$WeatherStateImpl implements _WeatherState {
   final bool loading;
   @override
   final bool loadingCity;
+  @override
+  final bool loadingInfo;
   final List<Air> _currentAir;
   @override
   List<Air> get currentAir {
     if (_currentAir is EqualUnmodifiableListView) return _currentAir;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_currentAir);
+  }
+
+  final List<Air> _currentCityAir;
+  @override
+  List<Air> get currentCityAir {
+    if (_currentCityAir is EqualUnmodifiableListView) return _currentCityAir;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_currentCityAir);
   }
 
   final List<WeatherCity> _city;
@@ -186,7 +225,7 @@ class _$WeatherStateImpl implements _WeatherState {
 
   @override
   String toString() {
-    return 'WeatherState(loading: $loading, loadingCity: $loadingCity, currentAir: $currentAir, city: $city, cityfilter: $cityfilter)';
+    return 'WeatherState(loading: $loading, loadingCity: $loadingCity, loadingInfo: $loadingInfo, currentAir: $currentAir, currentCityAir: $currentCityAir, city: $city, cityfilter: $cityfilter)';
   }
 
   @override
@@ -197,8 +236,12 @@ class _$WeatherStateImpl implements _WeatherState {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.loadingCity, loadingCity) ||
                 other.loadingCity == loadingCity) &&
+            (identical(other.loadingInfo, loadingInfo) ||
+                other.loadingInfo == loadingInfo) &&
             const DeepCollectionEquality()
                 .equals(other._currentAir, _currentAir) &&
+            const DeepCollectionEquality()
+                .equals(other._currentCityAir, _currentCityAir) &&
             const DeepCollectionEquality().equals(other._city, _city) &&
             const DeepCollectionEquality()
                 .equals(other._cityfilter, _cityfilter));
@@ -209,7 +252,9 @@ class _$WeatherStateImpl implements _WeatherState {
       runtimeType,
       loading,
       loadingCity,
+      loadingInfo,
       const DeepCollectionEquality().hash(_currentAir),
+      const DeepCollectionEquality().hash(_currentCityAir),
       const DeepCollectionEquality().hash(_city),
       const DeepCollectionEquality().hash(_cityfilter));
 
@@ -224,7 +269,9 @@ abstract class _WeatherState implements WeatherState {
   factory _WeatherState(
       {required final bool loading,
       required final bool loadingCity,
+      required final bool loadingInfo,
       required final List<Air> currentAir,
+      required final List<Air> currentCityAir,
       required final List<WeatherCity> city,
       required final List<WeatherCity> cityfilter}) = _$WeatherStateImpl;
 
@@ -233,7 +280,11 @@ abstract class _WeatherState implements WeatherState {
   @override
   bool get loadingCity;
   @override
+  bool get loadingInfo;
+  @override
   List<Air> get currentAir;
+  @override
+  List<Air> get currentCityAir;
   @override
   List<WeatherCity> get city;
   @override
