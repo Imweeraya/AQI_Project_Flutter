@@ -70,10 +70,6 @@ class MapViewModel extends _$MapViewModel {
   }
 
   void handleMapChanged(MapPosition mapPosition, bool hasGesture) {
-    print(mapPosition.bounds!.northWest.latitude);
-    print(mapPosition.bounds!.northWest.longitude);
-    print(mapPosition.bounds!.southEast.latitude);
-    print(mapPosition.bounds!.southEast.longitude);
 
     getStation(
       mapPosition.bounds!.northWest.latitude,
