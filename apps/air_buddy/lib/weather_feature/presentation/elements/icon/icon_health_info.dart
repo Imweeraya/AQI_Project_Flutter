@@ -1,3 +1,4 @@
+import 'package:core_ui/widgets/elements/tests/normal_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -32,12 +33,13 @@ class IconHealthInfo extends StatelessWidget {
                   colorFilter: ColorFilter.mode(textColor, BlendMode.srcIn),
                   width: 35,
                 ),
-                close ? Icon(
-                  Icons.close_rounded,
-                  size: 80,
-                  color: textColor,
-                ) :
-                const SizedBox()
+                close
+                    ? Icon(
+                        Icons.close_rounded,
+                        size: 80,
+                        color: textColor,
+                      )
+                    : const SizedBox()
               ],
             ),
           ),
@@ -45,14 +47,11 @@ class IconHealthInfo extends StatelessWidget {
             width: 20,
           ),
           Flexible(
-            child: Text(
-              info,
-              style: TextStyle(
-                fontSize: 16,
-                color: textColor,
-              ),
-            ),
-          ),
+              child: NormalText(
+            title: info,
+            textSize: TextSize.NORMAL,
+            color: textColor,
+          )),
         ],
       ),
     );

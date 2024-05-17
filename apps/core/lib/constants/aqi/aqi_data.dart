@@ -47,7 +47,7 @@ Map<AqiType, AqiData> aqiDataList = {
     ], aqiRange: '0-50',
   ),
   AqiType.moderate: AqiData(
-    backgroundColor: const Color.fromARGB(255, 240, 197, 45),
+    backgroundColor: Color.fromARGB(255, 248, 214, 90),
     textColor: const Color.fromARGB(255, 152, 123, 20),
     aqiText: "Moderate",
     pathIcon: "assets/icon_svg/moderate_aqi.svg",
@@ -61,7 +61,7 @@ Map<AqiType, AqiData> aqiDataList = {
     ], aqiRange: '51-100',
   ),
   AqiType.unhealthyForSensitive: AqiData(
-    backgroundColor: const Color.fromARGB(255, 251,153,86),
+    backgroundColor: Color.fromARGB(255, 255, 165, 105),
     textColor: Color.fromARGB(255, 171, 97, 50),
     aqiText: "Unhealthy \n For Sensitive Group",
     pathIcon: "assets/icon_svg/sensitive_aqi.svg",
@@ -75,7 +75,7 @@ Map<AqiType, AqiData> aqiDataList = {
     ], aqiRange: '101-150',
   ),
   AqiType.unhealthy: AqiData(
-    backgroundColor: const Color.fromARGB(255,246,104,106),
+    backgroundColor: Color.fromARGB(255, 254, 128, 130),
     textColor: Color.fromARGB(255, 168, 66, 70),
     aqiText: "Unhealthy",
     pathIcon: "assets/icon_svg/unhealthy_aqi.svg",
@@ -89,7 +89,7 @@ Map<AqiType, AqiData> aqiDataList = {
     ], aqiRange: '151-200',
   ),
   AqiType.veryUnhealthy: AqiData(
-    backgroundColor: const Color.fromARGB(255,164,125,184),
+    backgroundColor: Color.fromARGB(255, 181, 139, 201),
     textColor: Color.fromARGB(255, 73, 52, 86),
     aqiText: "Very Unhealthy",
     pathIcon: "assets/icon_svg/ver_unhealthy_aqi.svg",
@@ -103,7 +103,7 @@ Map<AqiType, AqiData> aqiDataList = {
     ], aqiRange: '201-300',
   ),
   AqiType.hazadous: AqiData(
-    backgroundColor: const Color.fromARGB(255,160,119,133),
+    backgroundColor: Color.fromARGB(255, 181, 136, 151),
     textColor: Color.fromARGB(255, 67, 51, 55),
     aqiText: "Hazadous",
     pathIcon: "assets/icon_svg/hazardous_aqi.svg",

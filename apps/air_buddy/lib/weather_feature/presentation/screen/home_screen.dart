@@ -1,5 +1,6 @@
 import 'package:air_buddy/weather_feature/presentation/widget/forecast.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/modal_info.dart';
+import 'package:air_buddy/weather_feature/presentation/widget/search_bottom_sheet.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:core_ui/widgets/loading_weather.dart';
@@ -33,7 +34,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             appBar: AppBar(
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (BuildContext context) {
+                        return SearchBottomSheetWidget();
+                      },
+                    );
+                  },
                   icon: const Icon(
                     Icons.search_rounded,
                     size: 30,
@@ -63,16 +72,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 children: [
                   InkWell(
                       onTap: () {
-                        weatherVMNotifier.goInfoScreen(context, weatherVM.air);
+                        weatherVMNotifier.goInfoScreen(context, weatherVM.currentAir);
                       },
                       child: WeatherCurrentStatus(
-                        curentWeather: weatherVM.air[0],
+                        curentWeather: weatherVM.currentAir[0],
                       )),
                   const SizedBox(
                     height: 20,
                   ),
                   ForeCast(
-                    forecastList: weatherVM.air,
+                    forecastList: weatherVM.currentAir,
                   ),
                   const SizedBox(
                     height: 20,

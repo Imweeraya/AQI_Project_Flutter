@@ -1,5 +1,5 @@
 import 'package:air_buddy/feature/map/domain/entitys/station.dart';
-import 'package:air_buddy/feature/map/domain/entitys/weather.dart';
+import 'package:air_buddy/weather_feature/domain/entities/polution_entity.dart';
 
 import '../../feature/map/domain/entitys/here_station.dart';
 import '../../weather_feature/domain/entities/air_entity.dart';
@@ -13,5 +13,6 @@ abstract class IHereStationService {
 }
 
 abstract class IStatusWeatherService {
+  Future<List<AirPollution>> getListCityWeather();
   Future<List<Air>> getWeatherForecast(String city);
 }

@@ -1,3 +1,5 @@
+import 'package:core/constants/aqi/aqi_data.dart';
+import 'package:core/constants/aqi/aqi_type.dart';
 import 'package:core_libs/dependency_injection/get_it.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -92,4 +94,21 @@ class MapViewModel extends _$MapViewModel {
       popup: true,
     );
   }
+
+    AqiData getAqiData(int aqi) {
+    if (aqi > 0 && aqi <= 50) {
+      return aqiDataList[AqiType.good]!;
+    } else if (aqi > 50 && aqi <= 100) {
+      return aqiDataList[AqiType.moderate]!;
+    } else if (aqi > 100 && aqi <= 150) {
+      return aqiDataList[AqiType.unhealthyForSensitive]!;
+    } else if (aqi > 150 && aqi <= 200) {
+      return aqiDataList[AqiType.unhealthy]!;
+    } else if (aqi > 200 && aqi <= 300) {
+      return aqiDataList[AqiType.veryUnhealthy]!;
+    } else {
+      return aqiDataList[AqiType.hazadous]!;
+    }
+  }
+  
 }

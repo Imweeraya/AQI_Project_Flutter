@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum TextSize { BIG, NORMAL, SMALL }
+enum TextSize { BIG, SEMIBIG , NORMAL, SMALL }
 
 class NormalText extends StatelessWidget {
   final String title;
@@ -10,6 +10,7 @@ class NormalText extends StatelessWidget {
   final bool? overFlow;
   final TextSize textSize;
   final int? maxLine;
+  final FontWeight? fontWeight;
 
   const NormalText(
       {super.key,
@@ -18,7 +19,8 @@ class NormalText extends StatelessWidget {
       this.family,
       this.overFlow,
       required this.textSize,
-      this.maxLine});
+      this.maxLine ,
+      this.fontWeight});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,9 @@ class NormalText extends StatelessWidget {
     switch (textSize) {
       case TextSize.BIG:
         size = 20;
+        break;
+      case TextSize.SEMIBIG:
+        size = 18;
         break;
       case TextSize.NORMAL:
         size = 16;
@@ -43,6 +48,7 @@ class NormalText extends StatelessWidget {
         color: color ?? Colors.white,
         fontSize: size,
         fontFamily: family,
+        fontWeight: fontWeight ?? FontWeight.normal
       ),
     );
   }

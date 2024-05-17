@@ -1,3 +1,5 @@
+import 'package:core_ui/widgets/elements/tests/detail_text.dart';
+import 'package:core_ui/widgets/elements/tests/normal_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -47,20 +49,16 @@ class IconText extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 12,
-                color: Color.fromARGB(255, 84, 84, 84),
-              ),
+            DetailText(
+              title: title,
+              textSize: DetailTextSize.BIG,
+              color: Color.fromARGB(255, 84, 84, 84),
             ),
-            Text(
-              info,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Color.fromARGB(255, 84, 84, 84),
-              ),
-            )
+            NormalText(
+              title: info,
+              textSize: TextSize.NORMAL,
+              color: Color.fromARGB(255, 84, 84, 84),
+            ),
           ],
         )
       ],

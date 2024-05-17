@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$WeatherState {
   bool get loading => throw _privateConstructorUsedError;
-  List<Air> get air => throw _privateConstructorUsedError;
+  bool get loadingCity => throw _privateConstructorUsedError;
+  List<Air> get currentAir => throw _privateConstructorUsedError;
+  List<AirPollution> get city => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherStateCopyWith<WeatherState> get copyWith =>
@@ -30,7 +32,11 @@ abstract class $WeatherStateCopyWith<$Res> {
           WeatherState value, $Res Function(WeatherState) then) =
       _$WeatherStateCopyWithImpl<$Res, WeatherState>;
   @useResult
-  $Res call({bool loading, List<Air> air});
+  $Res call(
+      {bool loading,
+      bool loadingCity,
+      List<Air> currentAir,
+      List<AirPollution> city});
 }
 
 /// @nodoc
@@ -47,17 +53,27 @@ class _$WeatherStateCopyWithImpl<$Res, $Val extends WeatherState>
   @override
   $Res call({
     Object? loading = null,
-    Object? air = null,
+    Object? loadingCity = null,
+    Object? currentAir = null,
+    Object? city = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      air: null == air
-          ? _value.air
-          : air // ignore: cast_nullable_to_non_nullable
+      loadingCity: null == loadingCity
+          ? _value.loadingCity
+          : loadingCity // ignore: cast_nullable_to_non_nullable
+              as bool,
+      currentAir: null == currentAir
+          ? _value.currentAir
+          : currentAir // ignore: cast_nullable_to_non_nullable
               as List<Air>,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as List<AirPollution>,
     ) as $Val);
   }
 }
@@ -70,7 +86,11 @@ abstract class _$$WeatherStateImplCopyWith<$Res>
       __$$WeatherStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, List<Air> air});
+  $Res call(
+      {bool loading,
+      bool loadingCity,
+      List<Air> currentAir,
+      List<AirPollution> city});
 }
 
 /// @nodoc
@@ -85,17 +105,27 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? loading = null,
-    Object? air = null,
+    Object? loadingCity = null,
+    Object? currentAir = null,
+    Object? city = null,
   }) {
     return _then(_$WeatherStateImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
-      air: null == air
-          ? _value._air
-          : air // ignore: cast_nullable_to_non_nullable
+      loadingCity: null == loadingCity
+          ? _value.loadingCity
+          : loadingCity // ignore: cast_nullable_to_non_nullable
+              as bool,
+      currentAir: null == currentAir
+          ? _value._currentAir
+          : currentAir // ignore: cast_nullable_to_non_nullable
               as List<Air>,
+      city: null == city
+          ? _value._city
+          : city // ignore: cast_nullable_to_non_nullable
+              as List<AirPollution>,
     ));
   }
 }
@@ -103,22 +133,37 @@ class __$$WeatherStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$WeatherStateImpl implements _WeatherState {
-  _$WeatherStateImpl({required this.loading, required final List<Air> air})
-      : _air = air;
+  _$WeatherStateImpl(
+      {required this.loading,
+      required this.loadingCity,
+      required final List<Air> currentAir,
+      required final List<AirPollution> city})
+      : _currentAir = currentAir,
+        _city = city;
 
   @override
   final bool loading;
-  final List<Air> _air;
   @override
-  List<Air> get air {
-    if (_air is EqualUnmodifiableListView) return _air;
+  final bool loadingCity;
+  final List<Air> _currentAir;
+  @override
+  List<Air> get currentAir {
+    if (_currentAir is EqualUnmodifiableListView) return _currentAir;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_air);
+    return EqualUnmodifiableListView(_currentAir);
+  }
+
+  final List<AirPollution> _city;
+  @override
+  List<AirPollution> get city {
+    if (_city is EqualUnmodifiableListView) return _city;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_city);
   }
 
   @override
   String toString() {
-    return 'WeatherState(loading: $loading, air: $air)';
+    return 'WeatherState(loading: $loading, loadingCity: $loadingCity, currentAir: $currentAir, city: $city)';
   }
 
   @override
@@ -127,12 +172,20 @@ class _$WeatherStateImpl implements _WeatherState {
         (other.runtimeType == runtimeType &&
             other is _$WeatherStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            const DeepCollectionEquality().equals(other._air, _air));
+            (identical(other.loadingCity, loadingCity) ||
+                other.loadingCity == loadingCity) &&
+            const DeepCollectionEquality()
+                .equals(other._currentAir, _currentAir) &&
+            const DeepCollectionEquality().equals(other._city, _city));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, loading, const DeepCollectionEquality().hash(_air));
+      runtimeType,
+      loading,
+      loadingCity,
+      const DeepCollectionEquality().hash(_currentAir),
+      const DeepCollectionEquality().hash(_city));
 
   @JsonKey(ignore: true)
   @override
@@ -144,12 +197,18 @@ class _$WeatherStateImpl implements _WeatherState {
 abstract class _WeatherState implements WeatherState {
   factory _WeatherState(
       {required final bool loading,
-      required final List<Air> air}) = _$WeatherStateImpl;
+      required final bool loadingCity,
+      required final List<Air> currentAir,
+      required final List<AirPollution> city}) = _$WeatherStateImpl;
 
   @override
   bool get loading;
   @override
-  List<Air> get air;
+  bool get loadingCity;
+  @override
+  List<Air> get currentAir;
+  @override
+  List<AirPollution> get city;
   @override
   @JsonKey(ignore: true)
   _$$WeatherStateImplCopyWith<_$WeatherStateImpl> get copyWith =>
