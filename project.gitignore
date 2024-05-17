@@ -1,0 +1,16 @@
+# Ignore Melos's build output
+melos.json
+.melos_tool
+
+# Ignore directories created by Melos
+melos_packages/
+
+# Ignore Melos's dependency cache
+.melos_cache/
+
+# Ignore any local machine-specific files or directories
+.DS_Store
+.vscode/
+.idea/
+
+.lock
