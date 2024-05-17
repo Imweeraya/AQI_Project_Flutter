@@ -11,6 +11,7 @@ class NormalText extends StatelessWidget {
   final TextSize textSize;
   final int? maxLine;
   final FontWeight? fontWeight;
+  final TextAlign? textAlign;
 
   const NormalText(
       {super.key,
@@ -20,7 +21,8 @@ class NormalText extends StatelessWidget {
       this.overFlow,
       required this.textSize,
       this.maxLine ,
-      this.fontWeight});
+      this.fontWeight, 
+      this.textAlign});
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,7 @@ class NormalText extends StatelessWidget {
         fontFamily: family,
         fontWeight: fontWeight ?? FontWeight.normal
       ),
+       textAlign: textAlign ?? TextAlign.start,
     );
   }
 }
