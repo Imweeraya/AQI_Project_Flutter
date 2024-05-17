@@ -13,6 +13,6 @@ abstract class IHereStationService {
 }
 
 abstract class IStatusWeatherService {
-  Future<List<Air>> getListWeatherForecast();
-  Future<List<Polution>> getListCityWeather();
+  Future<List<AirPollution>> getListCityWeather();
+  Future<List<Air>> getWeatherForecast(String city);
 }

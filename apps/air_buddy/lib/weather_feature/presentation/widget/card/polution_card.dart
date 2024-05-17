@@ -18,15 +18,15 @@ class PolutionCard extends StatelessWidget {
               IconText(
                   svgicon: "assets/icon_svg/uvi_icon.svg",
                   title: "UVI",
-                  info: "${currentPolution.polution.avgUvi}"),
+                  info: "${currentPolution.pollution.avgUvi}"),
               IconText(
                   svgicon: "assets/icon_svg/o3_icon.svg",
                   title: "O3",
-                  info: "${currentPolution.polution.avgO3} D.U"),
+                  info: "${currentPolution.pollution.avgO3} D.U"),
               IconText(
                   texticon: "PM10",
                   title: "PM10",
-                  info: "${currentPolution.polution.avgPm10} µg/m³")
+                  info: "${currentPolution.pollution.avgPm10} µg/m³")
             ],
           ),
         );

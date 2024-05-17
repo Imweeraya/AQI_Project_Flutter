@@ -26,7 +26,9 @@ class WeatherViewModel extends _$WeatherViewModel {
   void getWeathers() async {
     state = state.copyWith(loading: true);
 
-    final weathersFetchers = service.getListWeatherForecast();
+    // final weathersFetchers = service.getListWeatherForecast();
+    final weathersFetchers = service.getWeatherForecast('Chiang Mai');
+    print(weathersFetchers);
     // final weathers = await Future.wait(weathersFetchers);
     final weatherlist = await Future.value(weathersFetchers);
 
@@ -44,7 +46,7 @@ class WeatherViewModel extends _$WeatherViewModel {
 
   if (filter != null && filter.isNotEmpty) {
     final filteredCities = citylist.where((city) =>
-        city.city.toLowerCase().contains(filter.toLowerCase())).toList();
+        city.city!.toLowerCase().contains(filter.toLowerCase())).toList();
     state = state.copyWith(
       loadingCity: false,
       city: filteredCities,

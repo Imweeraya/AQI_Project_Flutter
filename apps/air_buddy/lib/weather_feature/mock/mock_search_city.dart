@@ -2,9 +2,9 @@ import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/domain/entities/polution_entity.dart';
 import 'package:air_buddy/weather_feature/domain/entities/weather_entity.dart';
 
-List<Polution> mockCityData = [
+List<AirPollution> mockCityData = [
   // Bangkok
- Polution(
+ AirPollution(
       avgUvi: 7.5,
       avgO3: 55.0,
       avgPm10: 35.0,
@@ -14,7 +14,7 @@ List<Polution> mockCityData = [
       city: "Bangkok",
     ),
   
-   Polution(
+   AirPollution(
       avgUvi: 8.0,
       avgO3: 50.0,
       avgPm10: 28.0,
@@ -24,7 +24,7 @@ List<Polution> mockCityData = [
       city: "Chiang Mai",
     ),
 
-  Polution(
+  AirPollution(
       avgUvi: 7.0,
       avgO3: 58.0,
       avgPm10: 38.0,
@@ -34,7 +34,7 @@ List<Polution> mockCityData = [
       city: "Phuket",
     ),
   // City 4
-  Polution(
+  AirPollution(
       avgUvi: 6.5,
       avgO3: 60.0,
       avgPm10: 32.0,
@@ -44,7 +44,7 @@ List<Polution> mockCityData = [
       city: "Pattaya",
     ),
   // City 5
- Polution(
+ AirPollution(
       avgUvi: 7.8,
       avgO3: 52.0,
       avgPm10: 34.0,
@@ -53,7 +53,7 @@ List<Polution> mockCityData = [
       date: DateTime.now(),
       city: "Krabi",
     ),
-  Polution(
+  AirPollution(
       avgUvi: 7.2,
       avgO3: 57.0,
       avgPm10: 36.0,

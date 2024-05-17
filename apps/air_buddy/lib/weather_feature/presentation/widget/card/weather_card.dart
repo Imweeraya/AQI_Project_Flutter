@@ -44,11 +44,11 @@ class WeatherCard extends StatelessWidget {
             ),
           ),
           TitleText(
-              title: "${currentAir.weather.maxTemp.toInt()}°",
+              title: "${currentAir.weather.maxTemp!.toInt()}°",
               textSize: TitleTextSize.EXTRA,
               color: Colors.white),
           TitleText(
-              title: "${currentAir.polution.city}",
+              title: "${currentAir.pollution.city}",
               textSize: TitleTextSize.SMALL,
               color: Colors.white),
           Row(
@@ -69,7 +69,7 @@ class WeatherCard extends StatelessWidget {
             height: 70,
           ),
           TitleText(
-              title: formatDate(currentAir.polution.date),
+              title: formatDate(currentAir.pollution.date!),
               textSize: TitleTextSize.SMALL,
               color: Colors.white),
         ],

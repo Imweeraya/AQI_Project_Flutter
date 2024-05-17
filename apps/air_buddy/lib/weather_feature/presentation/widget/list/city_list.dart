@@ -8,12 +8,12 @@ import 'package:flutter_svg/svg.dart';
 
 class CityList extends ConsumerWidget {
   const CityList({super.key , required this.city });
-  final Polution city;
+  final AirPollution city;
 
   @override
   Widget build(BuildContext context , WidgetRef ref) {
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
-    final AqiData aqiData = weatherVMNotifier.getAqiData(city.aqi!);
+    final AqiData aqiData = weatherVMNotifier.getAqiData(city.aqi!=null ? city.aqi!.toInt() : 0);
 
     return InkWell(
       onTap: (){
@@ -40,7 +40,7 @@ class CityList extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      city.city,
+                      city.city ?? "",
                       style: TextStyle(
                         color: aqiData.textColor,
                         fontSize: 16,

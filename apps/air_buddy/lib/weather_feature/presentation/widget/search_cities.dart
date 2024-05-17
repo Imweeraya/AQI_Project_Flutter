@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class SearchCities extends StatelessWidget {
   const SearchCities({super.key , required this.cities});
-  final List<Polution> cities;
+  final List<AirPollution> cities;
 
   @override
   Widget build(BuildContext context) {
