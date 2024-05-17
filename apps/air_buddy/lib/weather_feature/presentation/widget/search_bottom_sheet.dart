@@ -1,6 +1,6 @@
 import 'package:air_buddy/weather_feature/presentation/widget/search_cities.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
-import 'package:core_ui/widgets/loading_city.dart';
+import 'package:core_ui/widgets/loading/loading_city.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
