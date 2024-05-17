@@ -16,7 +16,7 @@ class AqiCard extends StatelessWidget {
       height: 150,
       decoration: BoxDecoration(
         color: aqiData.backgroundColor,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20.0),
           bottomRight: Radius.circular(20.0),
         ),
@@ -45,7 +45,7 @@ class AqiCard extends StatelessWidget {
                 color: aqiData.textColor,
               ),
               TitleText(
-                title: "${currentAqi.pollution.aqi}",
+                title: "${currentAqi.pollution.aqi ?? "-"}",
                 textSize: TitleTextSize.REGULAR,
                 color: aqiData.textColor,
               )
@@ -77,7 +77,7 @@ class AqiCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(20, 6, 20, 6),
                   child: NormalText(
-                    title: "PM2.5 ${currentAqi.pollution.avgPm25} µg/m³",
+                    title: "PM2.5 ${currentAqi.pollution.avgPm25 ?? "-"} µg/m³",
                     textSize: TextSize.SEMIBIG,
                     color: aqiData.textColor,
                   ),

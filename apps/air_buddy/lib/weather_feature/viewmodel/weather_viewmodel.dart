@@ -86,16 +86,22 @@ class WeatherViewModel extends _$WeatherViewModel {
   }
 
   void goInfoScreenByCityName(BuildContext context, String stationName) async {
+    final tempWeather = state.currentAir;
     state = state.copyWith(
       loadingInfo: true,
+      currentCityAir: tempWeather,
     );
 
     context.push('/info', extra: state.currentCityAir);
     final weathersFetchers = service.getWeatherForecast(stationName);
     final weatherlist = await Future.value(weathersFetchers);
+     state = state.copyWith(
+      currentCityAir: weatherlist,
+    );
+    
+    context.replace('/info', extra: state.currentCityAir);
 
     state = state.copyWith(
-      currentCityAir: weatherlist,
       loadingInfo: false,
     );
   }

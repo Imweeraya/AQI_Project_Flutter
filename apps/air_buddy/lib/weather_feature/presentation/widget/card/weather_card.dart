@@ -44,7 +44,7 @@ class WeatherCard extends StatelessWidget {
             ),
           ),
           TitleText(
-              title: "${currentAir.weather.maxTemp!.toInt()}°",
+              title: "${(currentAir.weather.maxTemp! + currentAir.weather.minTemp!)~/2}°",
               textSize: TitleTextSize.EXTRA,
               color: Colors.white),
           TitleText(
@@ -57,17 +57,17 @@ class WeatherCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset("assets/animation/wind.json"),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               NormalText(
-                title: "${currentAir.weather.windSpeed} km./hr",
+                title: "${currentAir.weather.windSpeed ?? "-"} km./hr",
                 textSize: TextSize.BIG,
                 color: Colors.white,
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 70,
           ),
           TitleText(
