@@ -480,5 +480,8 @@ void main() {
     final weather = await weatherCityService.getWeatherForecast('Chiang Mai');
 
     expect(weather[0].pollution.aqi, 50);
+    expect(weather[0].pollution.avgUvi, 0);
+    expect(weather[0].weather.maxTemp, 38.0);
+    expect(weather[0].weather.minTemp, 28.0);
   });
 }
