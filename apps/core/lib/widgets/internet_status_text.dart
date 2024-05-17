@@ -1,25 +1,22 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/material.dart';
 
 class NoInternetWidget extends StatefulWidget {
-  final Widget child;
-
-  const NoInternetWidget({Key key, @required this.child}) : super(key: key);
-
   @override
   _NoInternetWidgetState createState() => _NoInternetWidgetState();
 }
 
 class _NoInternetWidgetState extends State<NoInternetWidget> {
-  StreamSubscription<ConnectivityResult> subscription;
+  late StreamSubscription<ConnectivityResult> _subscription;
+  ConnectivityResult? _connectivityResult;
 
   @override
   void initState() {
     super.initState();
-    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+    _subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
       setState(() {
-        // ตรวจสอบสถานะการเชื่อมต่ออินเทอร์เน็ตทุกครั้งที่มีการเปลี่ยนแปลง
-        // และอัปเดตสถานะในส่วนต่าง ๆ ของแอปพลิเคชัน
+        _connectivityResult = result;
       });
     });
   }
@@ -27,11 +24,70 @@ class _NoInternetWidgetState extends State<NoInternetWidget> {
   @override
   void dispose() {
     super.dispose();
-    subscription.cancel(); // ยกเลิกการติดตามสถานะการเชื่อมต่อเมื่อไม่ต้องการใช้งานต่อไป
+    _subscription.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.child; // ส่ง widget.child กลับเมื่อไม่มีการตรวจสอบการเชื่อมต่ออินเทอร์เน็ต
+    return _connectivityResult != null
+        ? _buildContent()
+        : Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/dino.png', width: 70, height: 70), // Add image
+                SizedBox(height: 10), // Add spacing between CircularProgressIndicator and "Checking..." text
+                const Text(
+                  'No Internet Connection',
+                  style: TextStyle(fontSize: 24),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 5), // Add spacing between texts
+                const Text(
+                  'Please check your internet connection \nand try again',
+                  style: TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          );
+  }
+
+  Widget _buildContent() {
+    if (_connectivityResult == ConnectivityResult.none) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'No Internet Connection',
+              style: TextStyle(fontSize: 24, color: Colors.red),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 10), // Add spacing between texts
+            const Text(
+              'Please check your network \nsettings and try again.',
+              style: TextStyle(fontSize: 16, color: Colors.black),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20), // Add spacing between text and button
+            ElevatedButton(
+              onPressed: () {
+                // Add code here to open settings page to connect to Wi-Fi or enable mobile data
+              },
+              child: Text('Open Settings'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return const Center(
+        child: Text(
+          'You are connected',
+          style: TextStyle(fontSize: 20, color: Colors.green),
+          textAlign: TextAlign.center,
+        ),
+      );
+    }
   }
 }
