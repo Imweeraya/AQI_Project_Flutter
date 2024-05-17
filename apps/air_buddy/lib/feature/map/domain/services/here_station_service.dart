@@ -9,9 +9,16 @@ class HereStationService extends IHereStationService {
 
   @override
   Future<HereStationToDisplay> getHereStation() async {
-    final rawResponse = await repository.getHereStation();
-    return HereStationToDisplay(
-        coordinates: rawResponse.data!.location!.coordinates
-    );
+    try {
+      final rawResponse = await repository.getHereStation();
+      if (rawResponse.status == 'success') {
+        return HereStationToDisplay(
+            coordinates: rawResponse.data!.location!.coordinates);
+      } else {
+        return HereStationToDisplay(coordinates: []);
+      }
+    } catch (e) {
+      throw e;
+    }
   }
 }

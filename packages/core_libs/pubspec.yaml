@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   get_it: ^7.7.0
+  core_ui:
+    path: ../core_ui
 
 dev_dependencies:
   flutter_test:

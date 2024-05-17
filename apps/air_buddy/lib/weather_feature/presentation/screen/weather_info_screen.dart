@@ -5,12 +5,17 @@ import 'package:air_buddy/weather_feature/presentation/widget/modal_info.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_viewmodel.dart';
 import 'package:core/constants/aqi/aqi_data.dart';
+import 'package:core_ui/widgets/error/error_page.dart';
 import 'package:core_ui/widgets/loading/loading_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WeatherInfoScreen extends ConsumerStatefulWidget {
-  const WeatherInfoScreen({super.key, required this.weather , });
+  const WeatherInfoScreen({
+    super.key,
+    required this.weather,
+  });
+
   final List<Air> weather;
 
   @override
@@ -25,8 +30,13 @@ class _WeatherInfoScreenState extends ConsumerState<WeatherInfoScreen> {
 
     final List<Air> listWeather = widget.weather;
 
-    final AqiData aqiData = weatherVMNotifier
-        .getAqiData(listWeather[0].pollution.aqi!.toInt() ?? 0);
+    late AqiData aqiData;
+    if (listWeather.isNotEmpty) {
+      aqiData = weatherVMNotifier
+          .getAqiData(listWeather[0].pollution.aqi!.toInt() ?? 0);
+    } else {
+      return const Scaffold(body: ErrorPage());
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -75,7 +85,7 @@ class _WeatherInfoScreenState extends ConsumerState<WeatherInfoScreen> {
                     forecastList: listWeather,
                   ),
                   HealthInfo(
-                    aqiData: aqiData,
+                    aqiData: aqiData!,
                   )
                 ],
               ),
