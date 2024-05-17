@@ -52,6 +52,7 @@ class _SearchBottomSheetWidgetState
             : FractionallySizedBox(
                 heightFactor: 0.8,
                 child: Container(
+                  width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
                     borderRadius: BorderRadius.vertical(
@@ -62,7 +63,7 @@ class _SearchBottomSheetWidgetState
                     padding: const EdgeInsets.only(
                         top: 70.0, left: 15, right: 15, bottom: 15),
                     child: SingleChildScrollView(
-                        child: SearchCities(cities: weatherVM.city)),
+                        child: SearchCities(cities: weatherVM.cityfilter)),
                   ),
                 ),
               ),

@@ -14,6 +14,7 @@ class WeatherState with _$WeatherState {
     required bool loadingCity , 
     required List<Air> currentAir,
     required List<WeatherCity> city,
+    required List<WeatherCity> cityfilter,
     }) = _WeatherState;
 
 

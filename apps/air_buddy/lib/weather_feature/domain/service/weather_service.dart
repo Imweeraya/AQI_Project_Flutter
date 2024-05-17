@@ -17,11 +17,6 @@ class StatusWeatherService extends IStatusWeatherService {
   final IStatusWeatherRepository repository =
   getIt.get<IStatusWeatherRepository>();
 
-
-  @override
-  Future<List<AirPollution>> getListCityWeather() {
-    return Future.value(mockCityData);
-  }
   Future<List<Air>> getWeatherForecast(String city) async {
     final rawAir = await repository.getWeatherForecast(city);
     final rawCityWeather = await repository.getWeatherByCity(city);

@@ -20,6 +20,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.initState();
     Future(() {
       ref.read(weatherViewModelProvider.notifier).getWeathers();
+      ref.read(weatherViewModelProvider.notifier).findAllAqiCity();
     });
   }
 
@@ -27,7 +28,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final weatherVM = ref.watch(weatherViewModelProvider);
     final weatherVMNotifier = ref.read(weatherViewModelProvider.notifier);
-  weatherVMNotifier.findAllAqiCity();
+    
     return weatherVM.loading
         ? const LoadingWeather()
         : Scaffold(
