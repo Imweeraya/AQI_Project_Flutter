@@ -6,7 +6,7 @@ part of 'error_viewmodel.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$errorModelHash() => r'8eaa856745c0236603d7d92f4f17d30746640505';
+String _$errorModelHash() => r'fb20e4fa01d896b764c4caee04e987aea0a34f9d';
 
 /// See also [ErrorModel].
 @ProviderFor(ErrorModel)

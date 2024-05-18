@@ -11,6 +11,7 @@ class HereStationRepository extends IHereStationRepository{
   Future<HereStationModel> getHereStation() async {
     final hereStation = await httpService.get('/v2/nearest_city?key=0f87c1be-33e1-4c39-8a53-a3f62654fa17');
     HereStationModel hereStationModel = HereStationModel.fromJson(hereStation);
+    print(hereStationModel.data!.location!.coordinates![0]);
     return hereStationModel;
   }
 
