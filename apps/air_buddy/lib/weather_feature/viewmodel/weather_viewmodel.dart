@@ -1,3 +1,4 @@
+import 'package:air_buddy/infrastructure/port_weather/repository.dart';
 import 'package:air_buddy/mock/mock_province.dart';
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/domain/entities/weather_city.dart';
@@ -16,6 +17,9 @@ part 'weather_viewmodel.g.dart';
 @riverpod
 class WeatherViewModel extends _$WeatherViewModel {
   IStatusWeatherService service = getIt.get<IStatusWeatherService>();
+  IHereStationService serviceMap = getIt.get<IHereStationService>();
+
+  
 
   @override
   WeatherState build() => WeatherState(
@@ -32,12 +36,14 @@ class WeatherViewModel extends _$WeatherViewModel {
     state = state.copyWith(loading: true);
 
       // final weathersFetchers = service.getListWeatherForecast();
-      final weathersFetchers = service.getWeatherForecast('Chiang Mai');
+      final weathersFetchers = serviceMap.getHereStation();
       // final weathers = await Future.wait(weathersFetchers);
       final weatherlist = await Future.value(weathersFetchers);
+      final weather = await service.getWeatherForecast(weatherlist.stationName ?? "Bangkok");
+
       state = state.copyWith(
         loading: false,
-        currentAir: weatherlist,
+        currentAir: weather,
       );
 
       state = state.copyWith(

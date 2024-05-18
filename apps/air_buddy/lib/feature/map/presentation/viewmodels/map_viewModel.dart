@@ -2,6 +2,7 @@ import 'package:core/constants/aqi/aqi_data.dart';
 import 'package:core/constants/aqi/aqi_type.dart';
 import 'package:core_libs/dependency_injection/get_it.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/entitys/here_station.dart';
@@ -39,11 +40,11 @@ class MapViewModel extends _$MapViewModel {
     final hereStation = await hereStationService.getHereStation();
     final stations = await stationService.getStation(21.781492109878354,
         95.21399400612671, 5.135168114067062, 112.39991160362918);
+    _determinePosition();
+
     state = state.copyWith(
       hereStationToDisplay: hereStation,
       station: stations,
-      lat: hereStation.coordinates![1],
-      lng: hereStation.coordinates![0],
       loading: false,
     );
   }
@@ -70,7 +71,6 @@ class MapViewModel extends _$MapViewModel {
   }
 
   void handleMapChanged(MapPosition mapPosition, bool hasGesture) {
-
     getStation(
       mapPosition.bounds!.northWest.latitude,
       mapPosition.bounds!.northWest.longitude,
@@ -79,19 +79,19 @@ class MapViewModel extends _$MapViewModel {
     );
   }
 
-  void switchPopup(){
+  void switchPopup() {
     state = state.copyWith(
       popup: !state.popup,
     );
   }
 
-  void openPopup(){
+  void openPopup() {
     state = state.copyWith(
       popup: true,
     );
   }
 
-    AqiData getAqiData(int aqi) {
+  AqiData getAqiData(int aqi) {
     if (aqi > 0 && aqi <= 50) {
       return aqiDataList[AqiType.good]!;
     } else if (aqi > 50 && aqi <= 100) {
@@ -106,5 +106,26 @@ class MapViewModel extends _$MapViewModel {
       return aqiDataList[AqiType.hazadous]!;
     }
   }
-  
+
+  void _determinePosition() async {
+    LocationPermission permission;
+
+    permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location Permissions are denied');
+      }
+    }
+
+    final latlong = await Geolocator.getCurrentPosition();
+    print(latlong.latitude);
+    print(latlong.longitude);
+
+    state = state.copyWith(
+      lat: latlong.latitude,
+      lng: latlong.longitude,
+    );
+  }
 }

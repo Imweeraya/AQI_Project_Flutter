@@ -13,9 +13,10 @@ class HereStationService extends IHereStationService {
       final rawResponse = await repository.getHereStation();
       if (rawResponse.status == 'success') {
         return HereStationToDisplay(
-            coordinates: rawResponse.data!.location!.coordinates);
+            coordinates: rawResponse.data!.location!.coordinates,
+            stationName: rawResponse.data!.city);
       } else {
-        return HereStationToDisplay(coordinates: []);
+        return HereStationToDisplay(coordinates: [],stationName: null);
       }
     } catch (e) {
       throw e;
