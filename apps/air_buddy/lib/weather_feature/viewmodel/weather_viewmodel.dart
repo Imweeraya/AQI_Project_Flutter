@@ -3,12 +3,14 @@ import 'package:air_buddy/infrastructure/port_weather/repository.dart';
 import 'package:air_buddy/mock/mock_province.dart';
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/domain/entities/weather_city.dart';
+import 'package:air_buddy/weather_feature/presentation/widget/graph_pm25.dart';
 import 'package:air_buddy/weather_feature/viewmodel/weather_state.dart';
 import 'package:core/constants/aqi/aqi_data.dart';
 import 'package:core/constants/aqi/aqi_type.dart';
 import 'package:core_libs/dependency_injection/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../infrastructure/port_weather/service.dart';
@@ -20,8 +22,6 @@ class WeatherViewModel extends _$WeatherViewModel {
   IStatusWeatherService service = getIt.get<IStatusWeatherService>();
   IHereStationService serviceMap = getIt.get<IHereStationService>();
 
-  
-
   @override
   WeatherState build() => WeatherState(
         loading: false,
@@ -32,7 +32,6 @@ class WeatherViewModel extends _$WeatherViewModel {
         city: [],
         cityfilter: [],
       );
-
 
   void getCities({String? filter}) async {
     // state = state.copyWith(loadingCity: true);
@@ -59,33 +58,30 @@ class WeatherViewModel extends _$WeatherViewModel {
   void getWeathers() async {
     state = state.copyWith(loading: true);
 
-      // final weathersFetchers = service.getListWeatherForecast();
-      final weathersFetchers = await serviceMap.getHereStation();
+    // final weathersFetchers = service.getListWeatherForecast();
+    final weathersFetchers = await serviceMap.getHereStation();
 
-      // final weathers = await Future.wait(weathersFetchers);
-      // final weatherlist = await Future.value(weathersFetchers);
-      final weather = await service.getWeatherForecast(weathersFetchers.stationName ?? "");
+    // final weathers = await Future.wait(weathersFetchers);
+    // final weatherlist = await Future.value(weathersFetchers);
+    final weather =
+        await service.getWeatherForecast(weathersFetchers.stationName ?? "");
 
     print(weathersFetchers.stationName);
 
+    state = state.copyWith(
+      loading: false,
+      currentAir: weather ?? [],
+    );
 
     state = state.copyWith(
-        loading: false,
-        currentAir: weather ?? [],
-      );
-
-      state = state.copyWith(
-        loading: false,
-      );
-
+      loading: false,
+    );
   }
 
   void returnToBangkok() async {
     state = state.copyWith(loading: true);
 
-
     final weather = await service.getWeatherForecast("Bangkok");
-
 
     state = state.copyWith(
       loading: false,
@@ -95,7 +91,6 @@ class WeatherViewModel extends _$WeatherViewModel {
     state = state.copyWith(
       loading: false,
     );
-
   }
 
   AqiData getAqiData(int aqi) {
@@ -169,5 +164,23 @@ class WeatherViewModel extends _$WeatherViewModel {
       cityfilter: weatherCities,
       loadingCity: false,
     );
+  }
+
+  String formatDate(DateTime dateTime) {
+    final formatter = DateFormat('dd');
+    return formatter.format(dateTime);
+  }
+
+  List<DataPoint> getPmList(List<Air> air) {
+    List<DataPoint> listPm = [];
+    
+    for (int i = 0; i < air.length; i++) {
+      listPm.add(DataPoint(
+          formatDate(air[i].pollution.date!).toString(), air[i].pollution.avgPm25 ?? 0));
+      print("DATE : ${listPm[i].date}");
+      print("PM : ${listPm[i].value}");
+    }
+
+    return listPm;
   }
 }
