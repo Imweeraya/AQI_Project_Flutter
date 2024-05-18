@@ -20,32 +20,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
 
-  Position? _position;
-
-  void getCurrentLocation() async {
-    Position position = await _determinePosition();
-    setState(() {
-      _position = position;
-    });
-    print("Position $position");
-  }
-
-  Future<Position> _determinePosition() async {
-    LocationPermission permission;
-
-    permission = await Geolocator.checkPermission();
-
-    if(permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if(permission == LocationPermission.denied) {
-        return Future.error('Location Permissions are denied');
-      }
-    }
-
-    return await Geolocator.getCurrentPosition();
-  }
-
-
   @override
   void initState() {
     super.initState();
@@ -66,7 +40,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return weatherVM.loading
         ? const LoadingWeather()
         : weatherVM.currentAir.isEmpty
-            ? ErrorPage(reCallApi: weatherVMNotifier.getWeathers)
+            ? ErrorPage(
+                reCallApi: weatherVMNotifier.getWeathers,
+                function2: weatherVMNotifier.returnToBangkok,
+                confirmationTitleBt2: "Do you want to return to Bangkok ?",
+                button2Title: "Return to Bangkok >",
+              )
             : Scaffold(
                 appBar: AppBar(
                   actions: [

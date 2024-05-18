@@ -19,7 +19,8 @@ class HereStationService extends IHereStationService {
         return HereStationToDisplay(coordinates: [],stationName: null);
       }
     } catch (e) {
-      throw e;
+      print(e);
+      return HereStationToDisplay(coordinates: [],stationName: null);
     }
   }
 }

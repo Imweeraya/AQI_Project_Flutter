@@ -1,10 +1,28 @@
 // lib/widgets/error_page.dart
 import 'package:flutter/material.dart';
 
+import '../alert/alert_weeather_dialog.dart';
+
 class ErrorPage extends StatelessWidget {
   final VoidCallback? reCallApi;
+  final Function? function2;
 
-  const ErrorPage({Key? key,this.reCallApi});
+  final String? title;
+  final String? content;
+  final String? button1Title;
+
+  final String? button2Title;
+  final String? confirmationTitleBt2;
+
+  const ErrorPage(
+      {Key? key,
+      this.reCallApi,
+      this.function2,
+      this.button1Title,
+      this.button2Title,
+      this.confirmationTitleBt2,
+      this.title,
+      this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +39,15 @@ class ErrorPage extends StatelessWidget {
               size: 80,
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Sorry, something went wrong.',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+             Text(
+              title ?? 'Sorry, something went wrong.',
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            const Text(
-              "We're working on getting this fixed as soon as we can.",
-              style: TextStyle(fontSize: 16),
+            Text(
+              content ?? "We're working on getting this fixed as soon as we can.",
+              style: const TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
@@ -37,11 +55,31 @@ class ErrorPage extends StatelessWidget {
               onPressed: reCallApi ?? () => Navigator.of(context).pop(),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor:
-                    Color.fromARGB(75, 75, 75, 1),
+                backgroundColor: const Color.fromARGB(75, 75, 75, 1),
               ),
-              child: const Text('TRY AGAIN'),
+              child: Text(button1Title ?? 'TRY AGAIN'),
             ),
+            function2 != null
+                ? ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          // Return an alert dialog
+                          return AlertDialogWeather(
+                            content: confirmationTitleBt2 ?? 'Are you sure ?',
+                            action: function2!,
+                          );
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: const Color.fromARGB(75, 75, 75, 1),
+                    ),
+                    child: Text(button2Title ?? 'Go to Back >'),
+                  )
+                : const SizedBox()
           ],
         ),
       ),

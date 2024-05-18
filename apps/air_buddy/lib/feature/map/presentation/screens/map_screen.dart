@@ -36,14 +36,14 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     return Scaffold(
       body: mapVM.loading
           ? const LoadingMap()
-          :mapVM.station.data.isEmpty || mapVM.hereStationToDisplay.coordinates!.isEmpty ? ErrorPage(reCallApi: mapFunctionVM.getHereStation)
+          :mapVM.station.data.isEmpty ? ErrorPage(reCallApi: mapFunctionVM.getHereStation)
         :Stack(
               children: [
                 FlutterMap(
                   mapController: mapController,
                   options: MapOptions(
-                    center: LatLng(mapVM.hereStationToDisplay.coordinates![1],
-                        mapVM.hereStationToDisplay.coordinates![0]),
+                    center: LatLng(mapVM.lat,
+                        mapVM.lng),
                     zoom: 14,
                     maxZoom: 16,
                     minZoom: 13,
