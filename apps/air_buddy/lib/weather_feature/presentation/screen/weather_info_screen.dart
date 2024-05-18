@@ -1,5 +1,6 @@
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/forecast.dart';
+import 'package:air_buddy/weather_feature/presentation/widget/graph_pm25.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/health_info.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/modal_info.dart';
 import 'package:air_buddy/weather_feature/presentation/widget/weather_current%20_status.dart';
@@ -110,7 +111,8 @@ class _WeatherInfoScreenState extends ConsumerState<WeatherInfoScreen> {
                   ),
                   HealthInfo(
                     aqiData: aqiData!,
-                  )
+                  ),
+                  GraphPM25(air: listWeather,)
                 ],
               ),
             ),
