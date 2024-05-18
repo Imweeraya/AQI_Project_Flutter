@@ -25,8 +25,8 @@ class MapViewModel extends _$MapViewModel {
         weather: WeatherToDisplay(),
         hereStationToDisplay: HereStationToDisplay(coordinates: []),
         station: StationToDisplay([]),
-        lat: 0,
-        lng: 0,
+        lat:double.nan,
+        lng: double.nan,
         stationName: '',
         aqi: '',
         popup: true,
@@ -37,13 +37,12 @@ class MapViewModel extends _$MapViewModel {
       loading: true,
       popup: false,
     );
-    final hereStation = await hereStationService.getHereStation();
     final stations = await stationService.getStation(21.781492109878354,
         95.21399400612671, 5.135168114067062, 112.39991160362918);
-    _determinePosition();
-
+    await _determinePosition();
     state = state.copyWith(
-      hereStationToDisplay: hereStation,
+      hereStationToDisplay:
+          HereStationToDisplay(coordinates: [state.lat, state.lng]),
       station: stations,
       loading: false,
     );
@@ -107,7 +106,7 @@ class MapViewModel extends _$MapViewModel {
     }
   }
 
-  void _determinePosition() async {
+  Future<void> _determinePosition() async {
     LocationPermission permission;
 
     permission = await Geolocator.checkPermission();
@@ -120,8 +119,8 @@ class MapViewModel extends _$MapViewModel {
     }
 
     final latlong = await Geolocator.getCurrentPosition();
-    print(latlong.latitude);
-    print(latlong.longitude);
+    // print(latlong.latitude);
+    // print(latlong.longitude);
 
     state = state.copyWith(
       lat: latlong.latitude,

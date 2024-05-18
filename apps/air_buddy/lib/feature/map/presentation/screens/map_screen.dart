@@ -36,14 +36,14 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     return Scaffold(
       body: mapVM.loading
           ? const LoadingMap()
-          :mapVM.station.data.isEmpty || mapVM.hereStationToDisplay.coordinates!.isEmpty ? ErrorPage(reCallApi: mapFunctionVM.getHereStation)
+          :mapVM.lat.isNaN ? ErrorPage(reCallApi: mapFunctionVM.getHereStation)
         :Stack(
               children: [
                 FlutterMap(
                   mapController: mapController,
                   options: MapOptions(
-                    center: LatLng(mapVM.hereStationToDisplay.coordinates![1],
-                        mapVM.hereStationToDisplay.coordinates![0]),
+                    center: LatLng(mapVM.lat,
+                        mapVM.lng),
                     zoom: 14,
                     maxZoom: 16,
                     minZoom: 13,
@@ -75,8 +75,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                         Marker(
                           point: LatLng(mapVM.lat, mapVM.lng),
                           child: const Icon(
-                            Icons.pin_drop_outlined,
-                            weight: 100,
+                            Icons.pin_drop_rounded,
+                            color: Color.fromARGB(255, 51, 60, 131),
                           ),
                         ),
                       ],

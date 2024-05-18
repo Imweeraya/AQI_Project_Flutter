@@ -1,3 +1,4 @@
+import 'package:air_buddy/feature/map/domain/entitys/here_station.dart';
 import 'package:air_buddy/infrastructure/port_weather/repository.dart';
 import 'package:air_buddy/mock/mock_province.dart';
 import 'package:air_buddy/weather_feature/domain/entities/air_entity.dart';
@@ -32,25 +33,6 @@ class WeatherViewModel extends _$WeatherViewModel {
         cityfilter: [],
       );
 
-  void getWeathers() async {
-    state = state.copyWith(loading: true);
-
-      // final weathersFetchers = service.getListWeatherForecast();
-      final weathersFetchers = serviceMap.getHereStation();
-      // final weathers = await Future.wait(weathersFetchers);
-      final weatherlist = await Future.value(weathersFetchers);
-      final weather = await service.getWeatherForecast(weatherlist.stationName ?? "Bangkok");
-
-      state = state.copyWith(
-        loading: false,
-        currentAir: weather,
-      );
-
-      state = state.copyWith(
-        loading: false,
-      );
-    
-  }
 
   void getCities({String? filter}) async {
     // state = state.copyWith(loadingCity: true);
@@ -72,6 +54,48 @@ class WeatherViewModel extends _$WeatherViewModel {
         cityfilter: citylist,
       );
     }
+  }
+
+  void getWeathers() async {
+    state = state.copyWith(loading: true);
+
+      // final weathersFetchers = service.getListWeatherForecast();
+      final weathersFetchers = await serviceMap.getHereStation();
+
+      // final weathers = await Future.wait(weathersFetchers);
+      // final weatherlist = await Future.value(weathersFetchers);
+      final weather = await service.getWeatherForecast(weathersFetchers.stationName ?? "");
+
+    print(weathersFetchers.stationName);
+
+
+    state = state.copyWith(
+        loading: false,
+        currentAir: weather ?? [],
+      );
+
+      state = state.copyWith(
+        loading: false,
+      );
+
+  }
+
+  void returnToBangkok() async {
+    state = state.copyWith(loading: true);
+
+
+    final weather = await service.getWeatherForecast("Bangkok");
+
+
+    state = state.copyWith(
+      loading: false,
+      currentAir: weather,
+    );
+
+    state = state.copyWith(
+      loading: false,
+    );
+
   }
 
   AqiData getAqiData(int aqi) {

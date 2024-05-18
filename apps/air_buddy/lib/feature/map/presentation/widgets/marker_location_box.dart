@@ -39,14 +39,14 @@ class MarkerLocationBox extends ConsumerWidget {
                     ),
                     width: 54,
                     height: 54,
-                    child: const Icon(Icons.pin_drop),
+                    child: const Icon(Icons.pin_drop , color: Colors.black45,),
                   ),
                   const SizedBox(width: 10),
                   Flexible(
                     child: NormalText(
                       title: name,
                       textSize: TextSize.NORMAL,
-                      color: Colors.black,
+                      color: Colors.black54,
                       overFlow: true,
                       maxLine: 2,
                     ),
@@ -58,13 +58,12 @@ class MarkerLocationBox extends ConsumerWidget {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.black54,
                         borderRadius: BorderRadius.circular(100),
                       ),
                       width: 32,
                       height: 32,
                       alignment: Alignment.center,
-                      child: const Icon(Icons.cancel, color: Colors.white),
+                      child: const Icon(Icons.cancel_outlined, color: Colors.black45 , size: 30,),
                     ),
                   )
                 ],
