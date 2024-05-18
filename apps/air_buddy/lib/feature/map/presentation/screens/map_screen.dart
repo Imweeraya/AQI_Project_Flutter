@@ -75,8 +75,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                         Marker(
                           point: LatLng(mapVM.lat, mapVM.lng),
                           child: const Icon(
-                            Icons.pin_drop_outlined,
-                            weight: 100,
+                            Icons.pin_drop_rounded,
+                            color: Color.fromARGB(255, 51, 60, 131),
                           ),
                         ),
                       ],
