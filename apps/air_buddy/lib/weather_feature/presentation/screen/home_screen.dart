@@ -43,25 +43,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 appBar: AppBar(
                   actions: [
                     IconButton(
-                  onPressed: () {
-                    // Show the dialog
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        // Return an alert dialog
-                        return AlertDialogWeather(
-                          content: 'Get weather at location ?',
-                          action: weatherVMNotifier.getWeathers,
+                      onPressed: () {
+                        // Show the dialog
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            // Return an alert dialog
+                            return AlertDialogWeather(
+                              content: 'Get weather at location ?',
+                              action: weatherVMNotifier.getWeathers,
+                            );
+                          },
                         );
                       },
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.location_searching_rounded,
-                    size: 30,
-                    color: Color.fromARGB(255, 132, 132, 132),
-                  ),
-                ),
+                      icon: const Icon(
+                        Icons.location_searching_rounded,
+                        size: 30,
+                        color: Color.fromARGB(255, 132, 132, 132),
+                      ),
+                    ),
                     IconButton(
                       onPressed: () {
                         showModalBottomSheet(

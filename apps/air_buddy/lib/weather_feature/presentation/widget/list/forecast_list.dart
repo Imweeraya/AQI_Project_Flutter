@@ -9,13 +9,13 @@ class ForeCastList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 410,
+      height: 420,
       width: MediaQuery.of(context).size.width,
       child: ListView.separated(
         separatorBuilder: (context, index) {
           return const SizedBox(width: 16,);
         },
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
         scrollDirection: Axis.horizontal,
         itemCount: forecast.length,
         itemBuilder: (context , index){
