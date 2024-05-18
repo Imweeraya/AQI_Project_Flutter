@@ -36,7 +36,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     return Scaffold(
       body: mapVM.loading
           ? const LoadingMap()
-          :mapVM.station.data.isEmpty ? ErrorPage(reCallApi: mapFunctionVM.getHereStation)
+          :mapVM.lat.isNaN ? ErrorPage(reCallApi: mapFunctionVM.getHereStation)
         :Stack(
               children: [
                 FlutterMap(
