@@ -9,6 +9,7 @@ import 'package:core_ui/widgets/error/error_page.dart';
 import 'package:core_ui/widgets/loading/loading_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -18,6 +19,33 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+
+  Position? _position;
+
+  void getCurrentLocation() async {
+    Position position = await _determinePosition();
+    setState(() {
+      _position = position;
+    });
+    print("Position $position");
+  }
+
+  Future<Position> _determinePosition() async {
+    LocationPermission permission;
+
+    permission = await Geolocator.checkPermission();
+
+    if(permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if(permission == LocationPermission.denied) {
+        return Future.error('Location Permissions are denied');
+      }
+    }
+
+    return await Geolocator.getCurrentPosition();
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -51,7 +79,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             // Return an alert dialog
                             return AlertDialogWeather(
                               content: 'Get weather at location ?',
-                              action: weatherVMNotifier.getWeathers,
+                              action: getCurrentLocation,
                             );
                           },
                         );
