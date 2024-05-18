@@ -79,7 +79,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             // Return an alert dialog
                             return AlertDialogWeather(
                               content: 'Get weather at location ?',
-                              action: getCurrentLocation,
+                              action: weatherVMNotifier.getWeathers,
                             );
                           },
                         );
